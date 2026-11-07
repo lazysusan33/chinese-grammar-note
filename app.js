@@ -127,14 +127,23 @@ function plainText(words) {
 const ICON = {
   speaker: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>',
   eye: '<svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
-  eyeOff: '<svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18"/></svg>'
+  eyeOff: '<svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18"/></svg>',
+  // 正解・不正解・未回答：丸の中に記号（形・色・文字の3つで伝える）
+  good: '<svg class="icon-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  bad: '<svg class="icon-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M8.5 8.5l7 7M15.5 8.5l-7 7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>',
+  none: '<svg class="icon-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 3"/></svg>',
+  list: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6l1.5 1.5 2.5-2.5"/><path d="M3.5 12l1.5 1.5 2.5-2.5"/><path d="M3.5 18l1.5 1.5 2.5-2.5"/><path d="M11 6.5h9.5M11 12.5h9.5M11 18.5h9.5"/></svg>',
+  retry: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4 3.5v4.5h4.5"/></svg>'
 };
 
-// 読み上げボタン（「読む」と「×0.5」で1つの塊）
+// 状態（正解・不正解・未回答）に合う記号
+function markIcon(status) { return ICON[status]; }
+
+// 読み上げボタン（スピーカーの記号に速さだけを添える。×1.0 と ×0.5 で1つの塊）
 function audioButtonsHTML(text) {
   return `<span class="audio" role="group" aria-label="読み上げ">` +
-    `<button type="button" data-action="speak" data-rate="1" data-text="${text}">${ICON.speaker}読む</button>` +
-    `<button type="button" data-action="speak" data-rate="0.5" data-text="${text}" aria-label="0.5倍の速さで読む">×0.5</button>` +
+    `<button type="button" data-action="speak" data-rate="1" data-text="${text}" aria-label="読み上げ（ふつうの速さ）">${ICON.speaker}×1.0</button>` +
+    `<button type="button" data-action="speak" data-rate="0.5" data-text="${text}" aria-label="読み上げ（0.5倍の速さ）">×0.5</button>` +
     `</span>`;
 }
 
@@ -175,9 +184,9 @@ function waitForVoices() {
 
 async function speak(text, rate) {
   try {
-    if (!('speechSynthesis' in window)) { showToast('この端末は読み上げに対応していません'); return; }
+    if (!('speechSynthesis' in window)) { showToast('この端末は読み上げ非対応'); return; }
     await waitForVoices();
-    if (!zhVoice) { showToast('この端末には中国語の音声がありません'); return; }   // 日本語読みにならないよう、読まずに知らせる
+    if (!zhVoice) { showToast('この端末に中国語の音声なし'); return; }   // 日本語読みにならないよう、読まずに知らせる
     window.speechSynthesis.cancel();                 // 読み上げ中なら止めてから
     const u = new SpeechSynthesisUtterance(text);
     u.voice = zhVoice;
@@ -185,7 +194,7 @@ async function speak(text, rate) {
     u.rate = rate;                                   // 1 = ふつう、0.5 = ゆっくり
     window.speechSynthesis.speak(u);
   } catch (e) {
-    showToast('読み上げできませんでした');
+    showToast('読み上げ失敗');
   }
 }
 
@@ -290,6 +299,12 @@ function startQuiz() {
   show('view-quiz');
 }
 
+// 1問だけやり直す
+function retryQuestion() {
+  state.items[state.current] = newItem(QUESTIONS[state.current]);
+  render();
+}
+
 function restartQuiz() {
   state.items = QUESTIONS.map(newItem);
   state.current = 0;
@@ -313,14 +328,17 @@ function render() {
   renderMainButton();
 }
 
+function statusOf(it) { return it.done ? (it.ok ? 'good' : 'bad') : 'none'; }
+const STATUS_TEXT = { good: '正解', bad: '不正解', none: '未回答' };
+
 function renderTabs() {
   const tabs = state.items.map(function (it, i) {
-    const cls = it.done ? (it.ok ? ' good' : ' bad') : '';
-    const mark = it.done ? `<span class="mark" aria-hidden="true">${it.ok ? '✓' : '✗'}</span>` : '';
-    const status = it.done ? (it.ok ? '、正解' : '、不正解') : '';
-    return `<button type="button" class="qtab${cls}" data-action="go" data-target="${i}" aria-current="${state.current === i}" aria-label="問${i + 1}${status}">${i + 1}${mark}</button>`;
+    const st = statusOf(it);
+    const icon = it.done ? markIcon(st) : '';
+    return `<button type="button" class="qtab ${st}" data-action="go" data-target="${i}" aria-current="${state.current === i}" aria-label="問${i + 1}、${STATUS_TEXT[st]}">${icon}<span>${i + 1}</span></button>`;
   }).join('');
-  const summary = `<button type="button" class="qtab" data-action="go" data-target="summary" aria-current="${state.current === 'summary'}" aria-label="結果" ${allDone() ? '' : 'disabled'}>Σ</button>`;
+  // 結果（一覧）はいつでも開ける。未回答の問題は「未回答」として表示
+  const summary = `<button type="button" class="qtab list" data-action="go" data-target="summary" aria-current="${state.current === 'summary'}" aria-label="結果の一覧">${ICON.list}</button>`;
   document.getElementById('quiz-tabs').innerHTML = tabs + summary;
 }
 
@@ -339,7 +357,7 @@ function renderQuestion() {
     area += `<div class="answer-area">${it.placed.map(tokenBtn).join('')}</div>`;
     const rest = it.order.filter(id => !it.placed.includes(id));
     area += `<div class="token-pool">${rest.map(tokenBtn).join('')}</div>`;
-    if (!it.done) area += `<p class="note">カードを押すと上に並びます。並べたカードを押すと戻ります。</p>`;
+    if (!it.done) area += `<p class="note">タップで移動</p>`;
   } else {
     if (q.sentence) area += `<p lang="zh-CN" class="zh-line big">${sentenceHTML(q.sentence)}</p>`;
     const cols = q.cols ? ` cols-${q.cols}` : '';
@@ -349,10 +367,10 @@ function renderQuestion() {
       if (o.html) inner += o.html;
       if (o.ja) inner += `<span class="ja">${o.ja}</span>`;
       if (o.en) inner += `<span lang="en" class="en">${o.en}</span>`;
-      // 答え合わせ後は、正解に ✓、選んだ不正解に ✗ を付ける
+      // 答え合わせ後は、正解に緑の丸、選んだ不正解に赤の丸を付ける
       let cls = '', mark = '';
-      if (it.done && k === q.answerIndex) { cls = ' is-correct'; mark = '<span class="mark" aria-hidden="true">✓</span>'; }
-      else if (it.done && k === it.selected) { cls = ' is-wrong'; mark = '<span class="mark" aria-hidden="true">✗</span>'; }
+      if (it.done && k === q.answerIndex) { cls = ' is-correct'; mark = `<span class="mark">${ICON.good}</span>`; }
+      else if (it.done && k === it.selected) { cls = ' is-wrong'; mark = `<span class="mark">${ICON.bad}</span>`; }
       return `<button type="button" class="option${cls}" data-action="option" data-index="${k}" aria-pressed="${it.selected === k}"${lock}>${mark}${inner}</button>`;
     }).join('') + `</div>`;
   }
@@ -369,11 +387,12 @@ function renderQuestion() {
 // 答え合わせの結果（問題の下に開く。解説のピンインは常に表示）
 function feedbackHTML(q, it) {
   const unanswered = it.your === '';
-  let head = it.ok ? '✓ 正解' : (unanswered ? '✗ 未回答' : '✗ 不正解');
-  let html = `<div class="result-box"><p class="result ${it.ok ? 'good' : 'bad'}">${head}</p>`;
+  const st = it.ok ? 'good' : 'bad';
+  const head = it.ok ? '正解' : (unanswered ? '未回答' : '不正解');
+  let html = `<div class="result-box"><p class="result ${st}">${markIcon(st)}${head}</p>`;
   if (!it.ok && !unanswered) {
     const lang = q.type === 'reorder' ? ' lang="zh-CN"' : '';
-    html += `<div><p class="label">あなたの答え</p><p class="your-answer"${lang}>${it.your}</p></div>`;
+    html += `<div><p class="label">回答</p><p class="your-answer"${lang}>${it.your}</p></div>`;
   }
   html += `<div><p class="label">正解</p>
     <p lang="zh-CN" class="zh-line big" style="padding-bottom:12px">${sentenceHTML(q.correct)}</p>
@@ -382,34 +401,41 @@ function feedbackHTML(q, it) {
     <div class="actions" style="margin-top:6px">${audioButtonsHTML(plainText(q.correct))}</div>
   </div>`;
   html += `<div class="why"><p class="why-title">なぜ？</p><p>${q.why}</p>
-    <button type="button" class="link" data-action="goto-lecture" data-target="${q.lecture}">講義の該当箇所を読む ›</button></div>`;
+    <button type="button" class="link" data-action="goto-lecture" data-target="${q.lecture}">講義の該当箇所 ›</button></div>`;
   return html + `</div>`;
 }
 
 function renderSummary() {
   const score = state.items.filter(it => it.ok).length;
+  const open = state.items.filter(it => !it.done).length;
   const rows = state.items.map(function (it, i) {
-    const kind = QUESTIONS[i].kind;
-    return `<button type="button" class="summary-row" data-action="go" data-target="${i}">
-      <span class="mark ${it.ok ? 'good' : 'bad'}" aria-label="${it.ok ? '正解' : '不正解'}">${it.ok ? '✓' : '✗'}</span>
-      <span>問${i + 1} ・ ${kind}</span><span class="chev" aria-hidden="true">›</span></button>`;
+    const st = statusOf(it);
+    return `<button type="button" class="summary-row ${st}" data-action="go" data-target="${i}" aria-label="問${i + 1}、${STATUS_TEXT[st]}">
+      <span class="mark">${markIcon(st)}</span>
+      <span>問${i + 1} ・ ${QUESTIONS[i].kind}</span><span class="chev" aria-hidden="true">›</span></button>`;
   }).join('');
   document.getElementById('quiz-body').innerHTML =
     `<p class="label">結果</p>
      <p class="score">${score} / ${QUESTIONS.length}</p>
+     ${open ? `<p class="note">未回答 ${open}</p>` : ''}
      <div class="summary-list">${rows}</div>
-     <button type="button" class="link" data-action="back-to-item">‹ 講義に戻る</button>`;
+     <button type="button" class="link" data-action="back-to-item">‹ 講義</button>`;
 }
 
 // 下に固定したボタン：状況に応じて役割が変わる
 function renderMainButton() {
   const b = document.getElementById('main-button');
-  if (state.current === 'summary') {
-    b.textContent = 'もう一度解く'; b.dataset.action = 'restart';
-  } else if (!state.items[state.current].done) {
+  const retry = document.getElementById('retry-button');
+  const onQuestion = state.current !== 'summary';
+  const done = onQuestion && state.items[state.current].done;
+  retry.hidden = !done;                       // 答え合わせ後だけ「やり直し」を出す
+  retry.innerHTML = ICON.retry;
+  if (!onQuestion) {
+    b.textContent = '全問やり直し'; b.dataset.action = 'restart';
+  } else if (!done) {
     b.textContent = '答え合わせ'; b.dataset.action = 'check';   // 何も答えていなくても押せる（未回答＝不正解）
   } else if (allDone()) {
-    b.textContent = '結果を見る'; b.dataset.action = 'summary';
+    b.textContent = '結果 ›'; b.dataset.action = 'summary';
   } else {
     b.textContent = '次の問題 ›'; b.dataset.action = 'next';
   }
@@ -478,6 +504,7 @@ document.addEventListener('click', function (event) {
     case 'next': next(); break;
     case 'summary': goTo('summary'); break;
     case 'restart': restartQuiz(); break;
+    case 'retry': retryQuestion(); break;
     case 'goto-lecture': {
       show('view-item');
       const target = document.querySelector(el.dataset.target);

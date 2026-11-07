@@ -98,7 +98,7 @@ ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2p
   min-height: 52px;
   padding: env(safe-area-inset-top) 8px 0;
   border-bottom: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.94);
+  background: #FFFFFF;
   position: sticky;
   top: 0;
   z-index: 5;
@@ -170,37 +170,58 @@ ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2p
 /* ---------- 読み上げとピンインのボタン ---------- */
 .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 
-/* 読み上げ：「読む」と「×0.5」を1つの塊にして、関係がひと目でわかるようにする */
-.audio {
-  display: inline-flex;
-  border-radius: 22px;
-  background: var(--accent-tint);
-  overflow: hidden;
+/* 見た目は細く（高さ34px）、押せる範囲は44pxのまま。
+   色の付いた「見た目の形」は ::before で描き、ボタン本体は透明で背を高くしておく */
+
+/* 読み上げ：スピーカー＋「×1.0」と「×0.5」を1つの青い塊にして、関係がひと目でわかるようにする */
+.audio { position: relative; display: inline-flex; isolation: isolate; }
+.audio::before {
+  content: ''; position: absolute; inset: 5px 0; z-index: -1;
+  border-radius: 17px; background: var(--accent-tint);
 }
 .audio button {
+  position: relative;
   min-height: 44px;
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 0 14px;
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 0 10px;
   border: 0; background: transparent;
-  font: inherit; font-size: 14px; font-weight: 600; line-height: 1; color: var(--accent);
+  font: inherit; font-size: 13px; font-weight: 600; line-height: 1; color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
-.audio button + button { border-left: 1px solid rgba(31, 79, 184, 0.25); padding: 0 14px; font-variant-numeric: tabular-nums; }
-.audio button:active { background: rgba(31, 79, 184, 0.12); }
-.audio svg { width: 18px; height: 18px; }
+.audio button:first-child { padding-left: 12px; }
+.audio button:last-child { padding-right: 12px; }
+.audio button + button::before {          /* 2つの間の仕切り線 */
+  content: ''; position: absolute; left: 0; top: 14px; bottom: 14px;
+  border-left: 1px solid rgba(31, 79, 184, 0.3);
+}
+.audio button:active { opacity: 0.55; }
+.audio svg { width: 16px; height: 16px; }
 
-/* ピンイン：形（四角）も色（灰色）も読み上げと変え、オン・オフで目の記号が切り替わる */
+/* ピンイン：形（角の丸い四角）も色（灰色）も読み上げと変え、オン・オフで目の記号が切り替わる */
 .pinyin-toggle {
+  position: relative; isolation: isolate;
   min-height: 44px;
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 0 12px;
-  border: 1px solid var(--line); border-radius: 10px; background: #FFFFFF;
-  font: inherit; font-size: 14px; line-height: 1; color: var(--quiet);
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 0 10px;
+  border: 0; background: transparent;
+  font: inherit; font-size: 13px; line-height: 1; color: var(--quiet);
 }
-.pinyin-toggle svg { width: 18px; height: 18px; }
+.pinyin-toggle::before {
+  content: ''; position: absolute; inset: 5px 0; z-index: -1;
+  border: 1px solid var(--line); border-radius: 8px; background: #FFFFFF;
+}
+.pinyin-toggle svg { width: 16px; height: 16px; }
 .pinyin-toggle .icon-on { display: none; }
-.pinyin-toggle[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #FFFFFF; }
+.pinyin-toggle[aria-pressed="true"] { color: #FFFFFF; }
+.pinyin-toggle[aria-pressed="true"]::before { background: var(--ink); border-color: var(--ink); }
 .pinyin-toggle[aria-pressed="true"] .icon-on { display: inline; }
 .pinyin-toggle[aria-pressed="true"] .icon-off { display: none; }
+
+/* 正解・不正解・未回答の丸い記号 */
+.icon-mark { width: 18px; height: 18px; flex-shrink: 0; }
+.good .icon-mark { color: var(--good); }
+.bad .icon-mark { color: var(--bad); }
+.none .icon-mark { color: #9A9A96; }
 
 /* ---------- 大きなボタン ---------- */
 .primary {
@@ -222,19 +243,19 @@ ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2p
   position: sticky; top: calc(52px + env(safe-area-inset-top)); z-index: 4; background: #FFFFFF;
 }
 .qtab {
-  position: relative;
-  min-height: 44px;
+  min-height: 48px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
   border: 1px solid var(--line); border-radius: 10px; background: #FFFFFF;
-  font: inherit; font-size: 16px; font-weight: 600; line-height: 1; color: var(--ink);
+  font: inherit; font-size: 16px; font-weight: 600; line-height: 1.1; color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
+.qtab .icon-mark { width: 15px; height: 15px; }
+.qtab.list svg { width: 22px; height: 22px; }
 .qtab[aria-current="true"] { border: 2px solid var(--accent); color: var(--accent); }
 .qtab.good { background: var(--good-tint); border-color: #9CCBA9; color: var(--good); }
 .qtab.bad { background: var(--bad-tint); border-color: #E3A9A9; color: var(--bad); }
 .qtab.good[aria-current="true"] { border: 2px solid var(--good); }
 .qtab.bad[aria-current="true"] { border: 2px solid var(--bad); }
-.qtab .mark { position: absolute; top: 2px; right: 5px; font-size: 11px; line-height: 1; }
-.qtab:disabled { color: #B8B8B4; border-style: dashed; }
 
 .quiz-body { flex-grow: 1; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 14px; }
 .q-area { display: flex; flex-direction: column; gap: 14px; }
@@ -245,10 +266,21 @@ ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2p
 /* 下に固定するボタンの帯（iPhone の下端の余白も確保） */
 .quiz-footer {
   position: sticky; bottom: 0; z-index: 5;
+  display: flex; gap: 10px;
   padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
   background: rgba(255, 255, 255, 0.96);
   border-top: 1px solid var(--line-soft);
 }
+
+/* やり直し（YouTube の「もう一度再生」と同じ形）。主ボタンより小さく */
+.retry {
+  flex-shrink: 0;
+  width: 52px; min-height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line); border-radius: 12px; background: #FFFFFF; color: var(--accent);
+}
+.retry svg { width: 22px; height: 22px; }
+.retry:active { background: var(--accent-tint); }
 
 /* 並べ替え：上が「並べる場所」、下が「カード置き場」 */
 .answer-area {
@@ -281,14 +313,16 @@ ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2p
 .option:disabled { color: var(--ink); opacity: 1; }
 .option.is-correct { border: 2px solid var(--good); background: var(--good-tint); }
 .option.is-wrong { border: 2px solid var(--bad); background: var(--bad-tint); }
-.option .mark { position: absolute; top: 4px; right: 8px; font-size: 13px; font-weight: 700; line-height: 1; }
+.option .mark { position: absolute; top: 6px; right: 6px; line-height: 0; }
 .option.is-correct .mark { color: var(--good); }
 .option.is-wrong .mark { color: var(--bad); }
+.option .mark .icon-mark { color: inherit; }
 .slot { color: var(--accent); font-family: var(--font-ja); font-size: 15px; font-weight: 600; padding: 0 2px; }
 
 /* 答え合わせの結果（問題の下にその場で開く） */
 .result-box { border-top: 1px solid var(--line-soft); padding-top: 14px; display: flex; flex-direction: column; gap: 10px; }
 .result { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 700; line-height: 1.4; }
+.result .icon-mark { width: 24px; height: 24px; }
 .result.good { color: var(--good); }
 .result.bad { color: var(--bad); }
 .label { font-size: 12px; color: var(--quiet); line-height: 1.6; }
@@ -305,7 +339,7 @@ ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2p
   font: inherit; font-size: 15px; line-height: 1.6; color: var(--ink); text-align: left;
 }
 .summary-row:last-child { border-bottom: 0; }
-.summary-row .mark { width: 20px; font-weight: 700; }
-.summary-row .mark.good { color: var(--good); }
-.summary-row .mark.bad { color: var(--bad); }
+.summary-row .mark { line-height: 0; }
+.summary-row .icon-mark { width: 20px; height: 20px; }
+.summary-row.none { color: var(--quiet); }
 .summary-row .chev { margin-left: auto; color: var(--quiet); }

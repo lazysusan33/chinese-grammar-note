@@ -31,7 +31,7 @@
     <nav class="chips" aria-label="ページ内の段階">
       <a href="#lecture">① 講義</a>
       <a href="#examples">② 例文</a>
-      <button type="button" class="chip-button" data-action="start-quiz">③ 問題へ</button>
+      <button type="button" class="chip-button" data-action="start-quiz">③ 問題</button>
     </nav>
   </section>
 
@@ -56,7 +56,6 @@
       <p class="pattern">主語 ＋ 動詞 ＋ <ruby lang="zh-CN" class="accent">了<rt>le</rt></ruby> ＋ 数量 ＋ 目的語</p>
       <p lang="en" class="pattern-en">S + V + <ruby lang="zh-CN" class="accent">了<rt>le</rt></ruby> + Quantity + O</p>
       <p lang="zh-CN" class="zh-line"><ruby class="sandhi" data-actual="Wó">我<rt>Wǒ</rt></ruby> <ruby>买了<rt>mǎile</rt></ruby> <ruby>三<rt>sān</rt></ruby> <ruby>本<rt>běn</rt></ruby> <ruby>书<rt>shū</rt></ruby>。</p>
-      <p class="note">点線のピンインは、続けて発音すると声調が変わる字です。押すと実際の発音が出ます。</p>
     </div>
 
     <div id="negation" class="panel">
@@ -83,7 +82,6 @@
   <!-- ② 例文：ピンインは最初は隠す（class="pinyin-hidden"） -->
   <section id="examples" class="block">
     <h2>② 例文</h2>
-    <p class="note">例文のピンインは、最初は隠れています。</p>
 
     <article class="example pinyin-hidden">
       <p lang="zh-CN" class="zh-line big"><ruby class="sandhi" data-actual="Wó">我<rt>Wǒ</rt></ruby> <ruby>买了<rt>mǎile</rt></ruby> <ruby>三<rt>sān</rt></ruby> <ruby>本<rt>běn</rt></ruby> <ruby>书<rt>shū</rt></ruby>。</p>
@@ -98,7 +96,7 @@
       <div class="actions" data-speak="我明天下了课就去找你。" data-pinyin-toggle></div>
       <p class="ja">明日授業が終わったら、あなたを訪ねます。</p>
       <p lang="en" class="en">I'll come see you after class tomorrow.</p>
-      <p class="status">未来の文でも<ruby lang="zh-CN">了<rt>le</rt></ruby>が使える例 ・ ネイティブ未確認</p>
+      <p class="status">未来の文での<ruby lang="zh-CN">了<rt>le</rt></ruby> ・ ネイティブ未確認</p>
     </article>
 
     <article class="example wrong pinyin-hidden">
@@ -115,7 +113,7 @@
       <p class="explain">目的語に数量などがないと、文が終わった感じがせず、続きが期待されます。</p>
     </article>
 
-    <button type="button" class="primary" data-action="start-quiz">問題へ進む（5問）</button>
+    <button type="button" class="primary" data-action="start-quiz">振り返り 5問 ›</button>
   </section>
 </main>
 
@@ -132,6 +130,8 @@
   <div id="quiz-body" class="quiz-body"></div>
   <!-- 画面の下に固定するボタンの帯 -->
   <footer class="quiz-footer">
+    <!-- 左：この問題のやり直し（答え合わせ後だけ表示）　右：大きな主ボタン -->
+    <button type="button" id="retry-button" class="retry" data-action="retry" aria-label="この問題をやり直す" hidden></button>
     <button type="button" id="main-button" class="primary" data-action="check">答え合わせ</button>
   </footer>
 </main>
