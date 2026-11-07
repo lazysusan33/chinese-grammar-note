@@ -2,6 +2,7 @@
   style.css ＝ 見た目（画面の部品が「どう見えるか」）
   ・同じ色や大きさを何度も書かないよう、最初に「変数」としてまとめておく
   ・スマホの幅を基本に作り、広い画面では中央に寄せる（モバイルファースト）
+  ・お手本は Apple の Human Interface Guidelines（記号を使う・押せる場所は44px以上・情報は最小限）
 */
 
 /* ---------- 色と文字の変数 ---------- */
@@ -12,12 +13,15 @@
   --line-soft: #ECECE8;  /* 薄い区切り線 */
   --tint: #F5F5F2;       /* 薄い背景 */
   --accent: #1F4FB8;     /* 押せるもの・強調 */
-  --accent-tint: #EEF3FC;
+  --accent-tint: #E8EEFB;
   --good: #1E6B3A;       /* 正解 */
+  --good-tint: #E7F3EA;
   --bad: #9B1C1C;        /* 不正解・誤文 */
+  --bad-tint: #FBEAEA;
   --warn: #7A4B00;       /* 説が分かれる点など */
-  --font-ja: 'Noto Sans JP', sans-serif;
-  --font-zh: 'Noto Sans SC', sans-serif;
+  /* 書体：まず端末に入っている書体（iPhone なら ヒラギノ・PingFang）を使い、なければ Noto */
+  --font-ja: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  --font-zh: 'PingFang SC', 'Noto Sans SC', 'Hiragino Sans GB', sans-serif;
 }
 
 /* ---------- ページ全体 ---------- */
@@ -34,7 +38,8 @@ body {
 .view {
   max-width: 480px;            /* PCで開いても、スマホ幅で中央に表示 */
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 100vh;           /* 古いブラウザ向け */
+  min-height: 100dvh;          /* iPhone のツールバーを除いた、実際に見えている高さ */
   display: flex;
   flex-direction: column;
 }
@@ -42,6 +47,7 @@ body {
 p { margin: 0; }
 h1, h2, h3 { margin: 0; }
 a { color: var(--accent); }
+button { -webkit-tap-highlight-color: transparent; }
 
 /* ---------- 中国語とピンイン（ルビ） ---------- */
 [lang="zh-CN"], ruby { font-family: var(--font-zh); }
@@ -84,20 +90,26 @@ ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2p
 }
 .pinyin-hidden ruby.sandhi { pointer-events: none; }   /* 隠しているときは押せない */
 
-/* ---------- 上部の帯 ---------- */
+/* ---------- 上部の帯（iOS のナビゲーションバー風） ---------- */
 .topbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 8px;
   min-height: 52px;
-  padding: 4px 12px;
+  padding: env(safe-area-inset-top) 8px 0;
   border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.94);
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
-.topbar-note { flex-grow: 1; font-size: 12px; color: var(--quiet); text-align: right; padding-right: 8px; }
+.topbar-title { font-size: 16px; font-weight: 600; line-height: 1.4; }
+.topbar-note { grid-column: 3; justify-self: end; font-size: 12px; color: var(--quiet); padding-right: 8px; }
 .back {
+  justify-self: start;
   min-height: 44px; padding: 0 8px;
   border: 0; background: none;
-  font: inherit; font-size: 14px; color: var(--accent);
+  font: inherit; font-size: 16px; color: var(--accent);
 }
 
 /* ---------- 項目ページ ---------- */
@@ -144,7 +156,7 @@ ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2p
 .debate { background: #FFF6E5; border-radius: 8px; padding: 14px; font-size: 14px; }
 .debate-label { font-size: 13px; font-weight: 600; color: var(--warn); line-height: 1.8; }
 
-.example { border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.example { border: 1px solid var(--line); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
 .example .zh-line { padding-bottom: 12px; }    /* 声調変化の表示が出る余白 */
 .example.wrong { border-style: dashed; border-color: #B0B0AA; background: #FAFAF8; }
 .ja { font-size: 14px; line-height: 1.7; }
@@ -155,68 +167,145 @@ ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2p
 .tag-odd { color: var(--warn); }
 .explain { font-size: 14px; }
 
-/* ---------- ボタン ---------- */
-.actions { display: flex; gap: 8px; flex-wrap: wrap; }
-.actions button, .small-button {
-  min-height: 44px; padding: 0 14px;
-  border: 1px solid var(--line); border-radius: 8px; background: #FFFFFF;
-  font: inherit; font-size: 13px; line-height: 1; color: var(--accent);
+/* ---------- 読み上げとピンインのボタン ---------- */
+.actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* 読み上げ：「読む」と「×0.5」を1つの塊にして、関係がひと目でわかるようにする */
+.audio {
+  display: inline-flex;
+  border-radius: 22px;
+  background: var(--accent-tint);
+  overflow: hidden;
 }
-.actions button[aria-pressed="true"], .small-button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-tint); }
+.audio button {
+  min-height: 44px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 0 14px;
+  border: 0; background: transparent;
+  font: inherit; font-size: 14px; font-weight: 600; line-height: 1; color: var(--accent);
+}
+.audio button + button { border-left: 1px solid rgba(31, 79, 184, 0.25); padding: 0 14px; font-variant-numeric: tabular-nums; }
+.audio button:active { background: rgba(31, 79, 184, 0.12); }
+.audio svg { width: 18px; height: 18px; }
+
+/* ピンイン：形（四角）も色（灰色）も読み上げと変え、オン・オフで目の記号が切り替わる */
+.pinyin-toggle {
+  min-height: 44px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 0 12px;
+  border: 1px solid var(--line); border-radius: 10px; background: #FFFFFF;
+  font: inherit; font-size: 14px; line-height: 1; color: var(--quiet);
+}
+.pinyin-toggle svg { width: 18px; height: 18px; }
+.pinyin-toggle .icon-on { display: none; }
+.pinyin-toggle[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #FFFFFF; }
+.pinyin-toggle[aria-pressed="true"] .icon-on { display: inline; }
+.pinyin-toggle[aria-pressed="true"] .icon-off { display: none; }
+
+/* ---------- 大きなボタン ---------- */
 .primary {
   min-height: 52px; width: 100%;
-  border: 0; border-radius: 8px; background: var(--accent);
-  color: #FFFFFF; font: inherit; font-size: 16px; font-weight: 600; line-height: 1;
+  border: 0; border-radius: 12px; background: var(--accent);
+  color: #FFFFFF; font: inherit; font-size: 17px; font-weight: 600; line-height: 1;
 }
-.primary:disabled { background: #A9B9DC; }
+.primary:active { background: #183F94; }
 .link {
-  min-height: 44px; width: 100%; border: 0; background: none;
-  font: inherit; font-size: 14px; color: var(--accent);
+  min-height: 44px; border: 0; background: none; padding: 0;
+  font: inherit; font-size: 14px; color: var(--accent); text-align: left;
 }
 
 /* ---------- 問題画面 ---------- */
-.progress { height: 4px; background: var(--line-soft); }
-.progress-bar { height: 4px; background: var(--accent); width: 0; transition: width 0.2s; }
-.quiz-body { flex-grow: 1; padding: 24px 20px; display: flex; flex-direction: column; gap: 14px; }
-.quiz-kind { font-size: 12px; color: var(--quiet); line-height: 1.6; }
+/* 1〜5の番号（セグメント）。✓ ✗ で結果がひと目でわかる */
+.qtabs {
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px;
+  padding: 10px 16px; border-bottom: 1px solid var(--line-soft);
+  position: sticky; top: calc(52px + env(safe-area-inset-top)); z-index: 4; background: #FFFFFF;
+}
+.qtab {
+  position: relative;
+  min-height: 44px;
+  border: 1px solid var(--line); border-radius: 10px; background: #FFFFFF;
+  font: inherit; font-size: 16px; font-weight: 600; line-height: 1; color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.qtab[aria-current="true"] { border: 2px solid var(--accent); color: var(--accent); }
+.qtab.good { background: var(--good-tint); border-color: #9CCBA9; color: var(--good); }
+.qtab.bad { background: var(--bad-tint); border-color: #E3A9A9; color: var(--bad); }
+.qtab.good[aria-current="true"] { border: 2px solid var(--good); }
+.qtab.bad[aria-current="true"] { border: 2px solid var(--bad); }
+.qtab .mark { position: absolute; top: 2px; right: 5px; font-size: 11px; line-height: 1; }
+.qtab:disabled { color: #B8B8B4; border-style: dashed; }
+
+.quiz-body { flex-grow: 1; padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 14px; }
+.q-area { display: flex; flex-direction: column; gap: 14px; }
+.quiz-kind { font-size: 12px; color: var(--quiet); line-height: 2; }
 .prompt-ja { font-size: 19px; font-weight: 600; line-height: 1.6; }
 .prompt-en { margin-top: -8px; font-size: 14px; line-height: 1.6; color: var(--quiet); }
-.quiz-footer { padding: 12px 20px 28px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 6px; }
+
+/* 下に固定するボタンの帯（iPhone の下端の余白も確保） */
+.quiz-footer {
+  position: sticky; bottom: 0; z-index: 5;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid var(--line-soft);
+}
 
 /* 並べ替え：上が「並べる場所」、下が「カード置き場」 */
 .answer-area {
-  min-height: 72px; border: 1px dashed #B0B0AA; border-radius: 8px;
+  min-height: 72px; border: 1px dashed #B0B0AA; border-radius: 10px;
   padding: 8px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
 }
 .answer-area:empty::before { content: 'ここに並べる'; font-size: 13px; color: var(--quiet); padding-left: 4px; }
 .token-pool { display: flex; flex-wrap: wrap; gap: 10px; }
 .token {
   min-height: 52px; min-width: 56px; padding: 2px 14px;
-  border: 1px solid var(--line); border-radius: 8px; background: #FFFFFF;
+  border: 1px solid var(--line); border-radius: 10px; background: #FFFFFF;
   font-family: var(--font-zh); font-size: 20px; line-height: 2; color: var(--ink);
 }
 .answer-area .token { border-color: var(--accent); background: var(--accent-tint); }
+.token:disabled { color: var(--ink); opacity: 1; }
 
 /* 選択式 */
 .options { display: grid; gap: 10px; }
 .options.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .options.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .option {
+  position: relative;
   min-height: 52px; padding: 8px 14px;
-  border: 1px solid var(--line); border-radius: 8px; background: #FFFFFF;
+  border: 1px solid var(--line); border-radius: 10px; background: #FFFFFF;
   font: inherit; font-size: 15px; line-height: 1.7; color: var(--ink); text-align: left;
 }
 .options.cols-2 .option, .options.cols-4 .option { text-align: center; }
 .option[aria-pressed="true"] { border: 2px solid var(--accent); background: var(--accent-tint); }
 .option .en { display: block; font-size: 13px; }
+.option:disabled { color: var(--ink); opacity: 1; }
+.option.is-correct { border: 2px solid var(--good); background: var(--good-tint); }
+.option.is-wrong { border: 2px solid var(--bad); background: var(--bad-tint); }
+.option .mark { position: absolute; top: 4px; right: 8px; font-size: 13px; font-weight: 700; line-height: 1; }
+.option.is-correct .mark { color: var(--good); }
+.option.is-wrong .mark { color: var(--bad); }
 .slot { color: var(--accent); font-family: var(--font-ja); font-size: 15px; font-weight: 600; padding: 0 2px; }
 
-/* ---------- 解説画面 ---------- */
-.result { font-size: 20px; font-weight: 700; line-height: 1.6; }
+/* 答え合わせの結果（問題の下にその場で開く） */
+.result-box { border-top: 1px solid var(--line-soft); padding-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+.result { display: flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 700; line-height: 1.4; }
 .result.good { color: var(--good); }
 .result.bad { color: var(--bad); }
 .label { font-size: 12px; color: var(--quiet); line-height: 1.6; }
-.your-answer { font-family: var(--font-zh); font-size: 20px; text-decoration: line-through; text-decoration-color: var(--bad); }
-.why { background: var(--tint); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.your-answer { font-size: 18px; line-height: 1.6; text-decoration: line-through; text-decoration-color: var(--bad); }
+.why { background: var(--tint); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
 .why-title { font-size: 13px; font-weight: 600; line-height: 1.6; }
-.score { font-size: 28px; font-weight: 700; line-height: 1.4; }
+
+/* まとめ */
+.score { font-size: 32px; font-weight: 700; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.summary-list { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.summary-row {
+  min-height: 52px; display: flex; align-items: center; gap: 12px; padding: 0 14px;
+  border: 0; border-bottom: 1px solid var(--line-soft); background: #FFFFFF;
+  font: inherit; font-size: 15px; line-height: 1.6; color: var(--ink); text-align: left;
+}
+.summary-row:last-child { border-bottom: 0; }
+.summary-row .mark { width: 20px; font-weight: 700; }
+.summary-row .mark.good { color: var(--good); }
+.summary-row .mark.bad { color: var(--bad); }
+.summary-row .chev { margin-left: auto; color: var(--quiet); }

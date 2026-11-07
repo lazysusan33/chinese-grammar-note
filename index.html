@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8">
   <!-- スマホで等倍表示にするための指定。これがないと、PC用の幅で縮小表示される -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>中国語文法ノート（試作）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&display=swap">
@@ -87,10 +87,7 @@
 
     <article class="example pinyin-hidden">
       <p lang="zh-CN" class="zh-line big"><ruby class="sandhi" data-actual="Wó">我<rt>Wǒ</rt></ruby> <ruby>买了<rt>mǎile</rt></ruby> <ruby>三<rt>sān</rt></ruby> <ruby>本<rt>běn</rt></ruby> <ruby>书<rt>shū</rt></ruby>。</p>
-      <div class="actions">
-        <button type="button" data-action="speak" data-text="我买了三本书。">▶ 読み上げ</button>
-        <button type="button" data-action="toggle-pinyin" aria-pressed="false">ピンインを表示</button>
-      </div>
+      <div class="actions" data-speak="我买了三本书。" data-pinyin-toggle></div>
       <p class="ja">私は本を3冊買った。</p>
       <p lang="en" class="en">I bought three books.</p>
       <p class="status">ネイティブ未確認</p>
@@ -98,10 +95,7 @@
 
     <article class="example pinyin-hidden">
       <p lang="zh-CN" class="zh-line big"><ruby>我<rt>Wǒ</rt></ruby> <ruby>明天<rt>míngtiān</rt></ruby> <ruby>下了<rt>xiàle</rt></ruby> <ruby>课<rt>kè</rt></ruby> <ruby>就<rt>jiù</rt></ruby> <ruby>去<rt>qù</rt></ruby> <ruby class="sandhi" data-actual="zháo">找<rt>zhǎo</rt></ruby> <ruby>你<rt>nǐ</rt></ruby>。</p>
-      <div class="actions">
-        <button type="button" data-action="speak" data-text="我明天下了课就去找你。">▶ 読み上げ</button>
-        <button type="button" data-action="toggle-pinyin" aria-pressed="false">ピンインを表示</button>
-      </div>
+      <div class="actions" data-speak="我明天下了课就去找你。" data-pinyin-toggle></div>
       <p class="ja">明日授業が終わったら、あなたを訪ねます。</p>
       <p lang="en" class="en">I'll come see you after class tomorrow.</p>
       <p class="status">未来の文でも<ruby lang="zh-CN">了<rt>le</rt></ruby>が使える例 ・ ネイティブ未確認</p>
@@ -110,18 +104,14 @@
     <article class="example wrong pinyin-hidden">
       <p class="tag tag-wrong">誤った文</p>
       <p lang="zh-CN" class="zh-line big"><span aria-hidden="true">*</span><ruby>我<rt>Wǒ</rt></ruby> <ruby>没<rt>méi</rt></ruby> <ruby>买了<rt>mǎile</rt></ruby> <ruby>书<rt>shū</rt></ruby>。</p>
-      <div class="actions">
-        <button type="button" data-action="toggle-pinyin" aria-pressed="false">ピンインを表示</button>
-      </div>
+      <div class="actions" data-pinyin-toggle></div>
       <p class="explain">正しくは <ruby lang="zh-CN">我<rt>wǒ</rt></ruby><ruby lang="zh-CN">没<rt>méi</rt></ruby><ruby lang="zh-CN">买<rt>mǎi</rt></ruby><ruby lang="zh-CN">书<rt>shū</rt></ruby><span lang="zh-CN">。</span><ruby lang="zh-CN">没<rt>méi</rt></ruby>で否定すると、完了の<ruby lang="zh-CN">了<rt>le</rt></ruby>は残りません。</p>
     </article>
 
     <article class="example wrong pinyin-hidden">
       <p class="tag tag-odd">これだけでは不自然な文</p>
       <p lang="zh-CN" class="zh-line big"><span aria-hidden="true">?</span><ruby class="sandhi" data-actual="Wó">我<rt>Wǒ</rt></ruby> <ruby>买了<rt>mǎile</rt></ruby> <ruby>书<rt>shū</rt></ruby>。</p>
-      <div class="actions">
-        <button type="button" data-action="toggle-pinyin" aria-pressed="false">ピンインを表示</button>
-      </div>
+      <div class="actions" data-pinyin-toggle></div>
       <p class="explain">目的語に数量などがないと、文が終わった感じがせず、続きが期待されます。</p>
     </article>
 
@@ -129,30 +119,20 @@
   </section>
 </main>
 
-<!-- ===================== 画面2：問題 ===================== -->
+<!-- ===================== 画面2：問題（解説もこの画面の中に開く） ===================== -->
 <!-- hidden 属性＝最初は非表示。中身は app.js が問題データから組み立てる -->
 <main id="view-quiz" class="view" hidden>
   <header class="topbar">
-    <button type="button" class="back" data-action="back-to-item">← 講義に戻る</button>
-    <span id="quiz-progress" class="topbar-note"></span>
+    <button type="button" class="back" data-action="back-to-item" aria-label="講義に戻る">‹ 講義</button>
+    <span class="topbar-title">振り返り</span>
+    <span class="topbar-side"></span>
   </header>
-  <div class="progress"><div id="quiz-bar" class="progress-bar"></div></div>
+  <!-- 1〜5の番号：どの問題にも自由に移れる -->
+  <nav id="quiz-tabs" class="qtabs" aria-label="問題の切り替え"></nav>
   <div id="quiz-body" class="quiz-body"></div>
+  <!-- 画面の下に固定するボタンの帯 -->
   <footer class="quiz-footer">
-    <button type="button" id="check-button" class="primary" data-action="check" disabled>答え合わせ</button>
-    <button type="button" class="link" data-action="back-to-item">講義に戻る</button>
-  </footer>
-</main>
-
-<!-- ===================== 画面3：解説 ===================== -->
-<main id="view-feedback" class="view" hidden>
-  <header class="topbar">
-    <button type="button" class="back" data-action="back-to-item">← 講義に戻る</button>
-    <span id="feedback-progress" class="topbar-note"></span>
-  </header>
-  <div id="feedback-body" class="quiz-body"></div>
-  <footer class="quiz-footer">
-    <button type="button" id="next-button" class="primary" data-action="next">次の問題へ</button>
+    <button type="button" id="main-button" class="primary" data-action="check">答え合わせ</button>
   </footer>
 </main>
 
