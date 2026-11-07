@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--
+  index.html ＝ 骨組み（画面に「何があるか」）
+  ・見た目は style.css、動きは app.js に任せ、ここには中身と構造だけを書く
+  ・lang 属性で言語を区別する（ja＝日本語、zh-CN＝中国語、en＝英語）
+    → 読み上げや、ピンインを付ける範囲の目印になる
+-->
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <!-- スマホで等倍表示にするための指定。これがないと、PC用の幅で縮小表示される -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>中国語文法ノート（試作）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&display=swap">
+  <!-- 見た目のファイルを読み込む -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== 画面1：項目ページ ===================== -->
+<main id="view-item" class="view">
+  <header class="topbar">
+    <span class="topbar-note">8章 アスペクト › 8-1</span>
+  </header>
+
+  <section class="intro">
+    <h1>完了の<ruby lang="zh-CN">了<rt>le</rt></ruby></h1>
+    <p lang="en" class="title-en">Perfective <ruby lang="zh-CN">了<rt>le</rt></ruby></p>
+    <p class="terms">用語：アスペクト助詞（動態助詞）／<ruby lang="zh-CN">动态<rt>dòngtài</rt></ruby><ruby lang="zh-CN">助词<rt>zhùcí</rt></ruby>／aspect particle</p>
+    <nav class="chips" aria-label="ページ内の段階">
+      <a href="#lecture">① 講義</a>
+      <a href="#examples">② 例文</a>
+      <button type="button" class="chip-button" data-action="start-quiz">③ 問題へ</button>
+    </nav>
+  </section>
+
+  <!-- ① 講義：ピンインは常に表示 -->
+  <section id="lecture" class="block">
+    <h2>① 講義</h2>
+
+    <h3>この章の地図</h3>
+    <div class="chapter-map">
+      <div class="map-cell current"><ruby lang="zh-CN">了<rt>le</rt></ruby><span>完了</span></div>
+      <div class="map-cell"><ruby lang="zh-CN">过<rt>guo</rt></ruby><span>経験</span></div>
+      <div class="map-cell"><ruby lang="zh-CN">着<rt>zhe</rt></ruby><span>持続</span></div>
+      <div class="map-cell"><ruby lang="zh-CN">在<rt>zài</rt></ruby><span>進行</span></div>
+      <div class="map-cell small"><span><ruby lang="zh-CN">要<rt>yào</rt></ruby><span lang="zh-CN">…</span><ruby lang="zh-CN">了<rt>le</rt></ruby></span><span>近接未来</span></div>
+    </div>
+
+    <h3>仕組み</h3>
+    <p>動詞のすぐ後ろの<ruby lang="zh-CN">了<rt>le</rt></ruby>は、その動作が実現した（完了した）ことを表します。「過去」を表すわけではありません。そのため、未来のことを言う文の中にも現れます。</p>
+
+    <div id="pattern" class="panel">
+      <h3>型</h3>
+      <p class="pattern">主語 ＋ 動詞 ＋ <ruby lang="zh-CN" class="accent">了<rt>le</rt></ruby> ＋ 数量 ＋ 目的語</p>
+      <p lang="en" class="pattern-en">S + V + <ruby lang="zh-CN" class="accent">了<rt>le</rt></ruby> + Quantity + O</p>
+      <p lang="zh-CN" class="zh-line"><ruby class="sandhi" data-actual="Wó">我<rt>Wǒ</rt></ruby> <ruby>买了<rt>mǎile</rt></ruby> <ruby>三<rt>sān</rt></ruby> <ruby>本<rt>běn</rt></ruby> <ruby>书<rt>shū</rt></ruby>。</p>
+      <p class="note">点線のピンインは、続けて発音すると声調が変わる字です。押すと実際の発音が出ます。</p>
+    </div>
+
+    <div id="negation" class="panel">
+      <h3>否定</h3>
+      <p>「<ruby lang="zh-CN">没<rt>méi</rt></ruby><span lang="zh-CN">（</span><ruby lang="zh-CN">有<rt>yǒu</rt></ruby><span lang="zh-CN">）</span>＋動詞」で否定し、<ruby lang="zh-CN">了<rt>le</rt></ruby>は消えます。</p>
+    </div>
+
+    <h3>ほかの言語と比べると</h3>
+    <div class="card">
+      <p class="card-label">英語</p>
+      <p>英語は、過去か未来か（時制）を動詞の形で区別します。<ruby lang="zh-CN">了<rt>le</rt></ruby>は時制を表さないので、過去の文（bought）にも、未来の文の中（after class tomorrow）にも現れます。</p>
+    </div>
+    <div class="card">
+      <p class="card-label">日本語</p>
+      <p>日本語の「た」も、過去だけでなく完了を表します（「明日、駅に着い<b>た</b>ら電話する」）。<ruby lang="zh-CN">了<rt>le</rt></ruby>は、この完了の「た」に近い働きです。</p>
+    </div>
+
+    <div class="debate">
+      <p class="debate-label">説が分かれる点</p>
+      <p>動詞の後ろの<ruby lang="zh-CN">了<rt>le</rt></ruby>と文末の<ruby lang="zh-CN">了<rt>le</rt></ruby>を、別の語とみるか、同じ語の2つの使い方とみるかは、研究者の間で見方が分かれています。このツールでは分けて扱い、8-6で比べます。</p>
+    </div>
+  </section>
+
+  <!-- ② 例文：ピンインは最初は隠す（class="pinyin-hidden"） -->
+  <section id="examples" class="block">
+    <h2>② 例文</h2>
+    <p class="note">例文のピンインは、最初は隠れています。</p>
+
+    <article class="example pinyin-hidden">
+      <p lang="zh-CN" class="zh-line big"><ruby class="sandhi" data-actual="Wó">我<rt>Wǒ</rt></ruby> <ruby>买了<rt>mǎile</rt></ruby> <ruby>三<rt>sān</rt></ruby> <ruby>本<rt>běn</rt></ruby> <ruby>书<rt>shū</rt></ruby>。</p>
+      <div class="actions">
+        <button type="button" data-action="speak" data-text="我买了三本书。">▶ 読み上げ</button>
+        <button type="button" data-action="toggle-pinyin" aria-pressed="false">ピンインを表示</button>
+      </div>
+      <p class="ja">私は本を3冊買った。</p>
+      <p lang="en" class="en">I bought three books.</p>
+      <p class="status">ネイティブ未確認</p>
+    </article>
+
+    <article class="example pinyin-hidden">
+      <p lang="zh-CN" class="zh-line big"><ruby>我<rt>Wǒ</rt></ruby> <ruby>明天<rt>míngtiān</rt></ruby> <ruby>下了<rt>xiàle</rt></ruby> <ruby>课<rt>kè</rt></ruby> <ruby>就<rt>jiù</rt></ruby> <ruby>去<rt>qù</rt></ruby> <ruby class="sandhi" data-actual="zháo">找<rt>zhǎo</rt></ruby> <ruby>你<rt>nǐ</rt></ruby>。</p>
+      <div class="actions">
+        <button type="button" data-action="speak" data-text="我明天下了课就去找你。">▶ 読み上げ</button>
+        <button type="button" data-action="toggle-pinyin" aria-pressed="false">ピンインを表示</button>
+      </div>
+      <p class="ja">明日授業が終わったら、あなたを訪ねます。</p>
+      <p lang="en" class="en">I'll come see you after class tomorrow.</p>
+      <p class="status">未来の文でも<ruby lang="zh-CN">了<rt>le</rt></ruby>が使える例 ・ ネイティブ未確認</p>
+    </article>
+
+    <article class="example wrong pinyin-hidden">
+      <p class="tag tag-wrong">誤った文</p>
+      <p lang="zh-CN" class="zh-line big"><span aria-hidden="true">*</span><ruby>我<rt>Wǒ</rt></ruby> <ruby>没<rt>méi</rt></ruby> <ruby>买了<rt>mǎile</rt></ruby> <ruby>书<rt>shū</rt></ruby>。</p>
+      <div class="actions">
+        <button type="button" data-action="toggle-pinyin" aria-pressed="false">ピンインを表示</button>
+      </div>
+      <p class="explain">正しくは <ruby lang="zh-CN">我<rt>wǒ</rt></ruby><ruby lang="zh-CN">没<rt>méi</rt></ruby><ruby lang="zh-CN">买<rt>mǎi</rt></ruby><ruby lang="zh-CN">书<rt>shū</rt></ruby><span lang="zh-CN">。</span><ruby lang="zh-CN">没<rt>méi</rt></ruby>で否定すると、完了の<ruby lang="zh-CN">了<rt>le</rt></ruby>は残りません。</p>
+    </article>
+
+    <article class="example wrong pinyin-hidden">
+      <p class="tag tag-odd">これだけでは不自然な文</p>
+      <p lang="zh-CN" class="zh-line big"><span aria-hidden="true">?</span><ruby class="sandhi" data-actual="Wó">我<rt>Wǒ</rt></ruby> <ruby>买了<rt>mǎile</rt></ruby> <ruby>书<rt>shū</rt></ruby>。</p>
+      <div class="actions">
+        <button type="button" data-action="toggle-pinyin" aria-pressed="false">ピンインを表示</button>
+      </div>
+      <p class="explain">目的語に数量などがないと、文が終わった感じがせず、続きが期待されます。</p>
+    </article>
+
+    <button type="button" class="primary" data-action="start-quiz">問題へ進む（5問）</button>
+  </section>
+</main>
+
+<!-- ===================== 画面2：問題 ===================== -->
+<!-- hidden 属性＝最初は非表示。中身は app.js が問題データから組み立てる -->
+<main id="view-quiz" class="view" hidden>
+  <header class="topbar">
+    <button type="button" class="back" data-action="back-to-item">← 講義に戻る</button>
+    <span id="quiz-progress" class="topbar-note"></span>
+  </header>
+  <div class="progress"><div id="quiz-bar" class="progress-bar"></div></div>
+  <div id="quiz-body" class="quiz-body"></div>
+  <footer class="quiz-footer">
+    <button type="button" id="check-button" class="primary" data-action="check" disabled>答え合わせ</button>
+    <button type="button" class="link" data-action="back-to-item">講義に戻る</button>
+  </footer>
+</main>
+
+<!-- ===================== 画面3：解説 ===================== -->
+<main id="view-feedback" class="view" hidden>
+  <header class="topbar">
+    <button type="button" class="back" data-action="back-to-item">← 講義に戻る</button>
+    <span id="feedback-progress" class="topbar-note"></span>
+  </header>
+  <div id="feedback-body" class="quiz-body"></div>
+  <footer class="quiz-footer">
+    <button type="button" id="next-button" class="primary" data-action="next">次の問題へ</button>
+  </footer>
+</main>
+
+<!-- 動きのファイルを最後に読み込む（画面の部品がそろってから動かすため） -->
+<script src="app.js"></script>
+</body>
+</html>

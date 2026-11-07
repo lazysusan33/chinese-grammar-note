@@ -1,0 +1,222 @@
+/*
+  style.css ＝ 見た目（画面の部品が「どう見えるか」）
+  ・同じ色や大きさを何度も書かないよう、最初に「変数」としてまとめておく
+  ・スマホの幅を基本に作り、広い画面では中央に寄せる（モバイルファースト）
+*/
+
+/* ---------- 色と文字の変数 ---------- */
+:root {
+  --ink: #1A1A1A;        /* 本文の文字 */
+  --quiet: #5C5C5C;      /* 控えめな文字（英訳・注など） */
+  --line: #D4D4D0;       /* 枠線 */
+  --line-soft: #ECECE8;  /* 薄い区切り線 */
+  --tint: #F5F5F2;       /* 薄い背景 */
+  --accent: #1F4FB8;     /* 押せるもの・強調 */
+  --accent-tint: #EEF3FC;
+  --good: #1E6B3A;       /* 正解 */
+  --bad: #9B1C1C;        /* 不正解・誤文 */
+  --warn: #7A4B00;       /* 説が分かれる点など */
+  --font-ja: 'Noto Sans JP', sans-serif;
+  --font-zh: 'Noto Sans SC', sans-serif;
+}
+
+/* ---------- ページ全体 ---------- */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #FFFFFF;
+  color: var(--ink);
+  font-family: var(--font-ja);
+  font-size: 15px;
+  line-height: 2.2;            /* ルビの分、行間を広めにとる */
+  -webkit-text-size-adjust: 100%;
+}
+.view {
+  max-width: 480px;            /* PCで開いても、スマホ幅で中央に表示 */
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+[hidden] { display: none !important; }   /* hidden を確実に効かせる */
+p { margin: 0; }
+h1, h2, h3 { margin: 0; }
+a { color: var(--accent); }
+
+/* ---------- 中国語とピンイン（ルビ） ---------- */
+[lang="zh-CN"], ruby { font-family: var(--font-zh); }
+ruby { ruby-position: under; }          /* ピンインを漢字の下に置く */
+rt {
+  font-family: var(--font-ja);
+  font-size: 0.55em;
+  color: var(--quiet);
+  user-select: none;                    /* コピーしたとき漢字だけが取れるように */
+  -webkit-user-select: none;
+}
+/* 例文・問題で、ピンインを隠している状態。場所は残すので、表示しても行がずれない */
+.pinyin-hidden rt { visibility: hidden; }
+.pinyin-hidden .quiz-kind rt { visibility: visible; }   /* 問題の見出しは隠さない */
+
+/* 声調が変わる字：ピンインに点線。押すと下に実際の発音が出る */
+ruby.sandhi { cursor: pointer; }
+ruby.sandhi rt {
+  color: #8A4B00;
+  text-decoration: underline dotted #B45309;
+  text-underline-offset: 2px;
+}
+ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.sandhi-wrap { position: relative; display: inline-block; }
+.sandhi-note {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 1px;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: rgba(26, 26, 26, 0.12);
+  color: var(--ink);
+  font-family: var(--font-ja);
+  font-size: 12px;
+  line-height: 1.6;
+  white-space: nowrap;
+  z-index: 1;
+}
+.pinyin-hidden ruby.sandhi { pointer-events: none; }   /* 隠しているときは押せない */
+
+/* ---------- 上部の帯 ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--line);
+}
+.topbar-note { flex-grow: 1; font-size: 12px; color: var(--quiet); text-align: right; padding-right: 8px; }
+.back {
+  min-height: 44px; padding: 0 8px;
+  border: 0; background: none;
+  font: inherit; font-size: 14px; color: var(--accent);
+}
+
+/* ---------- 項目ページ ---------- */
+.intro { padding: 20px 20px 12px; display: flex; flex-direction: column; gap: 4px; }
+.intro h1 { font-size: 26px; font-weight: 700; }
+.title-en { font-size: 14px; color: var(--quiet); }
+.terms { font-size: 13px; color: var(--quiet); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 8px; }
+.chips a, .chip-button {
+  min-height: 36px; display: flex; align-items: center;
+  padding: 0 12px; border: 1px solid var(--line); border-radius: 18px;
+  background: #FFFFFF; font: inherit; font-size: 13px; color: var(--accent); text-decoration: none;
+}
+.block {
+  padding: 20px;
+  border-top: 8px solid var(--tint);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.block h2 { font-size: 18px; font-weight: 700; }
+.block h3 { font-size: 14px; font-weight: 600; color: var(--quiet); }
+.note { font-size: 12px; line-height: 1.7; color: var(--quiet); }
+
+.chapter-map { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.map-cell {
+  border: 1px solid var(--line); border-radius: 8px; padding: 8px 2px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px; line-height: 1.6;
+}
+.map-cell > ruby { font-size: 20px; }
+.map-cell > span:last-child { font-size: 11px; color: var(--quiet); font-family: var(--font-ja); }
+.map-cell.small > span:first-child { font-size: 16px; }
+.map-cell.current { border: 2px solid var(--accent); background: var(--accent-tint); }
+.map-cell.current > ruby { font-weight: 600; }
+.map-cell.current > span:last-child { color: var(--ink); }
+
+.panel { background: var(--tint); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.pattern { font-weight: 600; }
+.pattern-en { margin-top: -6px; font-size: 13px; color: var(--quiet); }
+.accent { color: var(--accent); }
+.zh-line { font-size: 20px; }
+.zh-line.big { font-size: 22px; }
+
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 14px; font-size: 14px; }
+.card-label { font-size: 13px; font-weight: 600; line-height: 1.8; }
+.debate { background: #FFF6E5; border-radius: 8px; padding: 14px; font-size: 14px; }
+.debate-label { font-size: 13px; font-weight: 600; color: var(--warn); line-height: 1.8; }
+
+.example { border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.example .zh-line { padding-bottom: 12px; }    /* 声調変化の表示が出る余白 */
+.example.wrong { border-style: dashed; border-color: #B0B0AA; background: #FAFAF8; }
+.ja { font-size: 14px; line-height: 1.7; }
+.en { font-size: 14px; line-height: 1.7; color: var(--quiet); }
+.status { font-size: 11px; color: var(--quiet); line-height: 2; }
+.tag { font-size: 12px; font-weight: 600; line-height: 1.6; }
+.tag-wrong { color: var(--bad); }
+.tag-odd { color: var(--warn); }
+.explain { font-size: 14px; }
+
+/* ---------- ボタン ---------- */
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.actions button, .small-button {
+  min-height: 44px; padding: 0 14px;
+  border: 1px solid var(--line); border-radius: 8px; background: #FFFFFF;
+  font: inherit; font-size: 13px; line-height: 1; color: var(--accent);
+}
+.actions button[aria-pressed="true"], .small-button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-tint); }
+.primary {
+  min-height: 52px; width: 100%;
+  border: 0; border-radius: 8px; background: var(--accent);
+  color: #FFFFFF; font: inherit; font-size: 16px; font-weight: 600; line-height: 1;
+}
+.primary:disabled { background: #A9B9DC; }
+.link {
+  min-height: 44px; width: 100%; border: 0; background: none;
+  font: inherit; font-size: 14px; color: var(--accent);
+}
+
+/* ---------- 問題画面 ---------- */
+.progress { height: 4px; background: var(--line-soft); }
+.progress-bar { height: 4px; background: var(--accent); width: 0; transition: width 0.2s; }
+.quiz-body { flex-grow: 1; padding: 24px 20px; display: flex; flex-direction: column; gap: 14px; }
+.quiz-kind { font-size: 12px; color: var(--quiet); line-height: 1.6; }
+.prompt-ja { font-size: 19px; font-weight: 600; line-height: 1.6; }
+.prompt-en { margin-top: -8px; font-size: 14px; line-height: 1.6; color: var(--quiet); }
+.quiz-footer { padding: 12px 20px 28px; border-top: 1px solid var(--line-soft); display: flex; flex-direction: column; gap: 6px; }
+
+/* 並べ替え：上が「並べる場所」、下が「カード置き場」 */
+.answer-area {
+  min-height: 72px; border: 1px dashed #B0B0AA; border-radius: 8px;
+  padding: 8px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+}
+.answer-area:empty::before { content: 'ここに並べる'; font-size: 13px; color: var(--quiet); padding-left: 4px; }
+.token-pool { display: flex; flex-wrap: wrap; gap: 10px; }
+.token {
+  min-height: 52px; min-width: 56px; padding: 2px 14px;
+  border: 1px solid var(--line); border-radius: 8px; background: #FFFFFF;
+  font-family: var(--font-zh); font-size: 20px; line-height: 2; color: var(--ink);
+}
+.answer-area .token { border-color: var(--accent); background: var(--accent-tint); }
+
+/* 選択式 */
+.options { display: grid; gap: 10px; }
+.options.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.options.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.option {
+  min-height: 52px; padding: 8px 14px;
+  border: 1px solid var(--line); border-radius: 8px; background: #FFFFFF;
+  font: inherit; font-size: 15px; line-height: 1.7; color: var(--ink); text-align: left;
+}
+.options.cols-2 .option, .options.cols-4 .option { text-align: center; }
+.option[aria-pressed="true"] { border: 2px solid var(--accent); background: var(--accent-tint); }
+.option .en { display: block; font-size: 13px; }
+.slot { color: var(--accent); font-family: var(--font-ja); font-size: 15px; font-weight: 600; padding: 0 2px; }
+
+/* ---------- 解説画面 ---------- */
+.result { font-size: 20px; font-weight: 700; line-height: 1.6; }
+.result.good { color: var(--good); }
+.result.bad { color: var(--bad); }
+.label { font-size: 12px; color: var(--quiet); line-height: 1.6; }
+.your-answer { font-family: var(--font-zh); font-size: 20px; text-decoration: line-through; text-decoration-color: var(--bad); }
+.why { background: var(--tint); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.why-title { font-size: 13px; font-weight: 600; line-height: 1.6; }
+.score { font-size: 28px; font-weight: 700; line-height: 1.4; }
