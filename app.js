@@ -1,127 +1,109 @@
 /*
   app.js ＝ 動き（押したら「何が起きるか」）
 
+  フェーズ3から、教材の中身は data/items/<項目番号>.json に分けた。
+  このファイルは「データを読み込んで、画面を組み立てる」ことだけを受け持つ。
+  だから、教材を直したり増やしたりするときは、このファイルに触らなくてよい。
+
   このファイルの構成
-    1. 問題データ      … 5問の中身（※フェーズ3で別ファイルに分離する予定）
-    2. 小さな道具      … ルビを組み立てる、読み上げる、ボタンを作る、などの関数
-    3. 画面の切り替え  … 項目ページと問題のどちらを見せるか
-    4. 問題の表示と判定 … 1〜5を自由に行き来でき、解説は問題の下に開く
-    5. クリックの受付  … どのボタンが押されたかを見て、仕事を振り分ける
+    1. データの読み込み  … JSON ファイルを取りに行き、書き方の誤りがあれば知らせる
+    2. 中国語の書き方の解釈 … {了|le} のような書き方を、ルビ付きの表示に変える
+    3. 小さな道具        … 読み上げる、ボタンを作る、などの関数
+    4. 項目ページの組み立て … 講義のブロックと例文を、データから並べる
+    5. 画面の切り替え
+    6. 問題の表示と判定  … 1〜5を自由に行き来でき、解説は問題の下に開く
+    7. クリックの受付
 */
 
 /* ============================================================
-   1. 問題データ
-   単語は { h: 漢字, p: ピンイン, s: 声調変化後の実際の発音（あれば） } で表す。
-   句読点はただの文字列で書く。
+   1. データの読み込み
    ============================================================ */
+let ITEM = null;        // 読み込んだ項目のデータ全体
+let QUESTIONS = [];     // その中の振り返り問題
 
-// 解説文の中に中国語を混ぜるための短い道具（r = ruby の頭文字）
-function r(hanzi, pinyin) {
-  return `<ruby lang="zh-CN">${hanzi}<rt>${pinyin}</rt></ruby>`;
+// どの項目を開くか：アドレスの末尾が #8-2 なら 8-2、何もなければ 8-1
+function currentItemId() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  return /^\d+-\d+$/.test(id) ? id : '8-1';
 }
 
-const QUESTIONS = [
-  {
-    type: 'reorder',
-    kind: '並べ替え',
-    promptJa: '私は本を3冊買った。',
-    promptEn: 'I bought three books.',
-    tokens: [
-      { h: '我', p: 'wǒ' }, { h: '买', p: 'mǎi' }, { h: '了', p: 'le' },
-      { h: '三本', p: 'sān běn' }, { h: '书', p: 'shū' }
-    ],
-    // 正解の順番（tokens の番号で書く）
-    answer: [0, 1, 2, 3, 4],
-    correct: [{ h: '我', p: 'Wǒ', s: 'Wó' }, { h: '买了', p: 'mǎile' }, { h: '三', p: 'sān' }, { h: '本', p: 'běn' }, { h: '书', p: 'shū' }, '。'],
-    ja: '私は本を3冊買った。',
-    en: 'I bought three books.',
-    why: `完了の${r('了', 'le')}は、動詞のすぐ後ろに置きます。数量（${r('三', 'sān')}${r('本', 'běn')}）や目的語（${r('书', 'shū')}）の後ろではありません。`,
-    lecture: '#pattern'
-  },
-  {
-    type: 'choice',
-    kind: `${r('了', 'le')}は要る？`,
-    promptJa: '私は昨日学校に行かなかった。',
-    promptEn: "I didn't go to school yesterday.",
-    sentence: [{ h: '我', p: 'Wǒ' }, { h: '昨天', p: 'zuótiān' }, { h: '没', p: 'méi' }, { h: '去', p: 'qù' }, { slot: '（　）' }, { h: '学校', p: 'xuéxiào' }, '。'],
-    options: [{ html: `${r('了', 'le')}を入れる`, text: '了を入れる' }, { html: '入れない', text: '入れない' }],
-    cols: 2,
-    answerIndex: 1,
-    correct: [{ h: '我', p: 'Wǒ' }, { h: '昨天', p: 'zuótiān' }, { h: '没', p: 'méi' }, { h: '去', p: 'qù' }, { h: '学校', p: 'xuéxiào' }, '。'],
-    ja: '私は昨日学校に行かなかった。',
-    en: "I didn't go to school yesterday.",
-    why: `「${r('没', 'méi')}（${r('有', 'yǒu')}）＋動詞」で否定すると、完了の${r('了', 'le')}は消えます。実現しなかった動作には、「完了」を付けられないからです。`,
-    lecture: '#negation'
-  },
-  {
-    type: 'choice',
-    kind: `${r('了', 'le')}の位置`,
-    promptJa: '彼はコーヒーを2杯飲んだ。',
-    promptEn: 'He drank two cups of coffee.',
-    sentence: [{ h: '他', p: 'Tā' }, { slot: 'A' }, { h: '喝', p: 'hē' }, { slot: 'B' }, { h: '两', p: 'liǎng' }, { h: '杯', p: 'bēi' }, { slot: 'C' }, { h: '咖啡', p: 'kāfēi' }, { slot: 'D' }, '。'],
-    options: [{ html: 'A', text: 'A' }, { html: 'B', text: 'B' }, { html: 'C', text: 'C' }, { html: 'D', text: 'D' }],
-    cols: 4,
-    answerIndex: 1,
-    correct: [{ h: '他', p: 'Tā' }, { h: '喝了', p: 'hēle' }, { h: '两', p: 'liǎng' }, { h: '杯', p: 'bēi' }, { h: '咖啡', p: 'kāfēi' }, '。'],
-    ja: '彼はコーヒーを2杯飲んだ。',
-    en: 'He drank two cups of coffee.',
-    why: `完了の${r('了', 'le')}は、動詞（${r('喝', 'hē')}）のすぐ後ろに置き、その後ろに数量（${r('两', 'liǎng')}${r('杯', 'bēi')}）と目的語（${r('咖啡', 'kāfēi')}）が続きます。文末（D）に置く${r('了', 'le')}は別の働きで、8-6で扱います。`,
-    lecture: '#pattern'
-  },
-  {
-    type: 'choice',
-    kind: '自然な文はどれ',
-    promptJa: '文として言い切るとき、自然なのはどちら？',
-    promptEn: 'Which one sounds natural as a complete sentence?',
-    options: [
-      { zh: [{ h: '我', p: 'Wǒ' }, { h: '买了', p: 'mǎile' }, { h: '书', p: 'shū' }, '。'], ja: '私は本を買った。', en: 'I bought books.', text: '我买了书。' },
-      { zh: [{ h: '我', p: 'Wǒ' }, { h: '买了', p: 'mǎile' }, { h: '一', p: 'yī' }, { h: '本', p: 'běn' }, { h: '书', p: 'shū' }, '。'], ja: '私は本を1冊買った。', en: 'I bought a book.', text: '我买了一本书。' }
-    ],
-    answerIndex: 1,
-    correct: [{ h: '我', p: 'Wǒ', s: 'Wó' }, { h: '买了', p: 'mǎile' }, { h: '一', p: 'yī', s: 'yì' }, { h: '本', p: 'běn' }, { h: '书', p: 'shū' }, '。'],
-    ja: '私は本を1冊買った。',
-    en: 'I bought a book.',
-    why: `目的語（${r('书', 'shū')}）に数量などが付いていないと、文が終わった感じがせず、続きが期待されます。${r('一', 'yī')}${r('本', 'běn')}のような数量を付けると、言い切りの文として自然になります。`,
-    lecture: '#examples'
-  },
-  {
-    type: 'choice',
-    kind: '意味を選ぶ',
-    promptJa: 'この文の意味は？',
-    promptEn: 'What does this sentence mean?',
-    sentence: [{ h: '我', p: 'Wǒ' }, { h: '明天', p: 'míngtiān' }, { h: '下了', p: 'xiàle' }, { h: '课', p: 'kè' }, { h: '就', p: 'jiù' }, { h: '去', p: 'qù' }, { h: '找', p: 'zhǎo', s: 'zháo' }, { h: '你', p: 'nǐ' }, '。'],
-    options: [
-      { ja: '明日授業が終わったら、あなたを訪ねます。', en: "I'll come see you after class tomorrow.", text: '明日授業が終わったら、あなたを訪ねます。' },
-      { ja: '昨日授業が終わって、あなたを訪ねました。', en: 'I came to see you after class yesterday.', text: '昨日授業が終わって、あなたを訪ねました。' },
-      { ja: '明日は授業がないので、あなたを訪ねます。', en: "There's no class tomorrow, so I'll come see you.", text: '明日は授業がないので、あなたを訪ねます。' }
-    ],
-    answerIndex: 0,
-    correct: [{ h: '我', p: 'Wǒ' }, { h: '明天', p: 'míngtiān' }, { h: '下了', p: 'xiàle' }, { h: '课', p: 'kè' }, { h: '就', p: 'jiù' }, { h: '去', p: 'qù' }, { h: '找', p: 'zhǎo', s: 'zháo' }, { h: '你', p: 'nǐ' }, '。'],
-    ja: '明日授業が終わったら、あなたを訪ねます。',
-    en: "I'll come see you after class tomorrow.",
-    why: `${r('了', 'le')}は「過去」ではなく「完了」を表します。ここでは「授業が終わったら（完了したら）」という未来の条件です。時を示しているのは${r('明天', 'míngtiān')}（明日）です。`,
-    lecture: '#lecture'
+async function loadItem(id) {
+  const path = `data/items/${id}.json`;
+  // cache: 'no-cache' ＝ 毎回「新しくなっていないか」を確認してから使う（古い版が残りにくくなる）
+  const res = await fetch(path, { cache: 'no-cache' });
+  if (!res.ok) throw new Error(`${path} が見つかりません（${res.status}）`);
+  const text = await res.text();
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    throw new Error(`${path} の書き方に誤りがあります${errorLine(text, e)}。`);
   }
-];
+}
+
+// JSON の誤りが何行目かを、わかる範囲で調べる（ブラウザによって教えてくれる情報が違う）
+function errorLine(text, e) {
+  const pos = /position (\d+)/.exec(e.message);
+  if (pos) return `（${text.slice(0, Number(pos[1])).split('\n').length}行目付近）`;
+  const line = /line (\d+)/.exec(e.message);
+  if (line) return `（${line[1]}行目付近）`;
+  return '';
+}
+
+async function start() {
+  const root = document.getElementById('item-root');
+  try {
+    ITEM = await loadItem(currentItemId());
+    QUESTIONS = ITEM.quiz || [];
+    renderItem(ITEM);
+  } catch (e) {
+    root.innerHTML = `<div class="error-box" role="alert"><p class="error-title">⚠ データを読み込めません</p><p>${escapeHTML(e.message)}</p></div>`;
+  }
+}
 
 /* ============================================================
-   2. 小さな道具（関数）
+   2. 中国語の書き方の解釈
+   データの中では、次の書き方を使う。
+     {漢字|ピンイン}          → 漢字の下にピンイン        例：{了|le}
+     {漢字|ピンイン|実際の発音} → 声調が変わる字（点線）    例：{我|Wǒ|Wó}
+     [文字]                  → 問題の空欄や記号          例：[（　）]  [A]
+     **文字**                → 太字
    ============================================================ */
 
-// 単語の並びから、ルビ付きの中国語の文を組み立てる
-function sentenceHTML(words) {
-  return words.map(function (w) {
-    if (typeof w === 'string') return w;                          // 句読点
-    if (w.slot) return `<span class="slot">${w.slot}</span>`;     // 空欄・記号
-    const sandhi = w.s ? ` class="sandhi" data-actual="${w.s}"` : '';
-    return `<ruby${sandhi}>${w.h}<rt>${w.p}</rt></ruby>`;
-  }).join(' ').replace(/ (?=[。，？])/g, '');                      // 句読点の前の空白は消す
+// データの中の < > & などを、ただの文字として扱う（データにHTMLが紛れ込んでも、画面が壊れないように）
+function escapeHTML(text) {
+  return String(text).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
 
-// 単語の並びから、漢字だけの文を作る（読み上げ用）
-function plainText(words) {
-  return words.map(w => (typeof w === 'string' ? w : (w.h || ''))).join('');
+// 書き方 → 画面に出すHTML（md は markup の略）
+function md(src) {
+  let s = escapeHTML(src || '');
+  // 単語どうしの間の空白は消す。コピーしたとき漢字がつながって取れるように（見た目の間隔は CSS で付ける）
+  s = s.replace(/([}\]])\s+(?=[{\[])/g, '$1');
+  s = s.replace(/\{([^{}|]+)\|([^{}|]+)(?:\|([^{}|]+))?\}/g, function (all, hanzi, pinyin, actual) {
+    const sandhi = actual ? ` class="sandhi" data-actual="${actual}"` : '';
+    return `<ruby lang="zh-CN"${sandhi}>${hanzi}<rt>${pinyin}</rt></ruby>`;
+  });
+  s = s.replace(/\[([^\]]+)\]/g, '<span class="slot">$1</span>');
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+  return s;
 }
+
+// 書き方 → 漢字だけの文（読み上げ・回答の表示用）
+function plain(src) {
+  return String(src || '')
+    .replace(/\{([^{}|]+)\|[^{}]*\}/g, '$1')   // {漢字|…} → 漢字
+    .replace(/\[[^\]]*\]/g, '')                 // 空欄は読まない
+    .replace(/\*\*/g, '')
+    .replace(/^[*?]/, '')                       // 誤用例の * や ? は読まない
+    .replace(/\s+/g, '');
+}
+
+// 選択肢の「文字」：中国語・日本語・ただの文字のどれか
+function optionText(o) { return o.zh || o.text || o.ja || ''; }
+
+/* ============================================================
+   3. 小さな道具（関数）
+   ============================================================ */
 
 // 記号（アイコン）。言葉の代わりに、意味がひと目で伝わる形を使う
 const ICON = {
@@ -150,16 +132,6 @@ function audioButtonsHTML(text) {
 // ピンインの表示切り替えボタン（目の記号でオン・オフがわかる）
 function pinyinToggleHTML(shown) {
   return `<button type="button" class="pinyin-toggle" data-action="toggle-pinyin" aria-pressed="${shown}">${ICON.eyeOff}${ICON.eye}ピンイン</button>`;
-}
-
-// 項目ページの例文に、ボタンを取り付ける（HTML には目印だけを書いてある）
-function setupActions(root) {
-  root.querySelectorAll('.actions').forEach(function (box) {
-    let html = '';
-    if (box.dataset.speak) html += audioButtonsHTML(box.dataset.speak);
-    if (box.hasAttribute('data-pinyin-toggle')) html += pinyinToggleHTML(false);
-    box.innerHTML = html;
-  });
 }
 
 /* ---- 読み上げ ----
@@ -261,7 +233,85 @@ function shuffle(list) {
 }
 
 /* ============================================================
-   3. 画面の切り替え
+   4. 項目ページの組み立て
+   講義は「ブロック」を上から順に並べる。ブロックの種類（type）ごとに、組み立て方を決めてある。
+   新しい種類のブロックが必要になったときだけ、ここに組み立て方を1つ足す。
+   ============================================================ */
+const BLOCKS = {
+  // この章の地図
+  map: b => `<h3>${md(b.title)}</h3><div class="chapter-map">` +
+    b.cells.map(c => `<div class="map-cell${c.current ? ' current' : ''}"><span class="map-zh">${md(c.zh)}</span><span class="map-ja">${md(c.ja)}</span></div>`).join('') +
+    `</div>`,
+  // 見出し＋文章
+  text: b => `<h3>${md(b.title)}</h3><p>${md(b.body)}</p>`,
+  // 型（日本語・英語・中国語の例）
+  pattern: b => `<div class="panel"${anchor(b)}><h3>${md(b.title)}</h3>
+    <p class="pattern">${md(b.ja)}</p>
+    <p lang="en" class="pattern-en">${md(b.en)}</p>
+    <p lang="zh-CN" class="zh-line">${md(b.zh)}</p></div>`,
+  // 灰色の枠の中に見出し＋文章
+  panel: b => `<div class="panel"${anchor(b)}><h3>${md(b.title)}</h3><p>${md(b.body)}</p></div>`,
+  // ほかの言語との比較（カードを並べる）
+  compare: b => `<h3>${md(b.title)}</h3>` +
+    b.cards.map(c => `<div class="card"><p class="card-label">${md(c.label)}</p><p>${md(c.body)}</p></div>`).join(''),
+  // 説が分かれる点
+  debate: b => `<div class="debate"${anchor(b)}><p class="debate-label">${md(b.title)}</p><p>${md(b.body)}</p></div>`
+};
+
+// ブロックに id があれば、解説の「講義の該当箇所 ›」から飛べる目印にする
+function anchor(b) { return b.id ? ` id="${escapeHTML(b.id)}"` : ''; }
+
+function exampleHTML(ex) {
+  // 誤用例（誤った文・不自然な文）：解説の一部なので、ピンインは常に表示
+  if (ex.kind === 'wrong' || ex.kind === 'odd') {
+    const label = ex.kind === 'wrong' ? '誤った文' : 'これだけでは不自然な文';
+    return `<article class="example wrong">
+      <p class="tag tag-${ex.kind}">${label}</p>
+      <p lang="zh-CN" class="zh-line big">${md(ex.zh)}</p>
+      <p class="explain">${md(ex.explain)}</p></article>`;
+  }
+  // ふつうの例文：ピンインは最初は隠す
+  const status = [ex.note ? md(ex.note) : '', ex.checked ? '' : 'ネイティブ未確認'].filter(Boolean).join(' ・ ');
+  return `<article class="example pinyin-hidden">
+    <p lang="zh-CN" class="zh-line big">${md(ex.zh)}</p>
+    <div class="actions">${audioButtonsHTML(plain(ex.zh))}${pinyinToggleHTML(false)}</div>
+    <p class="ja">${md(ex.ja)}</p>
+    <p lang="en" class="en">${md(ex.en)}</p>
+    ${status ? `<p class="status">${status}</p>` : ''}</article>`;
+}
+
+function renderItem(item) {
+  document.title = `${plain(item.title.ja)} – 中国語文法ノート`;
+  document.getElementById('item-path').textContent = `${item.chapter.no}章 ${item.chapter.ja} › ${item.id}`;
+
+  const lecture = item.lecture.map(b => (BLOCKS[b.type] ? BLOCKS[b.type](b) : `<p class="note">（未対応のブロック：${escapeHTML(b.type)}）</p>`)).join('\n');
+  const n = (item.quiz || []).length;
+
+  document.getElementById('item-root').innerHTML = `
+    <section class="intro">
+      <h1>${md(item.title.ja)}</h1>
+      <p lang="en" class="title-en">${md(item.title.en)}</p>
+      <p class="terms">用語：${md(item.terms)}</p>
+      <nav class="chips" aria-label="ページ内の段階">
+        <a href="#lecture" data-action="scroll" data-target="lecture">① 講義</a>
+        <a href="#examples" data-action="scroll" data-target="examples">② 例文</a>
+        ${n ? '<button type="button" class="chip-button" data-action="start-quiz">③ 問題</button>' : ''}
+      </nav>
+    </section>
+    <section id="lecture" class="block">
+      <h2>① 講義</h2>
+      ${lecture}
+    </section>
+    <section id="examples" class="block">
+      <h2>② 例文</h2>
+      ${item.examples.map(exampleHTML).join('\n')}
+      ${n ? `<button type="button" class="primary" data-action="start-quiz">振り返り ${n}問 ›</button>` : ''}
+    </section>`;
+  setupSandhi(document.getElementById('item-root'));
+}
+
+/* ============================================================
+   5. 画面の切り替え
    ============================================================ */
 function show(viewId) {
   ['view-item', 'view-quiz'].forEach(id => { document.getElementById(id).hidden = (id !== viewId); });
@@ -269,7 +319,7 @@ function show(viewId) {
 }
 
 /* ============================================================
-   4. 問題の表示と判定
+   6. 問題の表示と判定
    「状態（state）」に、問題ごとの答えと結果を覚えておく。
    画面はいつも、この状態から組み立て直す。だから、どの番号に移っても前の答えが残る。
    ============================================================ */
@@ -348,24 +398,24 @@ function renderQuestion() {
   const it = state.items[i];
   const lock = it.done ? ' disabled' : '';
 
-  let area = `<p class="quiz-kind">問${i + 1} ・ ${q.kind}</p>`;
-  area += `<p class="prompt-ja">${q.promptJa}</p>`;
+  let area = `<p class="quiz-kind">問${i + 1} ・ ${md(q.kind)}</p>`;
+  area += `<p class="prompt-ja">${md(q.promptJa)}</p>`;
   area += `<p lang="en" class="prompt-en">${q.promptEn}</p>`;
 
   if (q.type === 'reorder') {
-    const tokenBtn = id => `<button type="button" class="token" lang="zh-CN" data-action="token" data-id="${id}"${lock}><ruby>${q.tokens[id].h}<rt>${q.tokens[id].p}</rt></ruby></button>`;
+    const tokenBtn = id => `<button type="button" class="token" lang="zh-CN" data-action="token" data-id="${id}"${lock}>${md(q.tokens[id])}</button>`;
     area += `<div class="answer-area">${it.placed.map(tokenBtn).join('')}</div>`;
     const rest = it.order.filter(id => !it.placed.includes(id));
     area += `<div class="token-pool">${rest.map(tokenBtn).join('')}</div>`;
     if (!it.done) area += `<p class="note">タップで移動</p>`;
   } else {
-    if (q.sentence) area += `<p lang="zh-CN" class="zh-line big">${sentenceHTML(q.sentence)}</p>`;
+    if (q.sentence) area += `<p lang="zh-CN" class="zh-line big">${md(q.sentence)}</p>`;
     const cols = q.cols ? ` cols-${q.cols}` : '';
     area += `<div class="options${cols}">` + q.options.map(function (o, k) {
       let inner = '';
-      if (o.zh) inner += `<span lang="zh-CN" class="zh-line">${sentenceHTML(o.zh)}</span><br>`;
-      if (o.html) inner += o.html;
-      if (o.ja) inner += `<span class="ja">${o.ja}</span>`;
+      if (o.zh) inner += `<span lang="zh-CN" class="zh-line">${md(o.zh)}</span><br>`;
+      if (o.text) inner += md(o.text);
+      if (o.ja) inner += `<span class="ja">${md(o.ja)}</span>`;
       if (o.en) inner += `<span lang="en" class="en">${o.en}</span>`;
       // 答え合わせ後は、正解に緑の丸、選んだ不正解に赤の丸を付ける
       let cls = '', mark = '';
@@ -395,12 +445,12 @@ function feedbackHTML(q, it) {
     html += `<div><p class="label">回答</p><p class="your-answer"${lang}>${it.your}</p></div>`;
   }
   html += `<div><p class="label">正解</p>
-    <p lang="zh-CN" class="zh-line big" style="padding-bottom:12px">${sentenceHTML(q.correct)}</p>
-    <p class="ja">${q.ja}</p>
+    <p lang="zh-CN" class="zh-line big" style="padding-bottom:12px">${md(q.correct)}</p>
+    <p class="ja">${md(q.ja)}</p>
     <p lang="en" class="en">${q.en}</p>
-    <div class="actions" style="margin-top:6px">${audioButtonsHTML(plainText(q.correct))}</div>
+    <div class="actions" style="margin-top:6px">${audioButtonsHTML(plain(q.correct))}</div>
   </div>`;
-  html += `<div class="why"><p class="why-title">なぜ？</p><p>${q.why}</p>
+  html += `<div class="why"><p class="why-title">なぜ？</p><p>${md(q.why)}</p>
     <button type="button" class="link" data-action="goto-lecture" data-target="${q.lecture}">講義の該当箇所 ›</button></div>`;
   return html + `</div>`;
 }
@@ -412,7 +462,7 @@ function renderSummary() {
     const st = statusOf(it);
     return `<button type="button" class="summary-row ${st}" data-action="go" data-target="${i}" aria-label="問${i + 1}、${STATUS_TEXT[st]}">
       <span class="mark">${markIcon(st)}</span>
-      <span>問${i + 1} ・ ${QUESTIONS[i].kind}</span><span class="chev" aria-hidden="true">›</span></button>`;
+      <span>問${i + 1} ・ ${md(QUESTIONS[i].kind)}</span><span class="chev" aria-hidden="true">›</span></button>`;
   }).join('');
   document.getElementById('quiz-body').innerHTML =
     `<p class="label">結果</p>
@@ -462,10 +512,10 @@ function check() {
   const it = state.items[state.current];
   if (q.type === 'reorder') {
     it.ok = it.placed.join() === q.answer.join();
-    it.your = it.placed.length ? it.placed.map(i => q.tokens[i].h).join('') + (it.placed.length === q.tokens.length ? '。' : '…') : '';
+    it.your = it.placed.length ? it.placed.map(i => plain(q.tokens[i])).join('') + (it.placed.length === q.tokens.length ? '。' : '…') : '';
   } else {
     it.ok = it.selected === q.answerIndex;
-    it.your = it.selected === null ? '' : q.options[it.selected].text;
+    it.your = it.selected === null ? '' : plain(optionText(q.options[it.selected]));
   }
   it.done = true;
   render();
@@ -482,7 +532,7 @@ function next() {
 }
 
 /* ============================================================
-   5. クリックの受付
+   7. クリックの受付
    ページ全体で1か所だけ「押された」を待ち受け、data-action を見て振り分ける。
    （ボタンごとに受付を作るより、あとから作られるボタンにも効くので便利）
    ============================================================ */
@@ -497,6 +547,12 @@ document.addEventListener('click', function (event) {
     case 'toggle-pinyin': togglePinyin(el); break;
     case 'start-quiz': startQuiz(); break;
     case 'back-to-item': show('view-item'); break;
+    case 'scroll': {                       // ページ内の移動（アドレスの # は項目番号用に残しておく）
+      event.preventDefault();
+      const target = document.getElementById(el.dataset.target);
+      if (target) target.scrollIntoView({ block: 'start' });
+      break;
+    }
     case 'go': goTo(el.dataset.target === 'summary' ? 'summary' : Number(el.dataset.target)); break;
     case 'token': moveToken(Number(el.dataset.id)); break;
     case 'option': pickOption(Number(el.dataset.index)); break;
@@ -507,7 +563,7 @@ document.addEventListener('click', function (event) {
     case 'retry': retryQuestion(); break;
     case 'goto-lecture': {
       show('view-item');
-      const target = document.querySelector(el.dataset.target);
+      const target = document.getElementById(el.dataset.target);
       if (target) target.scrollIntoView({ block: 'start' });
       break;
     }
@@ -523,10 +579,16 @@ document.addEventListener('keydown', function (event) {
   }
 });
 
-// 最初に1回：項目ページのボタンと声調変化を準備し、音声の一覧を読み込ませておく
-setupActions(document.getElementById('view-item'));
-setupSandhi(document.getElementById('view-item'));
+// 最初に1回：データを読み込んで画面を作り、音声の一覧を読み込ませておく
 if ('speechSynthesis' in window) {
   window.speechSynthesis.getVoices();
   window.speechSynthesis.addEventListener('voiceschanged', findChineseVoice);
 }
+start();
+
+// アドレスの # が変わったら（例：#8-1 → #8-2）、その項目を読み込み直す
+window.addEventListener('hashchange', function () {
+  state.items = [];
+  show('view-item');
+  start();
+});

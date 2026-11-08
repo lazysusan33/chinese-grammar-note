@@ -1,0 +1,169 @@
+{
+  "id": "8-1",
+  "chapter": { "no": 8, "ja": "アスペクト", "en": "Aspect" },
+  "title": { "ja": "完了の{了|le}", "en": "Perfective {了|le}" },
+  "terms": "アスペクト助詞（動態助詞）／{动态|dòngtài}{助词|zhùcí}／aspect particle",
+
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        { "zh": "{了|le}", "ja": "完了", "current": true },
+        { "zh": "{过|guo}", "ja": "経験" },
+        { "zh": "{着|zhe}", "ja": "持続" },
+        { "zh": "{在|zài}", "ja": "進行" },
+        { "zh": "{要|yào}…{了|le}", "ja": "近接未来" }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "動詞のすぐ後ろの{了|le}は、その動作が実現した（完了した）ことを表します。「過去」を表すわけではありません。そのため、未来のことを言う文の中にも現れます。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "主語 ＋ 動詞 ＋ {了|le} ＋ 数量 ＋ 目的語",
+      "en": "S + V + {了|le} + Quantity + O",
+      "zh": "{我|Wǒ|Wó} {买了|mǎile} {三|sān} {本|běn} {书|shū}。"
+    },
+    {
+      "type": "panel",
+      "id": "negation",
+      "title": "否定",
+      "body": "「{没|méi}（{有|yǒu}）＋動詞」で否定し、{了|le}は消えます。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "英語は、過去か未来か（時制）を動詞の形で区別します。{了|le}は時制を表さないので、過去の文（bought）にも、未来の文の中（after class tomorrow）にも現れます。"
+        },
+        {
+          "label": "日本語",
+          "body": "日本語の「た」も、過去だけでなく完了を表します（「明日、駅に着い**た**ら電話する」）。{了|le}は、この完了の「た」に近い働きです。"
+        }
+      ]
+    },
+    {
+      "type": "debate",
+      "title": "説が分かれる点",
+      "body": "動詞の後ろの{了|le}と文末の{了|le}を、別の語とみるか、同じ語の2つの使い方とみるかは、研究者の間で見方が分かれています。このツールでは分けて扱い、8-6で比べます。"
+    }
+  ],
+
+  "examples": [
+    {
+      "zh": "{我|Wǒ|Wó} {买了|mǎile} {三|sān} {本|běn} {书|shū}。",
+      "ja": "私は本を3冊買った。",
+      "en": "I bought three books.",
+      "checked": false
+    },
+    {
+      "zh": "{我|Wǒ} {明天|míngtiān} {下了|xiàle} {课|kè} {就|jiù} {去|qù} {找|zhǎo|zháo} {你|nǐ}。",
+      "ja": "明日授業が終わったら、あなたを訪ねます。",
+      "en": "I'll come see you after class tomorrow.",
+      "note": "未来の文での{了|le}",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{我|Wǒ} {没|méi} {买了|mǎile} {书|shū}。",
+      "explain": "正しくは {我|wǒ}{没|méi}{买|mǎi}{书|shū}。{没|méi}で否定すると、完了の{了|le}は残りません。"
+    },
+    {
+      "kind": "odd",
+      "zh": "?{我|Wǒ|Wó} {买了|mǎile} {书|shū}。",
+      "explain": "目的語に数量などがないと、文が終わった感じがせず、続きが期待されます。"
+    }
+  ],
+
+  "quiz": [
+    {
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "私は本を3冊買った。",
+      "promptEn": "I bought three books.",
+      "tokens": ["{我|wǒ}", "{买|mǎi}", "{了|le}", "{三本|sān běn}", "{书|shū}"],
+      "answer": [0, 1, 2, 3, 4],
+      "correct": "{我|Wǒ|Wó} {买了|mǎile} {三|sān} {本|běn} {书|shū}。",
+      "ja": "私は本を3冊買った。",
+      "en": "I bought three books.",
+      "why": "完了の{了|le}は、動詞のすぐ後ろに置きます。数量（{三|sān}{本|běn}）や目的語（{书|shū}）の後ろではありません。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "type": "choice",
+      "kind": "{了|le}は要る？",
+      "promptJa": "私は昨日学校に行かなかった。",
+      "promptEn": "I didn't go to school yesterday.",
+      "sentence": "{我|Wǒ} {昨天|zuótiān} {没|méi} {去|qù} [（　）] {学校|xuéxiào}。",
+      "options": [{ "text": "{了|le}を入れる" }, { "text": "入れない" }],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{我|Wǒ} {昨天|zuótiān} {没|méi} {去|qù} {学校|xuéxiào}。",
+      "ja": "私は昨日学校に行かなかった。",
+      "en": "I didn't go to school yesterday.",
+      "why": "「{没|méi}（{有|yǒu}）＋動詞」で否定すると、完了の{了|le}は消えます。実現しなかった動作には、「完了」を付けられないからです。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "type": "choice",
+      "kind": "{了|le}の位置",
+      "promptJa": "彼はコーヒーを2杯飲んだ。",
+      "promptEn": "He drank two cups of coffee.",
+      "sentence": "{他|Tā} [A] {喝|hē} [B] {两|liǎng} {杯|bēi} [C] {咖啡|kāfēi} [D]。",
+      "options": [{ "text": "A" }, { "text": "B" }, { "text": "C" }, { "text": "D" }],
+      "cols": 4,
+      "answerIndex": 1,
+      "correct": "{他|Tā} {喝了|hēle} {两|liǎng} {杯|bēi} {咖啡|kāfēi}。",
+      "ja": "彼はコーヒーを2杯飲んだ。",
+      "en": "He drank two cups of coffee.",
+      "why": "完了の{了|le}は、動詞（{喝|hē}）のすぐ後ろに置き、その後ろに数量（{两|liǎng}{杯|bēi}）と目的語（{咖啡|kāfēi}）が続きます。文末（D）に置く{了|le}は別の働きで、8-6で扱います。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "type": "choice",
+      "kind": "自然な文はどれ",
+      "promptJa": "文として言い切るとき、自然なのはどちら？",
+      "promptEn": "Which one sounds natural as a complete sentence?",
+      "options": [
+        { "zh": "{我|Wǒ} {买了|mǎile} {书|shū}。", "ja": "私は本を買った。", "en": "I bought books." },
+        { "zh": "{我|Wǒ} {买了|mǎile} {一|yī} {本|běn} {书|shū}。", "ja": "私は本を1冊買った。", "en": "I bought a book." }
+      ],
+      "answerIndex": 1,
+      "correct": "{我|Wǒ|Wó} {买了|mǎile} {一|yī|yì} {本|běn} {书|shū}。",
+      "ja": "私は本を1冊買った。",
+      "en": "I bought a book.",
+      "why": "目的語（{书|shū}）に数量などが付いていないと、文が終わった感じがせず、続きが期待されます。{一|yī}{本|běn}のような数量を付けると、言い切りの文として自然になります。",
+      "lecture": "examples",
+      "checked": false
+    },
+    {
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{我|Wǒ} {明天|míngtiān} {下了|xiàle} {课|kè} {就|jiù} {去|qù} {找|zhǎo|zháo} {你|nǐ}。",
+      "options": [
+        { "ja": "明日授業が終わったら、あなたを訪ねます。", "en": "I'll come see you after class tomorrow." },
+        { "ja": "昨日授業が終わって、あなたを訪ねました。", "en": "I came to see you after class yesterday." },
+        { "ja": "明日は授業がないので、あなたを訪ねます。", "en": "There's no class tomorrow, so I'll come see you." }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {明天|míngtiān} {下了|xiàle} {课|kè} {就|jiù} {去|qù} {找|zhǎo|zháo} {你|nǐ}。",
+      "ja": "明日授業が終わったら、あなたを訪ねます。",
+      "en": "I'll come see you after class tomorrow.",
+      "why": "{了|le}は「過去」ではなく「完了」を表します。ここでは「授業が終わったら（完了したら）」という未来の条件です。時を示しているのは{明天|míngtiān}（明日）です。",
+      "lecture": "lecture",
+      "checked": false
+    }
+  ]
+}
