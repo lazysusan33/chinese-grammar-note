@@ -1,34 +1,34 @@
 /*
   app.js ＝ 動き（押したら「何が起きるか」）
 
-  フェーズ3から、教材の中身は data/items/<項目番号>.json に分けた。
-  このファイルは「データを読み込んで、画面を組み立てる」ことだけを受け持つ。
-  だから、教材を直したり増やしたりするときは、このファイルに触らなくてよい。
+  役割の分担
+    markup.js … データの中の {了|le} のような書き方を、ルビ付きの表示に変える
+    store.js  … 学習記録（読了・正誤）と、復習の時期の計算、書き出し・読み込み
+    app.js    … データを読み込み、画面を組み立て、操作に応える（このファイル）
+
+  画面はアドレスの末尾（# のあと）で切り替える
+    #toc（または何もなし） → ホーム：目次
+    #drill                 → ホーム：問題集
+    #review                → ホーム：復習
+    #8-1 など              → その項目のページ
+  問題の画面だけは # を使わず、ボタンで開く
 
   このファイルの構成
-    1. データの読み込み  … JSON ファイルを取りに行き、書き方の誤りがあれば知らせる
-    2. 中国語の書き方の解釈 … {了|le} のような書き方を、ルビ付きの表示に変える
-    3. 小さな道具        … 読み上げる、ボタンを作る、などの関数
-    4. 項目ページの組み立て … 講義のブロックと例文を、データから並べる
-    5. 画面の切り替え
-    6. 問題の表示と判定  … 1〜5を自由に行き来でき、解説は問題の下に開く
-    7. クリックの受付
+    1. データの読み込み
+    2. 小さな道具（記号・読み上げ・ピンイン・声調変化）
+    3. 項目ページの組み立て
+    4. ホーム（目次・問題集・復習）の組み立て
+    5. 問題の表示と判定
+    6. 画面の切り替えとクリックの受付
 */
 
 /* ============================================================
    1. データの読み込み
    ============================================================ */
-let ITEM = null;        // 読み込んだ項目のデータ全体
-let QUESTIONS = [];     // その中の振り返り問題
+let CATALOG = null;                 // 目次（data/catalog.json）
+const ITEMS = {};                   // 読み込んだ項目（同じ項目は二度読まない）
 
-// どの項目を開くか：アドレスの末尾が #8-2 なら 8-2、何もなければ 8-1
-function currentItemId() {
-  const id = decodeURIComponent(location.hash.slice(1));
-  return /^\d+-\d+$/.test(id) ? id : '8-1';
-}
-
-async function loadItem(id) {
-  const path = `data/items/${id}.json`;
+async function loadJSON(path) {
   // cache: 'no-cache' ＝ 毎回「新しくなっていないか」を確認してから使う（古い版が残りにくくなる）
   const res = await fetch(path, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`${path} が見つかりません（${res.status}）`);
@@ -49,62 +49,23 @@ function errorLine(text, e) {
   return '';
 }
 
-async function start() {
-  const root = document.getElementById('item-root');
-  try {
-    ITEM = await loadItem(currentItemId());
-    QUESTIONS = ITEM.quiz || [];
-    renderItem(ITEM);
-  } catch (e) {
-    root.innerHTML = `<div class="error-box" role="alert"><p class="error-title">⚠ データを読み込めません</p><p>${escapeHTML(e.message)}</p></div>`;
-  }
+async function loadCatalog() {
+  if (!CATALOG) CATALOG = await loadJSON('data/catalog.json');
+  return CATALOG;
+}
+
+async function loadItem(id) {
+  if (!ITEMS[id]) ITEMS[id] = await loadJSON(`data/items/${id}.json`);
+  return ITEMS[id];
+}
+
+function errorHTML(e) {
+  return `<div class="error-box" role="alert"><p class="error-title">⚠ データを読み込めません</p><p>${escapeHTML(e.message)}</p></div>`;
 }
 
 /* ============================================================
-   2. 中国語の書き方の解釈
-   データの中では、次の書き方を使う。
-     {漢字|ピンイン}          → 漢字の下にピンイン        例：{了|le}
-     {漢字|ピンイン|実際の発音} → 声調が変わる字（点線）    例：{我|Wǒ|Wó}
-     [文字]                  → 問題の空欄や記号          例：[（　）]  [A]
-     **文字**                → 太字
+   2. 小さな道具（関数）
    ============================================================ */
-
-// データの中の < > & などを、ただの文字として扱う（データにHTMLが紛れ込んでも、画面が壊れないように）
-function escapeHTML(text) {
-  return String(text).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-}
-
-// 書き方 → 画面に出すHTML（md は markup の略）
-function md(src) {
-  let s = escapeHTML(src || '');
-  // 単語どうしの間の空白は消す。コピーしたとき漢字がつながって取れるように（見た目の間隔は CSS で付ける）
-  s = s.replace(/([}\]])\s+(?=[{\[])/g, '$1');
-  s = s.replace(/\{([^{}|]+)\|([^{}|]+)(?:\|([^{}|]+))?\}/g, function (all, hanzi, pinyin, actual) {
-    const sandhi = actual ? ` class="sandhi" data-actual="${actual}"` : '';
-    return `<ruby lang="zh-CN"${sandhi}>${hanzi}<rt>${pinyin}</rt></ruby>`;
-  });
-  s = s.replace(/\[([^\]]+)\]/g, '<span class="slot">$1</span>');
-  s = s.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
-  return s;
-}
-
-// 書き方 → 漢字だけの文（読み上げ・回答の表示用）
-function plain(src) {
-  return String(src || '')
-    .replace(/\{([^{}|]+)\|[^{}]*\}/g, '$1')   // {漢字|…} → 漢字
-    .replace(/\[[^\]]*\]/g, '')                 // 空欄は読まない
-    .replace(/\*\*/g, '')
-    .replace(/^[*?]/, '')                       // 誤用例の * や ? は読まない
-    .replace(/\s+/g, '');
-}
-
-// 選択肢の「文字」：中国語・日本語・ただの文字のどれか
-function optionText(o) { return o.zh || o.text || o.ja || ''; }
-
-/* ============================================================
-   3. 小さな道具（関数）
-   ============================================================ */
-
 // 記号（アイコン）。言葉の代わりに、意味がひと目で伝わる形を使う
 const ICON = {
   speaker: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>',
@@ -117,6 +78,17 @@ const ICON = {
   list: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6l1.5 1.5 2.5-2.5"/><path d="M3.5 12l1.5 1.5 2.5-2.5"/><path d="M3.5 18l1.5 1.5 2.5-2.5"/><path d="M11 6.5h9.5M11 12.5h9.5M11 18.5h9.5"/></svg>',
   retry: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4 3.5v4.5h4.5"/></svg>'
 };
+
+
+// ホーム・目次・記録で使う記号
+Object.assign(ICON, {
+  check: '<svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  right: '<svg class="tri" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2L10 6L4 10Z" fill="currentColor"/></svg>',
+  down: '<svg class="tri" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4L10 4L6 10Z" fill="currentColor"/></svg>',
+  share: '<svg class="icon-share" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>',
+  download: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>',
+  upload: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4"/><path d="M7 9l5-5 5 5"/><path d="M5 20h14"/></svg>'
+});
 
 // 状態（正解・不正解・未回答）に合う記号
 function markIcon(status) { return ICON[status]; }
@@ -233,7 +205,7 @@ function shuffle(list) {
 }
 
 /* ============================================================
-   4. 項目ページの組み立て
+   3. 項目ページの組み立て
    講義は「ブロック」を上から順に並べる。ブロックの種類（type）ごとに、組み立て方を決めてある。
    新しい種類のブロックが必要になったときだけ、ここに組み立て方を1つ足す。
    ============================================================ */
@@ -280,14 +252,27 @@ function exampleHTML(ex) {
     ${status ? `<p class="status">${status}</p>` : ''}</article>`;
 }
 
-function renderItem(item) {
+
+// 読了ボタン（押すたびに 読了 ⇔ 未読 が切り替わる）
+function readButtonHTML(itemId) {
+  const on = Store.isRead(itemId);
+  return `<button type="button" class="read-toggle" data-action="toggle-read" data-item="${escapeHTML(itemId)}" aria-pressed="${on}">${ICON.check}<span>${on ? '読了' : '読了にする'}</span></button>`;
+}
+
+async function renderItemPage(id) {
+  const root = document.getElementById('item-root');
+  document.getElementById('item-path').textContent = '';
+  root.innerHTML = '<p class="loading">読み込み中…</p>';
+  let item;
+  try { item = await loadItem(id); } catch (e) { root.innerHTML = errorHTML(e); return; }
+
   document.title = `${plain(item.title.ja)} – 中国語文法ノート`;
-  document.getElementById('item-path').textContent = `${item.chapter.no}章 ${item.chapter.ja} › ${item.id}`;
+  document.getElementById('item-path').textContent = `${item.chapter.no}章 › ${item.id}`;
 
   const lecture = item.lecture.map(b => (BLOCKS[b.type] ? BLOCKS[b.type](b) : `<p class="note">（未対応のブロック：${escapeHTML(b.type)}）</p>`)).join('\n');
   const n = (item.quiz || []).length;
 
-  document.getElementById('item-root').innerHTML = `
+  root.innerHTML = `
     <section class="intro">
       <h1>${md(item.title.ja)}</h1>
       <p lang="en" class="title-en">${md(item.title.en)}</p>
@@ -295,7 +280,7 @@ function renderItem(item) {
       <nav class="chips" aria-label="ページ内の段階">
         <a href="#lecture" data-action="scroll" data-target="lecture">① 講義</a>
         <a href="#examples" data-action="scroll" data-target="examples">② 例文</a>
-        ${n ? '<button type="button" class="chip-button" data-action="start-quiz">③ 問題</button>' : ''}
+        ${n ? `<button type="button" class="chip-button" data-action="start-quiz" data-item="${escapeHTML(id)}">③ 問題</button>` : ''}
       </nav>
     </section>
     <section id="lecture" class="block">
@@ -305,58 +290,206 @@ function renderItem(item) {
     <section id="examples" class="block">
       <h2>② 例文</h2>
       ${item.examples.map(exampleHTML).join('\n')}
-      ${n ? `<button type="button" class="primary" data-action="start-quiz">振り返り ${n}問 ›</button>` : ''}
+      <div class="item-end">
+        ${readButtonHTML(id)}
+        ${n ? `<button type="button" class="primary" data-action="start-quiz" data-item="${escapeHTML(id)}">振り返り ${n}問 ›</button>` : ''}
+      </div>
     </section>`;
-  setupSandhi(document.getElementById('item-root'));
+  setupSandhi(root);
 }
 
 /* ============================================================
-   5. 画面の切り替え
+   4. ホーム（目次・問題集・復習）の組み立て
    ============================================================ */
-function show(viewId) {
-  ['view-item', 'view-quiz'].forEach(id => { document.getElementById(id).hidden = (id !== viewId); });
-  window.scrollTo(0, 0);
+const openChapters = new Set([8]);        // 目次で開いている章（最初は8章）
+
+function isStandalone() {                 // ホーム画面から開いているか
+  return window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
 }
 
+function homeTabsHTML(tab) {
+  const due = Store.dueKeys().length;
+  const t = (id, label, extra = '') => `<a href="#${id}" class="seg${tab === id ? ' current' : ''}"${tab === id ? ' aria-current="page"' : ''}>${label}${extra}</a>`;
+  const badge = due ? `<span class="badge" aria-label="${due}件">${due}件</span>` : '';
+  return `<nav class="segmented" aria-label="切り替え">${t('toc', '講義')}${t('drill', '問題集')}${t('review', '復習', badge)}</nav>`;
+}
+
+async function renderHome(tab) {
+  document.title = '中国語文法ノート';
+  document.getElementById('home-tabs').innerHTML = homeTabsHTML(tab);
+  const root = document.getElementById('home-root');
+  try {
+    if (tab === 'toc') root.innerHTML = tocHTML(await loadCatalog());
+    else if (tab === 'drill') root.innerHTML = drillHTML();
+    else root.innerHTML = await reviewHTML();
+  } catch (e) {
+    root.innerHTML = errorHTML(e);
+  }
+}
+
+/* ---- 目次 ---- */
+function tocHTML(cat) {
+  return `<h1 class="home-title">目次</h1><div class="toc">` + cat.chapters.map(function (c) {
+    const open = openChapters.has(c.no);
+    const items = c.items || [];
+    const head = `<button type="button" class="chapter" data-action="toggle-chapter" data-no="${c.no}" aria-expanded="${open}">
+        ${open ? ICON.down : ICON.right}<span class="ch-no">${c.no}</span>
+        <span class="ch-title"><span>${md(c.ja)}</span><span lang="en" class="ch-en">${md(c.en)}</span></span>
+        <span class="ch-count">${items.length ? `${items.length}項目` : '準備中'}</span></button>`;
+    if (!open) return `<div class="chapter-box">${head}</div>`;
+    const note = c.note ? `<p class="ch-note">${md(c.note)}</p>` : '';
+    const list = items.length ? items.map(function (it) {
+      const title = `<span class="it-title"><span>${md(it.ja)}</span><span lang="en" class="ch-en">${md(it.en)}</span></span>`;
+      if (!it.ready) return `<div class="toc-item off"><span class="it-no">${escapeHTML(it.id)}</span>${title}<span class="it-state">準備中</span></div>`;
+      const read = Store.isRead(it.id) ? `<span class="read-mark" aria-label="読了">${ICON.check}</span>` : '';
+      return `<a class="toc-item" href="#${escapeHTML(it.id)}"><span class="it-no">${escapeHTML(it.id)}</span>${title}${read}<span class="chev" aria-hidden="true">›</span></a>`;
+    }).join('') : `<p class="ch-note">準備中</p>`;
+    return `<div class="chapter-box open">${head}${note}${list}</div>`;
+  }).join('') + `</div>`;
+}
+
+/* ---- 問題集（フェーズ5で作る） ---- */
+function drillHTML() {
+  return `<h1 class="home-title">問題集</h1><div class="empty">${ICON.list}<p>準備中</p></div>`;
+}
+
+/* ---- 復習 ---- */
+async function reviewHTML() {
+  let html = `<h1 class="home-title">復習</h1>`;
+
+  // Safari で開いているときだけ：ホーム画面に追加する案内
+  if (!isStandalone()) {
+    html += `<div class="hint">${ICON.share}<div><p class="hint-title">ホーム画面に追加</p>
+      <p>Safariの共有ボタン → 「ホーム画面に追加」。7日間開かなくても記録が消えなくなります。</p></div></div>`;
+  }
+
+  const keys = Store.dueKeys();
+  if (keys.length) {
+    const rows = [];
+    for (const key of keys) {
+      const [itemId, qid] = key.split('/');
+      try {
+        const item = await loadItem(itemId);
+        const q = (item.quiz || []).find(x => x.id === qid);
+        if (q) rows.push(`<li class="review-row"><span class="it-no">${escapeHTML(itemId)}</span><span>${md(q.kind)}</span><span class="box" aria-label="箱${Store.card(key).box}">${'●'.repeat(Store.card(key).box)}${'○'.repeat(Store.INTERVALS.length - Store.card(key).box)}</span></li>`);
+      } catch (e) { /* 消えた項目の記録は表示しない */ }
+    }
+    html += `<p class="label">今日の復習</p><p class="score">${rows.length}問</p>
+      <ul class="review-list">${rows.join('')}</ul>
+      <button type="button" class="primary" data-action="start-review">復習を始める ›</button>`;
+  } else {
+    const next = Store.nextDue();
+    html += `<div class="empty">${ICON.check}<p>今日の復習 なし</p>${next ? `<p class="note">次回 ${formatDate(next.date)}・${next.count}問</p>` : ''}</div>`;
+  }
+
+  // 記録の書き出し・読み込み
+  const at = Store.exportedAt();
+  html += `<div class="records"><p class="label">記録</p>
+    <div class="actions">
+      <button type="button" class="small-action" data-action="export">${ICON.download}書き出し</button>
+      <button type="button" class="small-action" data-action="import">${ICON.upload}読み込み</button>
+    </div>
+    <p class="note">最終書き出し：${at ? formatDate(at) : 'なし'}</p></div>`;
+  return html;
+}
+
+function formatDate(d) {
+  const [, m, day] = d.split('-').map(Number);
+  return `${m}月${day}日`;
+}
+
+/* ---- 書き出し・読み込み ---- */
+function exportRecords() {
+  const blob = new Blob([Store.exportText()], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `chinese-grammar-note-${Store.today()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  showToast('書き出し完了');
+  route();
+}
+
+function importRecords() {
+  const input = document.getElementById('import-file');
+  input.value = '';
+  input.click();
+}
+
+document.getElementById('import-file').addEventListener('change', async function () {
+  const file = this.files && this.files[0];
+  if (!file) return;
+  if (Store.hasAny() && !window.confirm('今の記録を、このファイルの記録で置き換えます。よろしいですか？')) return;
+  try {
+    Store.importText(await file.text());
+    showToast('読み込み完了');
+    route();
+  } catch (e) {
+    showToast('読み込めないファイルです');
+  }
+});
+
 /* ============================================================
-   6. 問題の表示と判定
-   「状態（state）」に、問題ごとの答えと結果を覚えておく。
-   画面はいつも、この状態から組み立て直す。だから、どの番号に移っても前の答えが残る。
+   5. 問題の表示と判定
+   問題の画面は2つの使い方がある
+     ・振り返り：1つの項目の問題を全部解く（項目ページから）
+     ・復習    ：復習の時期が来た問題だけを解く（いくつかの項目にまたがる）
+   どちらも、問題ごとの答えと結果を「状態（state）」に覚え、画面はいつもそこから組み立て直す。
+   答え合わせのたびに、store.js に正誤を記録し、次の復習日が決まる。
    ============================================================ */
-const state = { current: 0, items: [] };
+const state = { current: 0, items: [], questions: [], mode: 'item', back: '#toc', title: '振り返り' };
 
 function newItem(q) {
   let order = null;
   if (q.type === 'reorder') {
     do { order = shuffle(q.tokens.map((_, i) => i)); } while (order.join() === q.answer.join());
   }
-  return {
-    order: order,       // 並べ替え：カード置き場の順番
-    placed: [],         // 並べ替え：並べたカード
-    selected: null,     // 選択式：選んだ番号
-    done: false,        // 答え合わせ済みか
-    ok: false,          // 正解か
-    your: '',           // 自分の答え（文字）
-    pinyin: false       // ピンインを表示しているか
-  };
+  return { order: order, placed: [], selected: null, done: false, ok: false, your: '', pinyin: false };
 }
 
-function startQuiz() {
-  if (!state.items.length) state.items = QUESTIONS.map(newItem);
-  const firstOpen = state.items.findIndex(it => !it.done);
-  state.current = firstOpen === -1 ? 'summary' : firstOpen;
+// 問題に「どの項目の、どの問題か」を書き添える（記録の名前＝ 項目ID/問題ID）
+function withSource(item, q) { return Object.assign({}, q, { _item: item, _key: `${item.id}/${q.id}` }); }
+
+// 振り返り：その項目の問題を全部
+async function startItemQuiz(itemId) {
+  const item = await loadItem(itemId);
+  openQuiz({ mode: 'item', back: `#${itemId}`, backLabel: '講義', title: '振り返り', questions: item.quiz.map(q => withSource(item, q)) });
+}
+
+// 復習：時期が来た問題だけ
+async function startReview() {
+  const questions = [];
+  for (const key of Store.dueKeys()) {
+    const [itemId, qid] = key.split('/');
+    try {
+      const item = await loadItem(itemId);
+      const q = (item.quiz || []).find(x => x.id === qid);
+      if (q) questions.push(withSource(item, q));
+    } catch (e) { /* 読めない項目は飛ばす */ }
+  }
+  if (!questions.length) { showToast('今日の復習 なし'); return; }
+  openQuiz({ mode: 'review', back: '#review', backLabel: '復習', title: '復習', questions: questions });
+}
+
+function openQuiz(opts) {
+  Object.assign(state, opts);
+  state.items = state.questions.map(newItem);
+  state.current = 0;
+  document.getElementById('quiz-back').textContent = `‹ ${opts.backLabel}`;
+  document.getElementById('quiz-title').textContent = opts.title;
   render();
   show('view-quiz');
 }
 
-// 1問だけやり直す
 function retryQuestion() {
-  state.items[state.current] = newItem(QUESTIONS[state.current]);
+  state.items[state.current] = newItem(state.questions[state.current]);
   render();
 }
 
 function restartQuiz() {
-  state.items = QUESTIONS.map(newItem);
+  state.items = state.questions.map(newItem);
   state.current = 0;
   render();
   window.scrollTo(0, 0);
@@ -394,11 +527,13 @@ function renderTabs() {
 
 function renderQuestion() {
   const i = state.current;
-  const q = QUESTIONS[i];
+  const q = state.questions[i];
   const it = state.items[i];
   const lock = it.done ? ' disabled' : '';
 
-  let area = `<p class="quiz-kind">問${i + 1} ・ ${md(q.kind)}</p>`;
+  // 復習では、どの項目の問題かを添える（振り返りでは同じ項目なので省く）
+  const from = state.mode === 'review' ? `${escapeHTML(q._item.id)} ・ ` : '';
+  let area = `<p class="quiz-kind">問${i + 1} ・ ${from}${md(q.kind)}</p>`;
   area += `<p class="prompt-ja">${md(q.promptJa)}</p>`;
   area += `<p lang="en" class="prompt-en">${q.promptEn}</p>`;
 
@@ -442,7 +577,7 @@ function feedbackHTML(q, it) {
   let html = `<div class="result-box"><p class="result ${st}">${markIcon(st)}${head}</p>`;
   if (!it.ok && !unanswered) {
     const lang = q.type === 'reorder' ? ' lang="zh-CN"' : '';
-    html += `<div><p class="label">回答</p><p class="your-answer"${lang}>${it.your}</p></div>`;
+    html += `<div><p class="label">回答</p><p class="your-answer"${lang}>${escapeHTML(it.your)}</p></div>`;
   }
   html += `<div><p class="label">正解</p>
     <p lang="zh-CN" class="zh-line big" style="padding-bottom:12px">${md(q.correct)}</p>
@@ -451,7 +586,10 @@ function feedbackHTML(q, it) {
     <div class="actions" style="margin-top:6px">${audioButtonsHTML(plain(q.correct))}</div>
   </div>`;
   html += `<div class="why"><p class="why-title">なぜ？</p><p>${md(q.why)}</p>
-    <button type="button" class="link" data-action="goto-lecture" data-target="${q.lecture}">講義の該当箇所 ›</button></div>`;
+    <button type="button" class="link" data-action="goto-lecture" data-item="${escapeHTML(q._item.id)}" data-target="${escapeHTML(q.lecture)}">講義の該当箇所 ›</button></div>`;
+  // 次の復習日（記録から）
+  const card = Store.card(q._key);
+  if (card && card.due) html += `<p class="note">次の復習：${formatDate(card.due)}</p>`;
   return html + `</div>`;
 }
 
@@ -460,16 +598,18 @@ function renderSummary() {
   const open = state.items.filter(it => !it.done).length;
   const rows = state.items.map(function (it, i) {
     const st = statusOf(it);
+    const q = state.questions[i];
+    const from = state.mode === 'review' ? `${escapeHTML(q._item.id)} ・ ` : '';
     return `<button type="button" class="summary-row ${st}" data-action="go" data-target="${i}" aria-label="問${i + 1}、${STATUS_TEXT[st]}">
       <span class="mark">${markIcon(st)}</span>
-      <span>問${i + 1} ・ ${md(QUESTIONS[i].kind)}</span><span class="chev" aria-hidden="true">›</span></button>`;
+      <span>問${i + 1} ・ ${from}${md(q.kind)}</span><span class="chev" aria-hidden="true">›</span></button>`;
   }).join('');
   document.getElementById('quiz-body').innerHTML =
     `<p class="label">結果</p>
-     <p class="score">${score} / ${QUESTIONS.length}</p>
+     <p class="score">${score} / ${state.questions.length}</p>
      ${open ? `<p class="note">未回答 ${open}</p>` : ''}
      <div class="summary-list">${rows}</div>
-     <button type="button" class="link" data-action="back-to-item">‹ 講義</button>`;
+     <button type="button" class="link" data-action="back">‹ ${escapeHTML(state.backLabel)}</button>`;
 }
 
 // 下に固定したボタン：状況に応じて役割が変わる
@@ -506,9 +646,9 @@ function pickOption(index) {
   renderQuestion();
 }
 
-// 答え合わせ
+// 答え合わせ：判定 → 記録 → 画面
 function check() {
-  const q = QUESTIONS[state.current];
+  const q = state.questions[state.current];
   const it = state.items[state.current];
   if (q.type === 'reorder') {
     it.ok = it.placed.join() === q.answer.join();
@@ -518,6 +658,9 @@ function check() {
     it.your = it.selected === null ? '' : plain(optionText(q.options[it.selected]));
   }
   it.done = true;
+  Store.recordAnswer(q._key, it.ok);
+  // 振り返りを全部解いたら、その項目は自動で読了にする（押し忘れ対策）
+  if (state.mode === 'item' && allDone()) Store.setRead(q._item.id, true);
   render();
 }
 
@@ -532,11 +675,47 @@ function next() {
 }
 
 /* ============================================================
-   7. クリックの受付
-   ページ全体で1か所だけ「押された」を待ち受け、data-action を見て振り分ける。
-   （ボタンごとに受付を作るより、あとから作られるボタンにも効くので便利）
+   6. 画面の切り替えとクリックの受付
    ============================================================ */
-document.addEventListener('click', function (event) {
+const VIEWS = ['view-home', 'view-item', 'view-quiz'];
+
+function show(viewId) {
+  VIEWS.forEach(id => { document.getElementById(id).hidden = (id !== viewId); });
+  window.scrollTo(0, 0);
+}
+
+// 項目ページ左上の戻るボタン：ふだんは「‹ 目次」、問題から講義を見に来たときは「‹ 振り返り／復習」
+function setItemBack(fromQuiz) {
+  const old = document.querySelector('#view-item .back');
+  const html = fromQuiz
+    ? `<button type="button" class="back" data-action="return-quiz">‹ ${escapeHTML(state.title)}</button>`
+    : `<a class="back" href="#toc">‹ 目次</a>`;
+  old.outerHTML = html;
+}
+
+// 問題から講義へ移ったとき、戻り先の情報（アドレスを書き換えたか）を覚えておく
+let lectureTrip = null;
+let skipNextRoute = false;
+
+// アドレスの # を見て、どの画面を出すか決める
+function route() {
+  if (skipNextRoute) { skipNextRoute = false; return; }
+  lectureTrip = null;
+  setItemBack(false);
+  const hash = decodeURIComponent(location.hash.slice(1));
+  if (/^\d+-\d+$/.test(hash)) {
+    show('view-item');
+    return renderItemPage(hash);
+  }
+  const tab = ['drill', 'review'].includes(hash) ? hash : 'toc';
+  show('view-home');
+  return renderHome(tab);
+}
+
+window.addEventListener('hashchange', route);
+
+// ページ全体で1か所だけ「押された」を待ち受け、data-action を見て振り分ける
+document.addEventListener('click', async function (event) {
   const sandhi = event.target.closest('ruby.sandhi');
   if (sandhi) { toggleSandhi(sandhi); return; }
 
@@ -545,9 +724,24 @@ document.addEventListener('click', function (event) {
   switch (el.dataset.action) {
     case 'speak': speak(el.dataset.text, Number(el.dataset.rate)); break;
     case 'toggle-pinyin': togglePinyin(el); break;
-    case 'start-quiz': startQuiz(); break;
-    case 'back-to-item': show('view-item'); break;
-    case 'scroll': {                       // ページ内の移動（アドレスの # は項目番号用に残しておく）
+    case 'toggle-chapter': {
+      const no = Number(el.dataset.no);
+      if (openChapters.has(no)) openChapters.delete(no); else openChapters.add(no);
+      renderHome('toc');
+      break;
+    }
+    case 'toggle-read': {
+      const id = el.dataset.item;
+      Store.setRead(id, !Store.isRead(id));
+      el.outerHTML = readButtonHTML(id);
+      break;
+    }
+    case 'start-quiz': startItemQuiz(el.dataset.item); break;
+    case 'start-review': startReview(); break;
+    case 'export': exportRecords(); break;
+    case 'import': importRecords(); break;
+    case 'back': location.hash === state.back ? route() : (location.hash = state.back); break;
+    case 'scroll': {                       // ページ内の移動（アドレスの # は画面の切り替え用に残しておく）
       event.preventDefault();
       const target = document.getElementById(el.dataset.target);
       if (target) target.scrollIntoView({ block: 'start' });
@@ -561,8 +755,25 @@ document.addEventListener('click', function (event) {
     case 'summary': goTo('summary'); break;
     case 'restart': restartQuiz(); break;
     case 'retry': retryQuestion(); break;
+    case 'return-quiz': {
+      // 問題の画面に戻る（答えた状態はそのまま）。アドレスも講義へ移る前に戻す
+      const trip = lectureTrip;
+      lectureTrip = null;
+      if (trip && trip.pushed) { skipNextRoute = true; history.back(); }
+      setItemBack(false);
+      show('view-quiz');
+      render();
+      break;
+    }
     case 'goto-lecture': {
+      // その問題の項目ページを開き、該当するブロックまで移動する
+      const itemHash = `#${el.dataset.item}`;
+      const pushed = location.hash !== itemHash;
+      if (pushed) history.pushState(null, '', itemHash);
+      lectureTrip = { pushed: pushed, scroll: 0 };
       show('view-item');
+      setItemBack(true);
+      await renderItemPage(el.dataset.item);
       const target = document.getElementById(el.dataset.target);
       if (target) target.scrollIntoView({ block: 'start' });
       break;
@@ -579,16 +790,9 @@ document.addEventListener('keydown', function (event) {
   }
 });
 
-// 最初に1回：データを読み込んで画面を作り、音声の一覧を読み込ませておく
+// 最初に1回：音声の一覧を読み込ませておき、アドレスに合う画面を出す
 if ('speechSynthesis' in window) {
   window.speechSynthesis.getVoices();
   window.speechSynthesis.addEventListener('voiceschanged', findChineseVoice);
 }
-start();
-
-// アドレスの # が変わったら（例：#8-1 → #8-2）、その項目を読み込み直す
-window.addEventListener('hashchange', function () {
-  state.items = [];
-  show('view-item');
-  start();
-});
+route();

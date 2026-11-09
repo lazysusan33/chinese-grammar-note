@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   index.html ＝ 骨組み（画面に「何があるか」）
-  ・フェーズ3から、講義・例文・問題の「中身」は data/items/*.json に分けた
+  ・講義・例文・問題の「中身」は data/ に分けてある
   ・ここには、中身を流し込むための「入れ物」だけを書く。中身を入れるのは app.js
   ・lang 属性で言語を区別する（ja＝日本語、zh-CN＝中国語、en＝英語）
 -->
@@ -10,29 +10,51 @@
   <meta charset="utf-8">
   <!-- スマホで等倍表示にするための指定。viewport-fit=cover は iPhone の画面の端まで使うため -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>中国語文法ノート（試作）</title>
+  <title>中国語文法ノート</title>
+
+  <!-- ホーム画面に追加したときの設定（アプリ名・アイコン・全画面で開く） -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="文法ノート">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#FFFFFF">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ===================== 画面1：項目ページ（講義・例文） ===================== -->
-<main id="view-item" class="view">
-  <header class="topbar">
-    <span id="item-path" class="topbar-note"></span>
+<!-- ===================== 画面1：ホーム（目次・問題集・復習） ===================== -->
+<main id="view-home" class="view">
+  <header class="home-head">
+    <p class="app-name">中国語文法ノート</p>
+    <div id="home-tabs"></div>
   </header>
-  <!-- データを読み込むまでの表示。読み込めたら、app.js が中身に置き換える -->
-  <div id="item-root">
+  <div id="home-root" class="home-root">
     <p class="loading">読み込み中…</p>
   </div>
+  <!-- 記録の読み込みで使う、ファイルを選ぶ部品（見えないところに置き、ボタンから呼び出す） -->
+  <input type="file" id="import-file" accept="application/json,.json" hidden>
 </main>
 
-<!-- ===================== 画面2：問題（解説もこの画面の中に開く） ===================== -->
+<!-- ===================== 画面2：項目ページ（講義・例文） ===================== -->
+<main id="view-item" class="view" hidden>
+  <header class="topbar">
+    <a class="back" href="#toc">‹ 目次</a>
+    <span class="topbar-title"></span>
+    <span id="item-path" class="topbar-note"></span>
+  </header>
+  <div id="item-root"></div>
+</main>
+
+<!-- ===================== 画面3：問題（解説もこの画面の中に開く） ===================== -->
 <main id="view-quiz" class="view" hidden>
   <header class="topbar">
-    <button type="button" class="back" data-action="back-to-item" aria-label="講義に戻る">‹ 講義</button>
-    <span class="topbar-title">振り返り</span>
+    <button type="button" id="quiz-back" class="back" data-action="back">‹ 講義</button>
+    <span id="quiz-title" class="topbar-title">振り返り</span>
     <span class="topbar-side"></span>
   </header>
   <!-- 1〜5の番号：どの問題にも自由に移れる -->
@@ -46,7 +68,9 @@
   </footer>
 </main>
 
-<!-- 動きのファイルを最後に読み込む（画面の部品がそろってから動かすため） -->
+<!-- 動きのファイル：書き方の解釈 → 記録 → 本体 の順に読み込む（後のファイルが前のファイルを使うため） -->
+<script src="markup.js"></script>
+<script src="store.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

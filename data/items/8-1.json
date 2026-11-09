@@ -84,6 +84,7 @@
 
   "quiz": [
     {
+      "id": "q1",
       "type": "reorder",
       "kind": "並べ替え",
       "promptJa": "私は本を3冊買った。",
@@ -98,6 +99,7 @@
       "checked": false
     },
     {
+      "id": "q2",
       "type": "choice",
       "kind": "{了|le}は要る？",
       "promptJa": "私は昨日学校に行かなかった。",
@@ -114,6 +116,7 @@
       "checked": false
     },
     {
+      "id": "q3",
       "type": "choice",
       "kind": "{了|le}の位置",
       "promptJa": "彼はコーヒーを2杯飲んだ。",
@@ -130,6 +133,7 @@
       "checked": false
     },
     {
+      "id": "q4",
       "type": "choice",
       "kind": "自然な文はどれ",
       "promptJa": "文として言い切るとき、自然なのはどちら？",
@@ -147,6 +151,7 @@
       "checked": false
     },
     {
+      "id": "q5",
       "type": "choice",
       "kind": "意味を選ぶ",
       "promptJa": "この文の意味は？",

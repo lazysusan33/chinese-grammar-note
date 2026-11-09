@@ -87,8 +87,13 @@ function checkItem(file, item) {
     else need(file, ex, where, ['zh', 'ja', 'en']);
   });
 
+  const ids = new Set();
   (item.quiz || []).forEach((q, i) => {
     const where = `quiz[${i}]`;
+    // id は学習記録と結び付ける名前。一度付けたら変えない（変えるとその問題の記録が消える）
+    if (!q.id) error(file, where, '「id」がありません（例："q6"。一度付けたら変えない）');
+    else if (ids.has(q.id)) error(file, where, `id「${q.id}」が重複しています`);
+    ids.add(q.id);
     need(file, q, where, ['type', 'kind', 'promptJa', 'promptEn', 'correct', 'ja', 'en', 'why', 'lecture']);
     if (q.lecture && !anchors.has(q.lecture)) error(file, where, `lecture「${q.lecture}」に当たる講義のブロックがありません（ブロックに "id": "${q.lecture}" を付けてください）`);
     if (q.type === 'reorder') {
@@ -117,6 +122,27 @@ function lineOf(text, e) {
   return `${text.slice(0, Number(m[1])).split('\n').length}行目付近：`;
 }
 
+// 目次（catalog.json）：ready の項目には、ファイルが必ずあること
+function checkCatalog() {
+  const file = path.join(__dirname, '..', 'data', 'catalog.json');
+  console.log('■ data/catalog.json');
+  const text = fs.readFileSync(file, 'utf8');
+  let cat;
+  try { cat = JSON.parse(text); } catch (e) { error('catalog', 'JSON', `${lineOf(text, e)}JSON の書き方に誤りがあります（${e.message}）`); return; }
+  const before = errors;
+  (cat.chapters || []).forEach((c, i) => {
+    need('catalog', c, `chapters[${i}]`, ['no', 'ja', 'en']);
+    (c.items || []).forEach((it, k) => {
+      const where = `chapters[${i}].items[${k}]`;
+      need('catalog', it, where, ['id', 'ja', 'en']);
+      if (it.ready && !fs.existsSync(path.join(DIR, `${it.id}.json`))) error('catalog', where, `ready になっていますが data/items/${it.id}.json がありません`);
+    });
+  });
+  walk('catalog', cat, '');
+  if (errors === before) console.log('  ✓ 誤りなし');
+}
+checkCatalog();
+
 const files = fs.readdirSync(DIR).filter(f => f.endsWith('.json')).sort();
 for (const f of files) {
   const file = path.join(DIR, f);
@@ -133,5 +159,5 @@ for (const f of files) {
   checkItem(f, item);
   if (errors === before) console.log('  ✓ 誤りなし');
 }
-console.log(`\n${errors ? '✗' : '✓'} 誤り ${errors} 件、注意 ${warnings} 件（${files.length} ファイル）`);
+console.log(`\n${errors ? '✗' : '✓'} 誤り ${errors} 件、注意 ${warnings} 件（項目 ${files.length} ファイル＋目次）`);
 process.exit(errors ? 1 : 0);
