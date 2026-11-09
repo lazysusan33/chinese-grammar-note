@@ -160,7 +160,7 @@
       "answerIndex": 0,
       "correct": "{我|Wǒ} {明天|míngtiān} {下了|xiàle} {课|kè} {就|jiù} {去|qù} {找|zhǎo|zháo} {你|nǐ}。",
       "ja": "明日授業が終わったら、あなたを訪ねます。",
-      "en": "I'll come see you after class tomorrow.",
+      "en": "I'll come to see you after class tomorrow.",
       "why": "{了|le}は「過去」ではなく「完了」を表します。ここでは「授業が終わったら（完了したら）」という未来の条件です。時を示しているのは{明天|míngtiān}（明日）です。",
       "lecture": "lecture",
       "checked": false
