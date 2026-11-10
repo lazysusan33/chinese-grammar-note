@@ -17,7 +17,7 @@
         { "id": "8-4", "ja": "進行の{在|zài}", "en": "Progressive {在|zài}", "ready": true },
         { "id": "8-5", "ja": "近接未来の{要|yào}…{了|le}", "en": "Imminent future {要|yào}…{了|le}", "ready": true },
         { "id": "8-6", "ja": "文末の{了|le}（語気助詞）との区別", "en": "Sentence-final {了|le} (modal particle)", "ready": true },
-        { "id": "8-7", "ja": "比べてみる：{了|le}・{过|guo}・{着|zhe}・{在|zài}", "en": "Comparing {了|le}, {过|guo}, {着|zhe} and {在|zài}" }
+        { "id": "8-7", "ja": "比べてみる：{了|le}・{过|guo}・{着|zhe}・{在|zài}", "en": "Comparing {了|le}, {过|guo}, {着|zhe} and {在|zài}", "ready": true }
       ]
     },
     { "no": 9, "ja": "補語", "en": "Complements", "items": [] },

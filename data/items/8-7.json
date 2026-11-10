@@ -1,0 +1,206 @@
+{
+  "id": "8-7",
+  "chapter": { "no": 8, "ja": "アスペクト", "en": "Aspect" },
+  "title": { "ja": "比べてみる：{了|le}・{过|guo}・{着|zhe}・{在|zài}", "en": "Comparing {了|le}, {过|guo}, {着|zhe} and {在|zài}" },
+  "terms": "アスペクト（動作の段階）／{体貌|tǐmào}／aspect",
+
+  "lecture": [
+    {
+      "type": "map",
+      "id": "stages",
+      "title": "どの段階を見るか",
+      "cells": [
+        { "zh": "{要|yào}…{了|le}", "ja": "始まる前" },
+        { "zh": "{在|zài}", "ja": "途中" },
+        { "zh": "{了|le}", "ja": "完了" },
+        { "zh": "{着|zhe}", "ja": "結果の状態" },
+        { "zh": "{过|guo}", "ja": "過去の経験" }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "8章の形は、どれも時制（過去・現在・未来）ではなく、**一つの動作のどの段階に目を向けるか**を表します。始まる前（{要|yào}…{了|le}）、途中（{在|zài}）、完了（{了|le}）、その結果の状態（{着|zhe}）、今と切り離された過去の経験（{过|guo}）。文末の{了|le}（8-6）は、これらとは別に「新しい事態になった」ことを文全体に添えます。"
+    },
+    {
+      "type": "panel",
+      "id": "le-guo",
+      "title": "{了|le}と{过|guo}",
+      "body": "{他|tā}{去了|qùle}{北京|Běijīng}は「行った（今もいるかもしれない）」。{他|tā}{去过|qùguo}{北京|Běijīng}は「行ったことがある（もう戻っている）」。否定すると{了|le}は消え（{没|méi}{去|qù}）、{过|guo}は残ります（{没|méi}{去过|qùguo}）。"
+    },
+    {
+      "type": "panel",
+      "id": "zhe-zai",
+      "title": "{着|zhe}と{在|zài}",
+      "body": "{他|tā}{在|zài}{穿|chuān}{衣服|yīfu}は「服を着ているところ（着替え中）」で、動作の途中。{他|tā}{穿着|chuānzhe}{衣服|yīfu}は「服を着ている（身につけている）」で、着た結果の状態です。{在|zài}は動詞の前、{着|zhe}は動詞の後ろに置きます。"
+    },
+    {
+      "type": "panel",
+      "id": "le-le",
+      "title": "動詞の後ろの{了|le}と文末の{了|le}",
+      "body": "{我|wǒ|wó}{等了|děngle}{一|yī|yí}{个|gè}{小时|xiǎoshí}は「1時間待った（もう待っていない）」。文末にも{了|le}を付けた{我|wǒ|wó}{等了|děngle}{一|yī|yí}{个|gè}{小时|xiǎoshí}{了|le}は「1時間待っている（今も待っている）」。文末の{了|le}が「今の時点まで」を添えます。"
+    },
+    {
+      "type": "panel",
+      "id": "yao-le",
+      "title": "{要|yào}…{了|le}と{了|le}",
+      "body": "{我|wǒ}{快|kuài}{到|dào}{了|le}は「もうすぐ着く（まだ着いていない）」。{我|wǒ}{到|dào}{了|le}は「着いた」。同じ文末の{了|le}でも、{快|kuài}・{要|yào}があると「これから来る変化」になります。"
+    },
+    {
+      "type": "panel",
+      "id": "negation",
+      "title": "否定の形",
+      "body": "完了の{了|le}：{没|méi}＋動詞（{了|le}は消える）。経験の{过|guo}：{没|méi}＋動詞＋{过|guo}（残る）。持続の{着|zhe}：{没|méi}＋動詞＋{着|zhe}。進行の{在|zài}：{没|méi}（{在|zài}）＋動詞（{呢|ne}は付けない）。文末の{了|le}：{不|bù}＋動詞＋{了|le}で「もう〜しない」。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "英語の -ing は{在|zài}と{着|zhe}の両方にまたがり、have ＋ 過去分詞は{过|guo}（経験）と{了|le}＋文末の{了|le}（継続）の両方にまたがります。英語の形から機械的に置き換えると間違えやすいところです。"
+        },
+        {
+          "label": "日本語",
+          "body": "「〜ている」は{在|zài}（進行）と{着|zhe}（結果の状態）の両方を、「た」は{了|le}（完了）と文末の{了|le}（変化）の両方を担います。日本語で一つの形が、中国語では二つに分かれる、と覚えると整理しやすくなります。"
+        }
+      ]
+    }
+  ],
+
+  "examples": [
+    {
+      "zh": "{他|Tā} {去了|qùle} {北京|Běijīng}。",
+      "ja": "彼は北京へ行った。",
+      "en": "He went to Beijing.",
+      "note": "完了：今もいるかもしれない",
+      "checked": false
+    },
+    {
+      "zh": "{他|Tā} {去过|qùguo} {北京|Běijīng}。",
+      "ja": "彼は北京へ行ったことがある。",
+      "en": "He has been to Beijing.",
+      "note": "経験：もう戻っている",
+      "checked": false
+    },
+    {
+      "zh": "{他|Tā} {在|zài} {穿|chuān} {衣服|yīfu}。",
+      "ja": "彼は服を着ているところだ。",
+      "en": "He is putting on his clothes.",
+      "note": "進行：動作の途中",
+      "checked": false
+    },
+    {
+      "zh": "{他|Tā} {穿着|chuānzhe} {一|yī|yí} {件|jiàn} {毛衣|máoyī}。",
+      "ja": "彼はセーターを着ている。",
+      "en": "He's wearing a sweater.",
+      "note": "持続：着た結果の状態",
+      "checked": false
+    },
+    {
+      "zh": "{我|Wǒ} {快|kuài} {到|dào} {了|le}。",
+      "ja": "もうすぐ着く。",
+      "en": "I'm almost there.",
+      "note": "始まる前：まだ着いていない",
+      "checked": false
+    },
+    {
+      "zh": "{我|Wǒ} {到|dào} {了|le}。",
+      "ja": "着いた。",
+      "en": "I'm here.",
+      "note": "変化：着いた",
+      "checked": false
+    }
+  ],
+
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "子どものころ、ピアノを習ったことがある。",
+      "promptEn": "I took piano lessons as a child.",
+      "sentence": "{我|Wǒ|Wó} {小|xiǎo} {时候|shíhou} {学|xué} [（　）] {钢琴|gāngqín}。",
+      "options": [{ "text": "{了|le}" }, { "text": "{过|guo}" }, { "text": "{着|zhe}" }, { "text": "{在|zài}" }],
+      "cols": 4,
+      "answerIndex": 1,
+      "correct": "{我|Wǒ|Wó} {小|xiǎo} {时候|shíhou} {学过|xuéguo} {钢琴|gāngqín}。",
+      "ja": "子どものころ、ピアノを習ったことがある。",
+      "en": "I took piano lessons as a child.",
+      "why": "今と切り離された過去の経験なので{过|guo}です。",
+      "lecture": "le-guo",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "外は雨が降っているから、傘を持って行って。",
+      "promptEn": "It's raining outside, so take an umbrella.",
+      "sentence": "{外面|Wàimian} [（　）] {下雨|xiàyǔ}，{带|dài} {伞|sǎn} {吧|ba}。",
+      "options": [{ "text": "{了|le}" }, { "text": "{过|guo}" }, { "text": "{着|zhe}" }, { "text": "{在|zài}" }],
+      "cols": 4,
+      "answerIndex": 3,
+      "correct": "{外面|Wàimian} {在|zài} {下雨|xiàyǔ}，{带|dài} {伞|sǎn} {吧|ba}。",
+      "ja": "外は雨が降っているから、傘を持って行って。",
+      "en": "It's raining outside, so take an umbrella.",
+      "why": "雨が降るという動作が今まさに途中なので{在|zài}です。{在|zài}だけが動詞の前に置かれます。",
+      "lecture": "stages",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "彼は音楽を聴きながら宿題をするのが好きだ。",
+      "promptEn": "He likes to do his homework while listening to music.",
+      "sentence": "{他|Tā} {喜欢|xǐhuan} {听|tīng} [（　）] {音乐|yīnyuè} {做|zuò} {作业|zuòyè}。",
+      "options": [{ "text": "{了|le}" }, { "text": "{过|guo}" }, { "text": "{着|zhe}" }, { "text": "{在|zài}" }],
+      "cols": 4,
+      "answerIndex": 2,
+      "correct": "{他|Tā} {喜欢|xǐhuan} {听着|tīngzhe} {音乐|yīnyuè} {做|zuò} {作业|zuòyè}。",
+      "ja": "彼は音楽を聴きながら宿題をするのが好きだ。",
+      "en": "He likes to do his homework while listening to music.",
+      "why": "「動詞1＋{着|zhe}＋動詞2」で、動詞1（音楽を聴く）が動詞2（宿題をする）のありさまを表します。",
+      "lecture": "zhe-zai",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{我|Wǒ|Wó} {等了|děngle} {一|yī|yí} {个|gè} {小时|xiǎoshí} {了|le}。",
+      "options": [
+        { "ja": "1時間待っている（今も待っている）。", "en": "I've been waiting for an hour (and still am)." },
+        { "ja": "1時間待った（もう待っていない）。", "en": "I waited for an hour (and stopped)." }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ|Wó} {等了|děngle} {一|yī|yí} {个|gè} {小时|xiǎoshí} {了|le}。",
+      "ja": "1時間待っている。",
+      "en": "I've been waiting for an hour.",
+      "why": "動詞の後ろと文末の2つの{了|le}がそろうと、「今の時点まで続いている」ことを表します。",
+      "lecture": "le-le",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "自然な文はどれ",
+      "promptJa": "「映画はもうすぐ始まる（まだ始まっていない）」はどちら？",
+      "promptEn": "Which one means \"The movie is about to start\"?",
+      "options": [
+        { "zh": "{电影|Diànyǐng} {快|kuài} {开始|kāishǐ} {了|le}。", "ja": "映画はもうすぐ始まる。", "en": "The movie is about to start." },
+        { "zh": "{电影|Diànyǐng} {开始|kāishǐ} {了|le}。", "ja": "映画が始まった。", "en": "The movie has started." }
+      ],
+      "answerIndex": 0,
+      "correct": "{电影|Diànyǐng} {快|kuài} {开始|kāishǐ} {了|le}。",
+      "ja": "映画はもうすぐ始まる。",
+      "en": "The movie is about to start.",
+      "why": "{快|kuài}があると、文末の{了|le}は「これから来る変化」を表します。{快|kuài}がなければ「始まった」です。",
+      "lecture": "yao-le",
+      "checked": false
+    }
+  ]
+}

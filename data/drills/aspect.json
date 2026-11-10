@@ -1,8 +1,8 @@
 {
   "id": "aspect",
   "title": { "ja": "アスペクト", "en": "Aspect" },
-  "note": "8章の6項目を混ぜて出題します。",
-  "items": ["8-1", "8-2", "8-3", "8-4", "8-5", "8-6"],
+  "note": "8章の7項目を混ぜて出題します。",
+  "items": ["8-1", "8-2", "8-3", "8-4", "8-5", "8-6", "8-7"],
 
   "questions": [
     {
@@ -776,6 +776,128 @@
       "en": "I ate two bowls of rice.",
       "why": "動詞（{吃|chī}）のすぐ後ろにあり、数量と目的語が続くので、完了の{了|le}です。",
       "lecture": "lecture", "checked": false
+    },
+    {
+      "id": "a701", "item": "8-7", "type": "choice", "kind": "選択",
+      "promptJa": "この本を読んだことがありますか。",
+      "promptEn": "Have you ever read this book?",
+      "sentence": "{你|Nǐ} {看|kàn} [（　）] {这|zhè} {本|běn} {书|shū} {吗|ma}？",
+      "options": [{ "text": "{了|le}" }, { "text": "{过|guo}" }, { "text": "{着|zhe}" }, { "text": "{在|zài}" }],
+      "cols": 4, "answerIndex": 1,
+      "correct": "{你|Nǐ} {看过|kànguo} {这|zhè} {本|běn} {书|shū} {吗|ma}？",
+      "ja": "この本を読んだことがありますか。",
+      "en": "Have you ever read this book?",
+      "why": "「〜したことがある」という経験を尋ねているので{过|guo}です。",
+      "lecture": "le-guo", "checked": false
+    },
+    {
+      "id": "a702", "item": "8-7", "type": "choice", "kind": "選択",
+      "promptJa": "彼は電話中だから、ちょっと待って。",
+      "promptEn": "He's on the phone, so wait a moment.",
+      "sentence": "{他|Tā} [（　）] {打|dǎ} {电话|diànhuà} {呢|ne}，{你|nǐ} {等|děng} {一下|yīxià|yíxià}。",
+      "options": [{ "text": "{了|le}" }, { "text": "{过|guo}" }, { "text": "{着|zhe}" }, { "text": "{在|zài}" }],
+      "cols": 4, "answerIndex": 3,
+      "correct": "{他|Tā} {在|zài} {打|dǎ} {电话|diànhuà} {呢|ne}，{你|nǐ} {等|děng} {一下|yīxià|yíxià}。",
+      "ja": "彼は電話中だから、ちょっと待って。",
+      "en": "He's on the phone, so wait a moment.",
+      "why": "電話をするという動作の途中なので{在|zài}です。文末の{呢|ne}も進行と組になります。",
+      "lecture": "stages", "checked": false
+    },
+    {
+      "id": "a703", "item": "8-7", "type": "choice", "kind": "選択",
+      "promptJa": "彼女は眼鏡をかけている（身につけている）。",
+      "promptEn": "She's wearing glasses.",
+      "sentence": "{她|Tā} {戴|dài} [（　）] {一|yī|yí} {副|fù} {眼镜|yǎnjìng}。",
+      "options": [{ "text": "{了|le}" }, { "text": "{过|guo}" }, { "text": "{着|zhe}" }, { "text": "{在|zài}" }],
+      "cols": 4, "answerIndex": 2,
+      "correct": "{她|Tā} {戴着|dàizhe} {一|yī|yí} {副|fù} {眼镜|yǎnjìng}。",
+      "ja": "彼女は眼鏡をかけている。",
+      "en": "She's wearing glasses.",
+      "why": "かけた結果の状態が続いているので{着|zhe}です。",
+      "lecture": "zhe-zai", "checked": false
+    },
+    {
+      "id": "a704", "item": "8-7", "type": "choice", "kind": "選択",
+      "promptJa": "昨日、本を2冊買った。",
+      "promptEn": "I bought two books yesterday.",
+      "sentence": "{我|Wǒ} {昨天|zuótiān} {买|mǎi} [（　）] {两|liǎng|liáng} {本|běn} {书|shū}。",
+      "options": [{ "text": "{了|le}" }, { "text": "{过|guo}" }, { "text": "{着|zhe}" }, { "text": "{在|zài}" }],
+      "cols": 4, "answerIndex": 0,
+      "correct": "{我|Wǒ} {昨天|zuótiān} {买了|mǎile} {两|liǎng|liáng} {本|běn} {书|shū}。",
+      "ja": "昨日、本を2冊買った。",
+      "en": "I bought two books yesterday.",
+      "why": "昨日という時に、2冊買うという動作が完了したので{了|le}です。",
+      "lecture": "stages", "checked": false
+    },
+    {
+      "id": "a705", "item": "8-7", "type": "fix", "kind": "誤りを探す",
+      "promptJa": "あそこには行ったことがない。",
+      "promptEn": "I've never been there.",
+      "tokens": ["{我|Wǒ}", "{没|méi}", "{去过|qùguo}", "{那儿|nàr}"],
+      "answerIndex": -1,
+      "correct": "{我|Wǒ} {没|méi} {去过|qùguo} {那儿|nàr}。",
+      "ja": "あそこには行ったことがない。",
+      "en": "I've never been there.",
+      "why": "誤りはありません。否定すると{了|le}は消えますが、{过|guo}は残ります。",
+      "lecture": "negation", "checked": false
+    },
+    {
+      "id": "a706", "item": "8-7", "type": "fix", "kind": "誤りを探す",
+      "promptJa": "もうすぐ学校に着く。",
+      "promptEn": "I'm almost at school.",
+      "tokens": ["{我|Wǒ}", "{快要|kuàiyào}", "{到了|dàole}", "{学校|xuéxiào}"],
+      "answerIndex": 2,
+      "correct": "{我|Wǒ} {快要|kuàiyào} {到|dào} {学校|xuéxiào} {了|le}。",
+      "ja": "もうすぐ学校に着く。",
+      "en": "I'm almost at school.",
+      "why": "{要|yào}…{了|le}の{了|le}は文末の{了|le}なので、動詞の後ろではなく文の最後に置きます。",
+      "lecture": "yao-le", "checked": false
+    },
+    {
+      "id": "a707", "item": "8-7", "type": "reorder", "kind": "並べ替え",
+      "promptJa": "もう2時間待っている（今も待っている）。",
+      "promptEn": "I've been waiting for two hours.",
+      "tokens": ["{我|wǒ}", "{等|děng}", "{了|le}", "{两个小时|liǎng ge xiǎoshí}", "{了|le}"],
+      "answer": [0, 1, 2, 3, 4],
+      "correct": "{我|Wǒ|Wó} {等了|děngle} {两|liǎng} {个|ge} {小时|xiǎoshí} {了|le}。",
+      "ja": "もう2時間待っている。",
+      "en": "I've been waiting for two hours.",
+      "why": "「動詞＋{了|le}＋時間の長さ＋{了|le}」で、今も続いていることを表します。",
+      "lecture": "le-le", "checked": false
+    },
+    {
+      "id": "a708", "item": "8-7", "type": "write", "kind": "日→中",
+      "promptJa": "彼は北京に行ったことがある。",
+      "promptEn": "He has been to Beijing.",
+      "correct": "{他|Tā} {去过|qùguo} {北京|Běijīng}。",
+      "ja": "彼は北京に行ったことがある。",
+      "en": "He has been to Beijing.",
+      "why": "経験は「動詞＋{过|guo}」。{去了|qùle}だと「行った（今もいるかもしれない）」になります。",
+      "lecture": "le-guo", "checked": false
+    },
+    {
+      "id": "a709", "item": "8-7", "type": "write", "kind": "日→中",
+      "promptJa": "彼女は眼鏡をかけている。",
+      "promptEn": "She's wearing glasses.",
+      "correct": "{她|Tā} {戴着|dàizhe} {眼镜|yǎnjìng}。",
+      "alts": ["她戴着一副眼镜"],
+      "ja": "彼女は眼鏡をかけている。",
+      "en": "She's wearing glasses.",
+      "why": "身につけた状態が続いているので「動詞＋{着|zhe}」です。かけている途中なら{在|zài}{戴|dài}になります。",
+      "lecture": "zhe-zai", "checked": false
+    },
+    {
+      "id": "a710", "item": "8-7", "type": "choice", "kind": "段階",
+      "promptJa": "この文は、動作のどの段階を表している？",
+      "promptEn": "Which stage does this sentence describe?",
+      "sentence": "{他|Tā} {快|kuài} {毕业|bìyè} {了|le}。",
+      "options": [{ "text": "始まる前" }, { "text": "途中" }, { "text": "完了" }, { "text": "経験" }],
+      "cols": 2, "answerIndex": 0,
+      "correct": "{他|Tā} {快|kuài} {毕业|bìyè} {了|le}。",
+      "ja": "彼はもうすぐ卒業する。",
+      "en": "He's graduating soon.",
+      "why": "{快|kuài}…{了|le}は「もうすぐ…する」で、卒業はまだ始まっていません。",
+      "lecture": "stages", "checked": false
     }
   ]
 }
