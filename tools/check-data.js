@@ -88,30 +88,62 @@ function checkItem(file, item) {
   });
 
   const ids = new Set();
-  (item.quiz || []).forEach((q, i) => {
-    const where = `quiz[${i}]`;
-    // id は学習記録と結び付ける名前。一度付けたら変えない（変えるとその問題の記録が消える）
-    if (!q.id) error(file, where, '「id」がありません（例："q6"。一度付けたら変えない）');
-    else if (ids.has(q.id)) error(file, where, `id「${q.id}」が重複しています`);
-    ids.add(q.id);
-    need(file, q, where, ['type', 'kind', 'promptJa', 'promptEn', 'correct', 'ja', 'en', 'why', 'lecture']);
-    if (q.lecture && !anchors.has(q.lecture)) error(file, where, `lecture「${q.lecture}」に当たる講義のブロックがありません（ブロックに "id": "${q.lecture}" を付けてください）`);
-    if (q.type === 'reorder') {
-      need(file, q, where, ['tokens', 'answer']);
-      const n = (q.tokens || []).length;
-      const ok = Array.isArray(q.answer) && q.answer.length === n && [...q.answer].sort((a, b) => a - b).every((v, k) => v === k);
-      if (!ok) error(file, where, `answer は 0〜${n - 1} を1回ずつ並べたものにしてください`);
-    } else if (q.type === 'choice') {
-      need(file, q, where, ['options']);
-      const n = (q.options || []).length;
-      if (!(Number.isInteger(q.answerIndex) && q.answerIndex >= 0 && q.answerIndex < n)) error(file, where, `answerIndex は 0〜${n - 1} のどれかにしてください（0 が1つ目）`);
-    } else {
-      error(file, where, `type「${q.type}」は使えません（reorder か choice）`);
-    }
-    if (q.checked !== true) warn(file, where, 'ネイティブ未確認');
-  });
+  (item.quiz || []).forEach((q, i) => checkQuestion(file, q, `quiz[${i}]`, anchors, ids, ['reorder', 'choice']));
 
   walk(file, item, '');
+}
+
+// 問題1つ分の確認（振り返りと問題集で共通）
+function checkQuestion(file, q, where, anchors, ids, types) {
+  // id は学習記録と結び付ける名前。一度付けたら変えない（変えるとその問題の記録が消える）
+  if (!q.id) error(file, where, '「id」がありません（例："q6"。一度付けたら変えない）');
+  else if (ids.has(q.id)) error(file, where, `id「${q.id}」が重複しています`);
+  ids.add(q.id);
+  need(file, q, where, ['type', 'kind', 'promptJa', 'promptEn', 'correct', 'ja', 'en', 'why', 'lecture']);
+  if (q.lecture && anchors && !anchors.has(q.lecture)) error(file, where, `lecture「${q.lecture}」に当たる講義のブロックがありません（ブロックに "id": "${q.lecture}" を付けてください）`);
+  if (!types.includes(q.type)) { error(file, where, `type「${q.type}」は使えません（${types.join('・')}）`); return; }
+  if (q.type === 'reorder') {
+    need(file, q, where, ['tokens', 'answer']);
+    const n = (q.tokens || []).length;
+    const ok = Array.isArray(q.answer) && q.answer.length === n && [...q.answer].sort((a, b) => a - b).every((v, k) => v === k);
+    if (!ok) error(file, where, `answer は 0〜${n - 1} を1回ずつ並べたものにしてください`);
+  } else if (q.type === 'choice') {
+    need(file, q, where, ['options']);
+    const n = (q.options || []).length;
+    if (!(Number.isInteger(q.answerIndex) && q.answerIndex >= 0 && q.answerIndex < n)) error(file, where, `answerIndex は 0〜${n - 1} のどれかにしてください（0 が1つ目）`);
+  } else if (q.type === 'fix') {
+    need(file, q, where, ['tokens']);
+    const n = (q.tokens || []).length;
+    if (!(Number.isInteger(q.answerIndex) && q.answerIndex >= -1 && q.answerIndex < n)) error(file, where, `answerIndex は誤りのある語の番号（0〜${n - 1}）か、誤りなしなら -1 にしてください`);
+  } else if (q.type === 'write') {
+    if (q.alts !== undefined && !Array.isArray(q.alts)) error(file, where, 'alts（ほかの正解）は ["…", "…"] の形で書いてください');
+  }
+  if (q.checked !== true) warn(file, where, 'ネイティブ未確認');
+}
+
+// 問題集（data/drills/*.json）：各問題の item が実在し、lecture がその項目の講義にあること
+function checkDrill(file, drill) {
+  const id = path.basename(file, '.json');
+  if (drill.id !== id) error(file, 'id', `ファイル名（${id}）と id（${drill.id}）が違います`);
+  need(file, drill, '問題集', ['id', 'title', 'items', 'questions']);
+  const ids = new Set();
+  const counts = {};
+  (drill.questions || []).forEach((q, i) => {
+    const where = `questions[${i}]（${q.id || '?'}）`;
+    let anchors = null;
+    if (!q.item) error(file, where, '「item」（どの項目の問題か。例："8-1"）がありません');
+    else if (!(drill.items || []).includes(q.item)) error(file, where, `item「${q.item}」が、この問題集の items にありません`);
+    else {
+      try {
+        const item = JSON.parse(fs.readFileSync(path.join(DIR, `${q.item}.json`), 'utf8'));
+        anchors = new Set(['lecture', 'examples', ...(item.lecture || []).filter(b => b.id).map(b => b.id)]);
+      } catch (e) { error(file, where, `data/items/${q.item}.json が読めません`); }
+      counts[q.item] = (counts[q.item] || 0) + 1;
+    }
+    checkQuestion(file, q, where, anchors, ids, ['reorder', 'choice', 'fix', 'write']);
+  });
+  console.log('  問題数：' + Object.entries(counts).map(([k, v]) => `${k} ${v}問`).join('、'));
+  walk(file, drill, '');
 }
 
 // JSON の誤りが何行目かを調べる
@@ -159,5 +191,17 @@ for (const f of files) {
   checkItem(f, item);
   if (errors === before) console.log('  ✓ 誤りなし');
 }
-console.log(`\n${errors ? '✗' : '✓'} 誤り ${errors} 件、注意 ${warnings} 件（項目 ${files.length} ファイル＋目次）`);
+const DRILL_DIR = path.join(__dirname, '..', 'data', 'drills');
+const drillFiles = fs.existsSync(DRILL_DIR) ? fs.readdirSync(DRILL_DIR).filter(f => f.endsWith('.json')).sort() : [];
+for (const f of drillFiles) {
+  const file = path.join(DRILL_DIR, f);
+  console.log(`■ data/drills/${f}`);
+  const text = fs.readFileSync(file, 'utf8');
+  let drill;
+  try { drill = JSON.parse(text); } catch (e) { error(f, 'JSON', `${lineOf(text, e)}JSON の書き方に誤りがあります（${e.message}）`); continue; }
+  const before = errors;
+  checkDrill(f, drill);
+  if (errors === before) console.log('  ✓ 誤りなし');
+}
+console.log(`\n${errors ? '✗' : '✓'} 誤り ${errors} 件、注意 ${warnings} 件（項目 ${files.length} ファイル＋問題集 ${drillFiles.length} ファイル＋目次）`);
 process.exit(errors ? 1 : 0);

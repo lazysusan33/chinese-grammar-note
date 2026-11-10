@@ -59,6 +59,27 @@ async function loadItem(id) {
   return ITEMS[id];
 }
 
+const DRILLS = {};                  // 読み込んだ問題集
+async function loadDrill(id) {
+  if (!DRILLS[id]) DRILLS[id] = await loadJSON(`data/drills/${id}.json`);
+  return DRILLS[id];
+}
+
+// 記録の名前（例：「8-1/q1」「aspect/a101」）から、問題とその項目を探す
+//   ・前半が項目番号なら、その項目の振り返り問題
+//   ・それ以外なら、問題集の問題（問題ごとに item でどの項目かが書いてある）
+async function questionByKey(key) {
+  const [src, qid] = key.split('/');
+  if (/^\d+-\d+$/.test(src)) {
+    const item = await loadItem(src);
+    const q = (item.quiz || []).find(x => x.id === qid);
+    return q ? withSource(item, q, key) : null;
+  }
+  const drill = await loadDrill(src);
+  const q = (drill.questions || []).find(x => x.id === qid);
+  return q ? withSource(await loadItem(q.item), q, key) : null;
+}
+
 function errorHTML(e) {
   return `<div class="error-box" role="alert"><p class="error-title">⚠ データを読み込めません</p><p>${escapeHTML(e.message)}</p></div>`;
 }
@@ -320,7 +341,7 @@ async function renderHome(tab) {
   const root = document.getElementById('home-root');
   try {
     if (tab === 'toc') root.innerHTML = tocHTML(await loadCatalog());
-    else if (tab === 'drill') root.innerHTML = drillHTML();
+    else if (tab === 'drill') root.innerHTML = await drillHTML();
     else root.innerHTML = await reviewHTML();
   } catch (e) {
     root.innerHTML = errorHTML(e);
@@ -348,9 +369,65 @@ function tocHTML(cat) {
   }).join('') + `</div>`;
 }
 
-/* ---- 問題集（フェーズ5で作る） ---- */
-function drillHTML() {
-  return `<h1 class="home-title">問題集</h1><div class="empty">${ICON.list}<p>準備中</p></div>`;
+/* ---- 問題集 ----
+   テーマごとに、いくつかの項目の問題を混ぜて出す（インターリーブ練習）。
+   出題範囲は最初「読んだ項目だけ」。未読の項目も、押せば範囲に入れられる。 */
+const drillSel = {};                 // 問題集ごとに、範囲に入れた項目（このページを開いている間だけ覚える）
+const drillCount = {};               // 問題集ごとに、1回に解く問題数
+const DRILL_COUNTS = [10, 20, 0];    // 0 ＝ 全部
+
+function selectionOf(drill) {
+  if (!drillSel[drill.id]) drillSel[drill.id] = new Set(drill.items.filter(id => Store.isRead(id)));
+  return drillSel[drill.id];
+}
+
+async function drillHTML() {
+  const cat = await loadCatalog();
+  const titles = {};
+  cat.chapters.forEach(c => (c.items || []).forEach(it => { titles[it.id] = it; }));
+  let html = `<h1 class="home-title">問題集</h1>`;
+  for (const id of cat.drills || []) {
+    const drill = await loadDrill(id);
+    const sel = selectionOf(drill);
+    const per = {};
+    drill.questions.forEach(q => { per[q.item] = (per[q.item] || 0) + 1; });
+    const pool = drill.questions.filter(q => sel.has(q.item)).length;
+    const count = drillCount[id] === undefined ? 10 : drillCount[id];
+    const rows = drill.items.map(function (itemId) {
+      const t = titles[itemId] || { ja: itemId, en: '' };
+      const on = sel.has(itemId);
+      const unread = Store.isRead(itemId) ? '' : `<span class="tag">未読</span>`;
+      return `<button type="button" class="drill-item" data-action="toggle-drill-item" data-drill="${escapeHTML(id)}" data-item="${escapeHTML(itemId)}" aria-pressed="${on}">
+        <span class="check-box" aria-hidden="true">${on ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>' : ''}</span>
+        <span class="it-no">${escapeHTML(itemId)}</span>
+        <span class="it-title"><span>${md(t.ja)}</span></span>${unread}<span class="ch-count">${per[itemId] || 0}問</span></button>`;
+    }).join('');
+    const counts = DRILL_COUNTS.map(n => `<button type="button" class="seg${n === count ? ' current' : ''}" data-action="drill-count" data-drill="${escapeHTML(id)}" data-n="${n}" aria-pressed="${n === count}">${n ? `${n}問` : '全部'}</button>`).join('');
+    html += `<section class="drill-card">
+      <p class="drill-title">${md(drill.title.ja)} <span lang="en" class="ch-en">${md(drill.title.en)}</span></p>
+      ${drill.note ? `<p class="note">${md(drill.note)}</p>` : ''}
+      <p class="label">出題範囲</p>
+      <div class="drill-items">${rows}</div>
+      ${sel.size ? '' : `<p class="note">講義の「読了」を付けると、その項目が自動で入ります。</p>`}
+      <p class="label">問題数</p>
+      <div class="segmented">${counts}</div>
+      <button type="button" class="primary" data-action="start-drill" data-drill="${escapeHTML(id)}"${pool ? '' : ' disabled'}>始める（${count && count < pool ? count : pool}問） ›</button>
+    </section>`;
+  }
+  if (!(cat.drills || []).length) html += `<div class="empty">${ICON.list}<p>準備中</p></div>`;
+  return html;
+}
+
+async function startDrill(id) {
+  const drill = await loadDrill(id);
+  const sel = selectionOf(drill);
+  const pool = shuffle(drill.questions.filter(q => sel.has(q.item)));
+  const count = drillCount[id] === undefined ? 10 : drillCount[id];
+  const picked = count ? pool.slice(0, count) : pool;
+  const questions = [];
+  for (const q of picked) questions.push(withSource(await loadItem(q.item), q, `${drill.id}/${q.id}`));
+  if (!questions.length) return;
+  openQuiz({ mode: 'drill', back: '#drill', backLabel: '問題集', title: '問題集', questions: questions });
 }
 
 /* ---- 復習 ---- */
@@ -367,11 +444,10 @@ async function reviewHTML() {
   if (keys.length) {
     const rows = [];
     for (const key of keys) {
-      const [itemId, qid] = key.split('/');
       try {
-        const item = await loadItem(itemId);
-        const q = (item.quiz || []).find(x => x.id === qid);
-        if (q) rows.push(`<li class="review-row"><span class="it-no">${escapeHTML(itemId)}</span><span>${md(q.kind)}</span><span class="box" aria-label="箱${Store.card(key).box}">${'●'.repeat(Store.card(key).box)}${'○'.repeat(Store.INTERVALS.length - Store.card(key).box)}</span></li>`);
+        const q = await questionByKey(key);
+        const box = Store.card(key).box;
+        if (q) rows.push(`<li class="review-row"><span class="it-no">${escapeHTML(q._item.id)}</span><span>${md(q.kind)}</span><span class="box" aria-label="箱${box}">${'●'.repeat(box)}${'○'.repeat(Store.INTERVALS.length - box)}</span></li>`);
       } catch (e) { /* 消えた項目の記録は表示しない */ }
     }
     html += `<p class="label">今日の復習</p><p class="score">${rows.length}問</p>
@@ -446,11 +522,11 @@ function newItem(q) {
   if (q.type === 'reorder') {
     do { order = shuffle(q.tokens.map((_, i) => i)); } while (order.join() === q.answer.join());
   }
-  return { order: order, placed: [], selected: null, done: false, ok: false, your: '', pinyin: false };
+  return { order: order, placed: [], selected: null, text: '', revealed: false, done: false, ok: false, your: '', pinyin: false };
 }
 
 // 問題に「どの項目の、どの問題か」を書き添える（記録の名前＝ 項目ID/問題ID）
-function withSource(item, q) { return Object.assign({}, q, { _item: item, _key: `${item.id}/${q.id}` }); }
+function withSource(item, q, key) { return Object.assign({}, q, { _item: item, _key: key || `${item.id}/${q.id}` }); }
 
 // 振り返り：その項目の問題を全部
 async function startItemQuiz(itemId) {
@@ -462,11 +538,9 @@ async function startItemQuiz(itemId) {
 async function startReview() {
   const questions = [];
   for (const key of Store.dueKeys()) {
-    const [itemId, qid] = key.split('/');
     try {
-      const item = await loadItem(itemId);
-      const q = (item.quiz || []).find(x => x.id === qid);
-      if (q) questions.push(withSource(item, q));
+      const q = await questionByKey(key);
+      if (q) questions.push(q);
     } catch (e) { /* 読めない項目は飛ばす */ }
   }
   if (!questions.length) { showToast('今日の復習 なし'); return; }
@@ -522,7 +596,12 @@ function renderTabs() {
   }).join('');
   // 結果（一覧）はいつでも開ける。未回答の問題は「未回答」として表示
   const summary = `<button type="button" class="qtab list" data-action="go" data-target="summary" aria-current="${state.current === 'summary'}" aria-label="結果の一覧">${ICON.list}</button>`;
-  document.getElementById('quiz-tabs').innerHTML = tabs + summary;
+  const nav = document.getElementById('quiz-tabs');
+  nav.classList.toggle('many', state.items.length > 5);
+  nav.innerHTML = tabs + summary;
+  // 横に並べたときは、今の問題の番号が見える位置まで動かす
+  const cur = nav.querySelector('.qtab[aria-current="true"]:not(.list)');
+  if (cur && nav.classList.contains('many')) nav.scrollLeft = cur.offsetLeft - nav.clientWidth / 2 + cur.offsetWidth / 2;
 }
 
 function renderQuestion() {
@@ -532,7 +611,8 @@ function renderQuestion() {
   const lock = it.done ? ' disabled' : '';
 
   // 復習では、どの項目の問題かを添える（振り返りでは同じ項目なので省く）
-  const from = state.mode === 'review' ? `${escapeHTML(q._item.id)} ・ ` : '';
+  // 問題集では、答えるまで項目を伏せる（どの文法かを自分で見分ける練習にするため）
+  const from = (state.mode === 'review' || (state.mode === 'drill' && it.done)) ? `${escapeHTML(q._item.id)} ・ ` : '';
   let area = `<p class="quiz-kind">問${i + 1} ・ ${from}${md(q.kind)}</p>`;
   area += `<p class="prompt-ja">${md(q.promptJa)}</p>`;
   area += `<p lang="en" class="prompt-en">${md(q.promptEn)}</p>`;
@@ -543,6 +623,26 @@ function renderQuestion() {
     const rest = it.order.filter(id => !it.placed.includes(id));
     area += `<div class="token-pool">${rest.map(tokenBtn).join('')}</div>`;
     if (!it.done) area += `<p class="note">タップで移動</p>`;
+  } else if (q.type === 'fix') {
+    // 誤りを探す：誤りのある語をタップ。なければ「誤りなし」
+    const mark = function (k) {
+      if (!it.done) return ['', ''];
+      if (k === q.answerIndex) return [' is-correct', ''];
+      if (k === it.selected) return [' is-wrong', ''];
+      return ['', ''];
+    };
+    area += `<div class="fix-line" lang="zh-CN">` + q.tokens.map(function (t, k) {
+      const [cls] = mark(k);
+      return `<button type="button" class="token fix-token${cls}" data-action="option" data-index="${k}" aria-pressed="${it.selected === k}"${lock}>${md(t)}</button>`;
+    }).join('') + `</div>`;
+    const [noneCls] = mark(-1);
+    area += `<button type="button" class="option no-error${noneCls}" data-action="option" data-index="-1" aria-pressed="${it.selected === -1}"${lock}>誤りなし</button>`;
+    if (!it.done) area += `<p class="note">誤りのある語をタップ</p>`;
+  } else if (q.type === 'write') {
+    // 日→中：中国語で書いてから「答えを見る」。完全に一致しなければ、自分で○×を付ける
+    const ro = (it.revealed || it.done) ? ' readonly' : '';
+    area += `<textarea id="write-input" class="write-input" lang="zh-CN" rows="2" placeholder="中国語で入力" autocomplete="off" autocorrect="off" spellcheck="false"${ro}>${escapeHTML(it.text)}</textarea>`;
+    if (!it.done && !it.revealed) area += `<p class="note">中国語のキーボード（簡体・ピンイン）で入力</p>`;
   } else {
     if (q.sentence) area += `<p lang="zh-CN" class="zh-line big">${md(q.sentence)}</p>`;
     const cols = q.cols ? ` cols-${q.cols}` : '';
@@ -562,7 +662,7 @@ function renderQuestion() {
   area += `<div class="actions">${pinyinToggleHTML(it.pinyin)}</div>`;
 
   let html = `<div class="q-area${it.pinyin ? '' : ' pinyin-hidden'}">${area}</div>`;
-  if (it.done) html += feedbackHTML(q, it);
+  if (it.done || it.revealed) html += feedbackHTML(q, it);
 
   const body = document.getElementById('quiz-body');
   body.innerHTML = html;
@@ -574,22 +674,33 @@ function feedbackHTML(q, it) {
   const unanswered = it.your === '';
   const st = it.ok ? 'good' : 'bad';
   const head = it.ok ? '正解' : (unanswered ? '未回答' : '不正解');
-  let html = `<div class="result-box"><p class="result ${st}">${markIcon(st)}${head}</p>`;
-  if (!it.ok && !unanswered) {
-    const lang = q.type === 'reorder' ? ' lang="zh-CN"' : '';
+  let html = `<div class="result-box">`;
+  if (it.done) html += `<p class="result ${st}">${markIcon(st)}${head}</p>`;
+  if (q.type === 'write' && !it.done) {
+    // 自己採点：模範解答と見比べて、自分で判断する
+    html += `<div class="self-grade"><p class="label">自己採点</p><div class="self-grade-buttons">
+      <button type="button" class="grade good" data-action="self-grade" data-ok="1">${ICON.good}合っていた</button>
+      <button type="button" class="grade bad" data-action="self-grade" data-ok="0">${ICON.bad}違っていた</button></div></div>`;
+  }
+  if (q.type === 'write' && it.text.trim()) {
+    // 自己採点の前と、正解のときは、取り消し線を付けない
+    const cls = (it.done && !it.ok) ? 'your-answer' : 'your-answer neutral';
+    html += `<div><p class="label">回答</p><p class="${cls}" lang="zh-CN">${escapeHTML(it.text.trim())}</p></div>`;
+  } else if (!it.ok && !unanswered && it.done) {
+    const lang = (q.type === 'reorder' || q.type === 'fix') ? ' lang="zh-CN"' : '';
     html += `<div><p class="label">回答</p><p class="your-answer"${lang}>${escapeHTML(it.your)}</p></div>`;
   }
   html += `<div><p class="label">正解</p>
     <p lang="zh-CN" class="zh-line big" style="padding-bottom:12px">${md(q.correct)}</p>
     <p class="ja">${md(q.ja)}</p>
-    <p lang="en" class="en">${q.en}</p>
+    <p lang="en" class="en">${md(q.en)}</p>
     <div class="actions" style="margin-top:6px">${audioButtonsHTML(plain(q.correct))}</div>
   </div>`;
   html += `<div class="why"><p class="why-title">なぜ？</p><p>${md(q.why)}</p>
     <button type="button" class="link" data-action="goto-lecture" data-item="${escapeHTML(q._item.id)}" data-target="${escapeHTML(q.lecture)}">講義の該当箇所 ›</button></div>`;
   // 次の復習日（記録から）
   const card = Store.card(q._key);
-  if (card && card.due) html += `<p class="note">次の復習：${formatDate(card.due)}</p>`;
+  if (it.done && card && card.due) html += `<p class="note">次の復習：${formatDate(card.due)}</p>`;
   return html + `</div>`;
 }
 
@@ -599,7 +710,7 @@ function renderSummary() {
   const rows = state.items.map(function (it, i) {
     const st = statusOf(it);
     const q = state.questions[i];
-    const from = state.mode === 'review' ? `${escapeHTML(q._item.id)} ・ ` : '';
+    const from = (state.mode === 'review' || (state.mode === 'drill' && it.done)) ? `${escapeHTML(q._item.id)} ・ ` : '';
     return `<button type="button" class="summary-row ${st}" data-action="go" data-target="${i}" aria-label="問${i + 1}、${STATUS_TEXT[st]}">
       <span class="mark">${markIcon(st)}</span>
       <span>問${i + 1} ・ ${from}${md(q.kind)}</span><span class="chev" aria-hidden="true">›</span></button>`;
@@ -620,10 +731,14 @@ function renderMainButton() {
   const done = onQuestion && state.items[state.current].done;
   retry.hidden = !done;                       // 答え合わせ後だけ「やり直し」を出す
   retry.innerHTML = ICON.retry;
-  if (!onQuestion) {
+  b.disabled = false;
+  const waiting = onQuestion && !done && state.items[state.current].revealed;   // 日→中で、自己採点を待っている
+  if (waiting) {
+    b.textContent = '○か×を選択'; b.dataset.action = ''; b.disabled = true;
+  } else if (!onQuestion) {
     b.textContent = '全問やり直し'; b.dataset.action = 'restart';
   } else if (!done) {
-    b.textContent = '答え合わせ'; b.dataset.action = 'check';   // 何も答えていなくても押せる（未回答＝不正解）
+    b.textContent = state.questions[state.current].type === 'write' ? '答えを見る' : '答え合わせ'; b.dataset.action = 'check';   // 何も答えていなくても押せる（未回答＝不正解）
   } else if (allDone()) {
     b.textContent = '結果 ›'; b.dataset.action = 'summary';
   } else {
@@ -647,16 +762,52 @@ function pickOption(index) {
 }
 
 // 答え合わせ：判定 → 記録 → 画面
+// 中国語の答えを比べるために、記号と空白を取り除く
+function normalizeZh(t) { return String(t).replace(/[\s。，、？！．,.?!：:；;“”"'‘’…·]/g, ''); }
+
 function check() {
   const q = state.questions[state.current];
   const it = state.items[state.current];
   if (q.type === 'reorder') {
-    it.ok = it.placed.join() === q.answer.join();
+    // 見た目の文字で比べる（同じ字のカードが2枚あるとき、どちらを先に置いても正解にする）
+    it.ok = it.placed.length === q.answer.length && it.placed.map(i => plain(q.tokens[i])).join('') === q.answer.map(i => plain(q.tokens[i])).join('');
     it.your = it.placed.length ? it.placed.map(i => plain(q.tokens[i])).join('') + (it.placed.length === q.tokens.length ? '。' : '…') : '';
+  } else if (q.type === 'fix') {
+    it.ok = it.selected === q.answerIndex;
+    it.your = it.selected === null ? '' : (it.selected === -1 ? '誤りなし' : plain(q.tokens[it.selected]));
+  } else if (q.type === 'write') {
+    const input = document.getElementById('write-input');
+    if (input) it.text = input.value;
+    it.your = it.text.trim();
+    // 模範解答かほかの正解と（記号・空白を除いて）完全に一致すれば、自動で正解。それ以外は自己採点
+    const answers = [plain(q.correct)].concat(q.alts || []).map(normalizeZh);
+    if (it.your && answers.includes(normalizeZh(it.your))) {
+      it.ok = true;
+    } else if (it.your) {
+      it.revealed = true;
+      render();
+      return;
+    } else {
+      it.ok = false;
+    }
   } else {
     it.ok = it.selected === q.answerIndex;
     it.your = it.selected === null ? '' : plain(optionText(q.options[it.selected]));
   }
+  finishAnswer(q, it);
+}
+
+// 自己採点の結果を受け取る（日→中）
+function selfGrade(ok) {
+  const q = state.questions[state.current];
+  const it = state.items[state.current];
+  it.ok = ok;
+  finishAnswer(q, it);
+}
+
+// 判定が決まったあと：記録 → 画面
+function finishAnswer(q, it) {
+  it.revealed = false;
   it.done = true;
   Store.recordAnswer(q._key, it.ok);
   // 振り返りを全部解いたら、その項目は自動で読了にする（押し忘れ対策）
@@ -738,6 +889,15 @@ document.addEventListener('click', async function (event) {
     }
     case 'start-quiz': startItemQuiz(el.dataset.item); break;
     case 'start-review': startReview(); break;
+    case 'start-drill': startDrill(el.dataset.drill); break;
+    case 'toggle-drill-item': {
+      const sel = selectionOf(await loadDrill(el.dataset.drill));
+      if (sel.has(el.dataset.item)) sel.delete(el.dataset.item); else sel.add(el.dataset.item);
+      renderHome('drill');
+      break;
+    }
+    case 'drill-count': drillCount[el.dataset.drill] = Number(el.dataset.n); renderHome('drill'); break;
+    case 'self-grade': selfGrade(el.dataset.ok === '1'); break;
     case 'export': exportRecords(); break;
     case 'import': importRecords(); break;
     case 'back': location.hash === state.back ? route() : (location.hash = state.back); break;
@@ -796,3 +956,10 @@ if ('speechSynthesis' in window) {
   window.speechSynthesis.addEventListener('voiceschanged', findChineseVoice);
 }
 route();
+
+// 日→中の入力欄：打った文字を覚えておく（ほかの問題へ移って戻っても消えないように）
+document.addEventListener('input', function (event) {
+  if (event.target.id === 'write-input' && typeof state.current === 'number') {
+    state.items[state.current].text = event.target.value;
+  }
+});

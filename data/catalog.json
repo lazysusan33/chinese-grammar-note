@@ -24,5 +24,6 @@
     { "no": 10, "ja": "比較", "en": "Comparison", "items": [] },
     { "no": 11, "ja": "特殊な構文", "en": "Special constructions", "items": [] },
     { "no": 12, "ja": "複文と関連語句", "en": "Complex sentences and connectives", "items": [] }
-  ]
+  ],
+  "drills": ["aspect"]
 }
