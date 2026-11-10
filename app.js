@@ -535,7 +535,7 @@ function renderQuestion() {
   const from = state.mode === 'review' ? `${escapeHTML(q._item.id)} ・ ` : '';
   let area = `<p class="quiz-kind">問${i + 1} ・ ${from}${md(q.kind)}</p>`;
   area += `<p class="prompt-ja">${md(q.promptJa)}</p>`;
-  area += `<p lang="en" class="prompt-en">${q.promptEn}</p>`;
+  area += `<p lang="en" class="prompt-en">${md(q.promptEn)}</p>`;
 
   if (q.type === 'reorder') {
     const tokenBtn = id => `<button type="button" class="token" lang="zh-CN" data-action="token" data-id="${id}"${lock}>${md(q.tokens[id])}</button>`;
@@ -551,7 +551,7 @@ function renderQuestion() {
       if (o.zh) inner += `<span lang="zh-CN" class="zh-line">${md(o.zh)}</span><br>`;
       if (o.text) inner += md(o.text);
       if (o.ja) inner += `<span class="ja">${md(o.ja)}</span>`;
-      if (o.en) inner += `<span lang="en" class="en">${o.en}</span>`;
+      if (o.en) inner += `<span lang="en" class="en">${md(o.en)}</span>`;
       // 答え合わせ後は、正解に緑の丸、選んだ不正解に赤の丸を付ける
       let cls = '', mark = '';
       if (it.done && k === q.answerIndex) { cls = ' is-correct'; mark = `<span class="mark">${ICON.good}</span>`; }

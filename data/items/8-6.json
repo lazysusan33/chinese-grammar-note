@@ -1,0 +1,187 @@
+{
+  "id": "8-6",
+  "chapter": { "no": 8, "ja": "アスペクト", "en": "Aspect" },
+  "title": { "ja": "文末の{了|le}（語気助詞）との区別", "en": "Sentence-final {了|le} (modal particle)" },
+  "terms": "語気助詞（文末助詞）／{语气|yǔqì}{助词|zhùcí}／sentence-final particle",
+
+  "lecture": [
+    {
+      "type": "map",
+      "title": "2つの{了|le}",
+      "cells": [
+        { "zh": "V{了|le}", "ja": "完了（8-1）" },
+        { "zh": "…{了|le}。", "ja": "変化（8-6）", "current": true }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "文末の{了|le}は、**新しい事態になった（変化した）**ことを表します。{下雨|xiàyǔ}{了|le}は「雨が降ってきた」で、それまで降っていなかったことが前提です。文全体に付くので、動詞の文だけでなく、形容詞や名詞の文にも付きます（{我|wǒ}{饿|è}{了|le}＝おなかがすいた、{他|tā}{是|shì}{大学生|dàxuéshēng}{了|le}＝彼はもう大学生だ）。動詞の後ろの{了|le}を「{了|le}₁」、文末の{了|le}を「{了|le}₂」と呼んで区別することもあります。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "文 ＋ {了|le}",
+      "en": "Sentence + {了|le}",
+      "zh": "{下雨|Xiàyǔ} {了|le}。"
+    },
+    {
+      "type": "panel",
+      "id": "negation",
+      "title": "否定：「もう〜しない」",
+      "body": "「{不|bù}＋動詞＋{了|le}」で「もう〜しない（しなくなった）」という変化を表します。{我|wǒ}{不|bù}{喝|hē}{酒|jiǔ}{了|le}（もうお酒は飲まない）。完了の{了|le}が{没|méi}で消えるのと違い、こちらは否定文でも残ります。"
+    },
+    {
+      "type": "panel",
+      "id": "double",
+      "title": "2つの{了|le}がそろうと",
+      "body": "「動詞＋{了|le}＋時間の長さ＋目的語＋{了|le}」は、その動作が**今も続いている**ことを表します。{我|wǒ}{学了|xuéle}{三|sān}{年|nián}{汉语|Hànyǔ}{了|le}は「中国語を学んで3年になる（今も学んでいる）」。文末の{了|le}がない{我|wǒ}{学了|xuéle}{三|sān}{年|nián}{汉语|Hànyǔ}は「3年学んだ（今は学んでいないかもしれない）」です。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "直接対応する語がありません。now（It's raining now）、already、not anymore（I don't drink anymore）など、場面ごとに違う語で訳されます。"
+        },
+        {
+          "label": "日本語",
+          "body": "「〜になった」「もう〜だ」「もう〜しない」などにあたります。日本語では「た」が完了と変化の両方を担いますが、中国語は{了|le}を置く位置で分けています。"
+        }
+      ]
+    },
+    {
+      "type": "debate",
+      "title": "説が分かれる点",
+      "body": "8-1でも触れたとおり、動詞の後ろの{了|le}と文末の{了|le}が同じ語か別の語かは、見方が分かれています。{他|tā}{来|lái}{了|le}のように動詞で終わる文の{了|le}は、完了と変化の両方を兼ねていると説明されることもあります。"
+    }
+  ],
+
+  "examples": [
+    {
+      "zh": "{下雨|Xiàyǔ} {了|le}。",
+      "ja": "雨が降ってきた。",
+      "en": "It's started raining.",
+      "checked": false
+    },
+    {
+      "zh": "{我|Wǒ} {不|bù} {喝|hē} {酒|jiǔ} {了|le}。",
+      "ja": "もうお酒は飲まない。",
+      "en": "I don't drink anymore.",
+      "note": "{不|bù}…{了|le}で「もう〜しない」",
+      "checked": false
+    },
+    {
+      "zh": "{我|Wǒ} {学了|xuéle} {三|sān} {年|nián} {汉语|Hànyǔ} {了|le}。",
+      "ja": "中国語を勉強して3年になる。",
+      "en": "I've been studying Chinese for three years.",
+      "note": "2つの{了|le}：今も続いている",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{我|Wǒ} {不|bù} {喝了|hēle} {酒|jiǔ}。",
+      "explain": "「もう飲まない」の{了|le}は文末の{了|le}なので、文の最後に置きます。正しくは {我|wǒ}{不|bù}{喝|hē}{酒|jiǔ}{了|le}。"
+    },
+    {
+      "kind": "odd",
+      "zh": "?{天|Tiān} {冷|lěng}。",
+      "explain": "「寒くなった」と変化を言うなら{天|tiān}{冷|lěng}{了|le}。形容詞だけで言い切ると、ほかとの比較や続きが期待され、文として落ち着きません。"
+    }
+  ],
+
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "私はもうタバコを吸わない。",
+      "promptEn": "I don't smoke anymore.",
+      "tokens": ["{我|wǒ}", "{不|bù}", "{抽|chōu}", "{烟|yān}", "{了|le}"],
+      "answer": [0, 1, 2, 3, 4],
+      "correct": "{我|Wǒ} {不|bù} {抽|chōu} {烟|yān} {了|le}。",
+      "ja": "私はもうタバコを吸わない。",
+      "en": "I don't smoke anymore.",
+      "why": "{不|bù}は動詞（{抽|chōu}）の前に置き、「もう〜しない」の{了|le}は文末に置きます。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{我|Wǒ} {学了|xuéle} {三|sān} {年|nián} {汉语|Hànyǔ} {了|le}。",
+      "options": [
+        { "ja": "中国語を勉強して3年になる（今も続けている）。", "en": "I've been studying Chinese for three years (and still am)." },
+        { "ja": "中国語を3年勉強した（今はやめた）。", "en": "I studied Chinese for three years (and stopped)." },
+        { "ja": "3年後に中国語を勉強する。", "en": "I'll study Chinese in three years." }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {学了|xuéle} {三|sān} {年|nián} {汉语|Hànyǔ} {了|le}。",
+      "ja": "中国語を勉強して3年になる。",
+      "en": "I've been studying Chinese for three years.",
+      "why": "動詞の後ろと文末の2つの{了|le}がそろうと、その動作が今も続いていることを表します。",
+      "lecture": "double",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "どちらの{了|le}？",
+      "promptJa": "この{了|le}はどちら？",
+      "promptEn": "Which {了|le} is this?",
+      "sentence": "{天|Tiān} {黑|hēi} {了|le}。",
+      "options": [{ "text": "完了の{了|le}（8-1）" }, { "text": "変化の{了|le}（8-6）" }],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{天|Tiān} {黑|hēi} {了|le}。",
+      "ja": "暗くなった。",
+      "en": "It's gotten dark.",
+      "why": "形容詞（{黑|hēi}＝暗い）の文の文末にあり、「暗くなった」という変化を表します。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "自然な文はどれ",
+      "promptJa": "「おなかがすいた」と言うとき、自然なのはどちら？",
+      "promptEn": "Which one naturally says \"I'm hungry\"?",
+      "options": [
+        { "zh": "{我|Wǒ} {饿|è} {了|le}。", "ja": "おなかがすいた。", "en": "I'm hungry." },
+        { "zh": "{我|Wǒ} {饿|è}。", "ja": "（{了|le}がない形）", "en": "(without {了|le})" }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {饿|è} {了|le}。",
+      "ja": "おなかがすいた。",
+      "en": "I'm hungry.",
+      "why": "「おなかがすいた」は、すいていない状態からの変化なので、文末に{了|le}を付けます。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{他|Tā} {是|shì} {大学生|dàxuéshēng} {了|le}。",
+      "options": [
+        { "ja": "彼はもう大学生だ（大学生になった）。", "en": "He's a college student now." },
+        { "ja": "彼は大学生だった。", "en": "He was a college student." },
+        { "ja": "彼はもうすぐ大学生になる。", "en": "He'll soon be a college student." }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {是|shì} {大学生|dàxuéshēng} {了|le}。",
+      "ja": "彼はもう大学生だ。",
+      "en": "He's a college student now.",
+      "why": "名詞の文にも文末の{了|le}が付き、「大学生になった」という新しい事態を表します。過去の「だった」ではありません。「もうすぐ」なら8-5の{快要|kuàiyào}…{了|le}を使います。",
+      "lecture": "lecture",
+      "checked": false
+    }
+  ]
+}

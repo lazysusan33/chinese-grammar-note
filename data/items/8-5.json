@@ -1,0 +1,184 @@
+{
+  "id": "8-5",
+  "chapter": { "no": 8, "ja": "アスペクト", "en": "Aspect" },
+  "title": { "ja": "近接未来の{要|yào}…{了|le}", "en": "Imminent future {要|yào}…{了|le}" },
+  "terms": "近接未来の表現／{快要|kuàiyào}…{了|le}・{就要|jiùyào}…{了|le}／imminent future",
+
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        { "zh": "{了|le}", "ja": "完了" },
+        { "zh": "{过|guo}", "ja": "経験" },
+        { "zh": "{着|zhe}", "ja": "持続" },
+        { "zh": "{在|zài}", "ja": "進行" },
+        { "zh": "{要|yào}…{了|le}", "ja": "近接未来", "current": true }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "「{要|yào}…{了|le}」で、ある出来事が**もうすぐ起こる**ことを表します。{快|kuài}（もうすぐ）や{就|jiù}（すぐに）を付けて、{快要|kuàiyào}…{了|le}、{就要|jiùyào}…{了|le}とも言います。{快|kuài}…{了|le}だけでも同じ意味です。どの形でも、文末の{了|le}と組で使います。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "主語 ＋（{快|kuài}／{就|jiù}）{要|yào} ＋ 動詞 ＋ {了|le}",
+      "en": "S + ({快|kuài} / {就|jiù}){要|yào} + V + {了|le}",
+      "zh": "{火车|Huǒchē} {快要|kuàiyào} {开|kāi} {了|le}。"
+    },
+    {
+      "type": "panel",
+      "id": "time",
+      "title": "時を表す語と一緒に",
+      "body": "{明天|míngtiān}（明日）のような具体的な時を表す語があるときは、{就要|jiùyào}…{了|le}を使い、{快要|kuàiyào}…{了|le}は使いません。{他|tā}{明天|míngtiān}{就要|jiùyào}{走|zǒu}{了|le}（彼は明日にはもう出発する）。"
+    },
+    {
+      "type": "panel",
+      "id": "kuai",
+      "title": "{快|kuài}＋数量・時刻",
+      "body": "{快|kuài}…{了|le}は、動詞のほかに年齢や時刻も挟めます。{快|kuài}{十|shí}{点|diǎn}{了|le}（もうすぐ10時だ）。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "be about to に近い表現です。英語は未来を助動詞などで表しますが、中国語は文末の{了|le}で「新しい事態がもうすぐ来る」ことを表します（文末の{了|le}は8-6）。"
+        },
+        {
+          "label": "日本語",
+          "body": "「もうすぐ〜する」にあたります。日本語は「もうすぐ」だけで言えますが、中国語は{快|kuài}だけでは足りず、文末の{了|le}と組にします。"
+        }
+      ]
+    },
+    {
+      "type": "debate",
+      "title": "説が分かれる点",
+      "body": "この形をアスペクト（動作の段階）に含めるかどうかは、文法書によって異なります。文末の{了|le}が表す「変化」（8-6）の一種とみる考え方もあります。このツールでは、「これから始まる段階」を表すものとして8章に置いています。"
+    }
+  ],
+
+  "examples": [
+    {
+      "zh": "{火车|Huǒchē} {快要|kuàiyào} {开|kāi} {了|le}。",
+      "ja": "列車がもうすぐ発車する。",
+      "en": "The train is about to leave.",
+      "checked": false
+    },
+    {
+      "zh": "{我们|Wǒmen} {下|xià} {个|ge} {月|yuè} {就要|jiùyào} {毕业|bìyè} {了|le}。",
+      "ja": "私たちは来月卒業する。",
+      "en": "We're graduating next month.",
+      "note": "時を表す語があるときは{就要|jiùyào}",
+      "checked": false
+    },
+    {
+      "zh": "{快|Kuài} {十|shí} {点|diǎn} {了|le}。",
+      "ja": "もうすぐ10時だ。",
+      "en": "It's almost ten o'clock.",
+      "note": "{快|kuài}＋時刻",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{他|Tā} {下|xià} {个|ge} {月|yuè} {快要|kuàiyào} {毕业|bìyè} {了|le}。",
+      "explain": "具体的な時（{下|xià}{个|ge}{月|yuè}＝来月）があるときは、{快要|kuàiyào}は使えません。正しくは {他|tā}{下|xià}{个|ge}{月|yuè}{就要|jiùyào}{毕业|bìyè}{了|le}。"
+    }
+  ],
+
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "飛行機がもうすぐ離陸する。",
+      "promptEn": "The plane is about to take off.",
+      "tokens": ["{飞机|fēijī}", "{快要|kuàiyào}", "{起飞|qǐfēi}", "{了|le}"],
+      "answer": [0, 1, 2, 3],
+      "correct": "{飞机|Fēijī} {快要|kuàiyào} {起飞|qǐfēi} {了|le}。",
+      "ja": "飛行機がもうすぐ離陸する。",
+      "en": "The plane is about to take off.",
+      "why": "{快要|kuàiyào}は動詞（{起飞|qǐfēi}）の前、{了|le}は文末に置きます。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "{快要|kuàiyào}か{就要|jiùyào}か",
+      "promptJa": "私は明日帰国する。",
+      "promptEn": "I'm going back to my country tomorrow.",
+      "sentence": "{我|Wǒ} {明天|míngtiān} [（　）] {回国|huíguó} {了|le}。",
+      "options": [{ "text": "{快要|kuàiyào}" }, { "text": "{就要|jiùyào}" }],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{我|Wǒ} {明天|míngtiān} {就要|jiùyào} {回国|huíguó} {了|le}。",
+      "ja": "私は明日帰国する。",
+      "en": "I'm going back to my country tomorrow.",
+      "why": "{明天|míngtiān}（明日）のような具体的な時を表す語があるときは、{就要|jiùyào}…{了|le}を使います。",
+      "lecture": "time",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{电影|Diànyǐng} {快|kuài} {开始|kāishǐ} {了|le}。",
+      "options": [
+        { "ja": "映画はもうすぐ始まる。", "en": "The movie is about to start." },
+        { "ja": "映画はさっき始まった。", "en": "The movie just started." },
+        { "ja": "映画は始まるのが早かった。", "en": "The movie started early." }
+      ],
+      "answerIndex": 0,
+      "correct": "{电影|Diànyǐng} {快|kuài} {开始|kāishǐ} {了|le}。",
+      "ja": "映画はもうすぐ始まる。",
+      "en": "The movie is about to start.",
+      "why": "{快|kuài}…{了|le}は「もうすぐ…する」。ここでの{快|kuài}は「速い」ではなく「もうすぐ」の意味です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "{了|le}の位置",
+      "promptJa": "私はもうすぐ学校に着く。",
+      "promptEn": "I'm almost at school.",
+      "sentence": "{我|Wǒ} {快要|kuàiyào} {到|dào} [A] {学校|xuéxiào} [B]。",
+      "options": [{ "text": "A" }, { "text": "B" }],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{我|Wǒ} {快要|kuàiyào} {到|dào} {学校|xuéxiào} {了|le}。",
+      "ja": "私はもうすぐ学校に着く。",
+      "en": "I'm almost at school.",
+      "why": "この{了|le}は文末に置きます。動詞の後ろの完了の{了|le}（8-1）とは違い、「もうすぐ新しい事態になる」ことを文全体に添えます。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{妈妈|Māma} {快|kuài} {六十|liùshí} {岁|suì} {了|le}。",
+      "options": [
+        { "ja": "母はもうすぐ60歳だ。", "en": "Mom is almost sixty." },
+        { "ja": "母は60歳になったばかりだ。", "en": "Mom has just turned sixty." },
+        { "ja": "母は60歳を過ぎた。", "en": "Mom is over sixty." }
+      ],
+      "answerIndex": 0,
+      "correct": "{妈妈|Māma} {快|kuài} {六十|liùshí} {岁|suì} {了|le}。",
+      "ja": "母はもうすぐ60歳だ。",
+      "en": "Mom is almost sixty.",
+      "why": "{快|kuài}…{了|le}は、年齢や時刻などの数量も挟めます。まだ60歳にはなっていません。",
+      "lecture": "kuai",
+      "checked": false
+    }
+  ]
+}

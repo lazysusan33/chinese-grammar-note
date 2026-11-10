@@ -1,0 +1,176 @@
+{
+  "id": "8-2",
+  "chapter": { "no": 8, "ja": "アスペクト", "en": "Aspect" },
+  "title": { "ja": "経験の{过|guo}", "en": "Experiential {过|guo}" },
+  "terms": "アスペクト助詞（動態助詞）／{动态|dòngtài}{助词|zhùcí}／aspect particle",
+
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        { "zh": "{了|le}", "ja": "完了" },
+        { "zh": "{过|guo}", "ja": "経験", "current": true },
+        { "zh": "{着|zhe}", "ja": "持続" },
+        { "zh": "{在|zài}", "ja": "進行" },
+        { "zh": "{要|yào}…{了|le}", "ja": "近接未来" }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "動詞のすぐ後ろの{过|guo}は、その動作を「したことがある」という経験を表します。いつしたかは問題にせず、過去に少なくとも一度あったことを述べます。毎日の習慣のような、くり返しの行為には使いません。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "主語 ＋ 動詞 ＋ {过|guo} ＋ 目的語",
+      "en": "S + V + {过|guo} + O",
+      "zh": "{我|Wǒ} {去过|qùguo} {中国|Zhōngguó}。"
+    },
+    {
+      "type": "panel",
+      "id": "negation",
+      "title": "否定",
+      "body": "「{没|méi}（{有|yǒu}）＋動詞＋{过|guo}」で否定します。8-1の{了|le}と違い、{过|guo}は**消えずに残ります**。{从来|cónglái}{没|méi}…{过|guo}で「一度も…ない」と強めます。"
+    },
+    {
+      "type": "panel",
+      "id": "vs-le",
+      "title": "{了|le}との違い",
+      "body": "{他|tā}{去了|qùle}{北京|Běijīng}は「北京へ行った（今もいるかもしれない）」。{他|tā}{去过|qùguo}{北京|Běijīng}は「北京へ行ったことがある（今はもう戻っている）」。{过|guo}は、その出来事が今とは切り離された経験であることを表します。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "「have ＋ 過去分詞」の経験用法（I have been to China）に近い働きです。疑問文では、ever に当たる語がなくても、{过|guo}だけで「今までに」の意味になります。"
+        },
+        {
+          "label": "日本語",
+          "body": "「〜したことがある」にあたります。日本語が「行った」と「行った**ことがある**」を言い分けるのと同じように、中国語は{了|le}と{过|guo}を使い分けます。"
+        }
+      ]
+    }
+  ],
+
+  "examples": [
+    {
+      "zh": "{你|Nǐ} {去过|qùguo} {中国|Zhōngguó} {吗|ma}？",
+      "ja": "あなたは中国に行ったことがありますか。",
+      "en": "Have you ever been to China?",
+      "note": "ever に当たる語がなくても「今までに」",
+      "checked": false
+    },
+    {
+      "zh": "{我|Wǒ} {没|méi} {吃过|chīguo} {北京|Běijīng} {烤鸭|kǎoyā}。",
+      "ja": "私は北京ダックを食べたことがない。",
+      "en": "I've never had Peking duck.",
+      "note": "否定でも{过|guo}は残る",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{我|Wǒ} {去|qù} {中国|Zhōngguó} {过|guo}。",
+      "explain": "正しくは {我|wǒ}{去过|qùguo}{中国|Zhōngguó}。{过|guo}は目的語の後ろではなく、動詞のすぐ後ろに置きます。"
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{我|Wǒ|Wó} {每天|měitiān} {都|dōu} {喝过|hēguo} {咖啡|kāfēi}。",
+      "explain": "{过|guo}は「したことがある」という経験なので、「毎日」のような習慣とは合いません。習慣は {我|wǒ|wó}{每天|měitiān}{都|dōu}{喝|hē}{咖啡|kāfēi}。"
+    }
+  ],
+
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "私は中国に行ったことがない。",
+      "promptEn": "I've never been to China.",
+      "tokens": ["{我|wǒ}", "{没|méi}", "{去|qù}", "{过|guo}", "{中国|Zhōngguó}"],
+      "answer": [0, 1, 2, 3, 4],
+      "correct": "{我|Wǒ} {没|méi} {去过|qùguo} {中国|Zhōngguó}。",
+      "ja": "私は中国に行ったことがない。",
+      "en": "I've never been to China.",
+      "why": "否定の{没|méi}は動詞の前に置き、{过|guo}は動詞のすぐ後ろに残します。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "{过|guo}は要る？",
+      "promptJa": "私はこの映画を見たことがない。",
+      "promptEn": "I've never seen this movie.",
+      "sentence": "{我|Wǒ} {没|méi} {看|kàn} [（　）] {这个|zhège} {电影|diànyǐng}。",
+      "options": [{ "text": "{过|guo}を入れる" }, { "text": "入れない" }],
+      "cols": 2,
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {没|méi} {看过|kànguo} {这个|zhège} {电影|diànyǐng}。",
+      "ja": "私はこの映画を見たことがない。",
+      "en": "I've never seen this movie.",
+      "why": "経験の{过|guo}は、{没|méi}で否定しても残ります。8-1の{了|le}が消えるのとは逆です。{过|guo}がないと「（そのとき）見なかった」という意味になります。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "{了|le}か{过|guo}か",
+      "promptJa": "彼は北京に行ったことがある（今はもう戻っている）。",
+      "promptEn": "He has been to Beijing (and is back now).",
+      "sentence": "{他|Tā} {去|qù} [（　）] {北京|Běijīng}。",
+      "options": [{ "text": "{了|le}" }, { "text": "{过|guo}" }],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{他|Tā} {去过|qùguo} {北京|Běijīng}。",
+      "ja": "彼は北京に行ったことがある。",
+      "en": "He has been to Beijing.",
+      "why": "{去了|qùle}は「行った（今もそこにいるかもしれない）」。{去过|qùguo}は「行ったことがある」で、その出来事は今と切り離された経験です。",
+      "lecture": "vs-le",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "自然な文はどれ",
+      "promptJa": "毎日の習慣を言うとき、自然なのはどちら？",
+      "promptEn": "Which one sounds natural for a daily habit?",
+      "options": [
+        { "zh": "{我|Wǒ|Wó} {每天|měitiān} {都|dōu} {喝|hē} {咖啡|kāfēi}。", "ja": "私は毎日コーヒーを飲む。", "en": "I drink coffee every day." },
+        { "zh": "{我|Wǒ|Wó} {每天|měitiān} {都|dōu} {喝过|hēguo} {咖啡|kāfēi}。", "ja": "（毎日コーヒーを飲んだことがある）", "en": "(I have had coffee every day.)" }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ|Wó} {每天|měitiān} {都|dōu} {喝|hē} {咖啡|kāfēi}。",
+      "ja": "私は毎日コーヒーを飲む。",
+      "en": "I drink coffee every day.",
+      "why": "{过|guo}は「したことがある」という経験を表すので、「毎日」のようなくり返しの習慣とは一緒に使えません。",
+      "lecture": "examples",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{你|Nǐ} {见过|jiànguo} {他|tā} {吗|ma}？",
+      "options": [
+        { "ja": "彼に会ったことがありますか。", "en": "Have you ever met him?" },
+        { "ja": "今、彼に会っているところですか。", "en": "Are you meeting him right now?" },
+        { "ja": "これから彼に会うつもりですか。", "en": "Are you going to meet him?" }
+      ],
+      "answerIndex": 0,
+      "correct": "{你|Nǐ} {见过|jiànguo} {他|tā} {吗|ma}？",
+      "ja": "彼に会ったことがありますか。",
+      "en": "Have you ever met him?",
+      "why": "{过|guo}は経験を表します。疑問文では、ever に当たる語がなくても「今までに」の意味になります。",
+      "lecture": "lecture",
+      "checked": false
+    }
+  ]
+}

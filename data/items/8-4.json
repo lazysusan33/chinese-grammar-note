@@ -1,0 +1,182 @@
+{
+  "id": "8-4",
+  "chapter": { "no": 8, "ja": "アスペクト", "en": "Aspect" },
+  "title": { "ja": "進行の{在|zài}", "en": "Progressive {在|zài}" },
+  "terms": "副詞／{副词|fùcí}／adverb（進行を表す）",
+
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        { "zh": "{了|le}", "ja": "完了" },
+        { "zh": "{过|guo}", "ja": "経験" },
+        { "zh": "{着|zhe}", "ja": "持続" },
+        { "zh": "{在|zài}", "ja": "進行", "current": true },
+        { "zh": "{要|yào}…{了|le}", "ja": "近接未来" }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "動詞の前の{在|zài}は、動作が**進行中**であることを表します。{正在|zhèngzài}にすると「ちょうど今」の感じが強まり、文末に{呢|ne}を添えることもあります。{了|le}と同じく時制とは別なので、過去の場面にも使えます。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "主語 ＋（{正|zhèng}）{在|zài} ＋ 動詞 ＋ 目的語（＋ {呢|ne}）",
+      "en": "S + ({正|zhèng}){在|zài} + V + O (+ {呢|ne})",
+      "zh": "{他|Tā} {在|zài} {看|kàn} {书|shū}。"
+    },
+    {
+      "type": "panel",
+      "id": "verbs",
+      "title": "付かない動詞",
+      "body": "{在|zài}は、続けることのできる「動作」に付きます。{是|shì}（〜である）、{知道|zhīdào}（知っている）、{认识|rènshi}（知り合いだ）のような、状態を表す動詞には付きません。"
+    },
+    {
+      "type": "panel",
+      "id": "negation",
+      "title": "否定",
+      "body": "「{没|méi}（{有|yǒu}）（{在|zài}）＋動詞」で否定し、文末の{呢|ne}は付けません。{他|tā}{没|méi}{在|zài}{看|kàn}{电视|diànshì}（彼はテレビを見ていない）。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "be ＋ -ing の進行形に近い働きです。英語は be 動詞の形（is / was）で時制も表しますが、{在|zài}は形を変えません。また、I'm leaving tomorrow のような「予定」の意味はありません。"
+        },
+        {
+          "label": "日本語",
+          "body": "「〜ている」のうち、進行を表す使い方（今、本を読ん**でいる**）にあたります。結果の状態（窓が開い**ている**）は、8-3の{着|zhe}で表します。"
+        }
+      ]
+    },
+    {
+      "type": "debate",
+      "title": "説が分かれる点",
+      "body": "進行の否定を「{没|méi}{在|zài}＋動詞」とするか「{不|bù}{在|zài}＋動詞」とするかは、文法書によって説明が異なります。このツールでは、多くの教科書に合わせて{没|méi}を使う形を基本とします。"
+    }
+  ],
+
+  "examples": [
+    {
+      "zh": "{他|Tā} {在|zài} {看|kàn} {书|shū}。",
+      "ja": "彼は本を読んでいる。",
+      "en": "He is reading.",
+      "checked": false
+    },
+    {
+      "zh": "{我|Wǒ} {正在|zhèngzài} {开会|kāihuì} {呢|ne}。",
+      "ja": "私は今ちょうど会議中です。",
+      "en": "I'm in a meeting right now.",
+      "note": "{正在|zhèngzài}…{呢|ne}で「ちょうど今」",
+      "checked": false
+    },
+    {
+      "zh": "{你|Nǐ} {昨天|zuótiān} {来|lái} {的|de} {时候|shíhou}，{他|tā} {在|zài} {洗澡|xǐzǎo|xízǎo}。",
+      "ja": "昨日あなたが来たとき、彼はシャワーを浴びていた。",
+      "en": "When you came yesterday, he was taking a shower.",
+      "note": "過去の場面での進行",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{我|Wǒ} {在|zài} {知道|zhīdào} {这|zhè} {件|jiàn} {事|shì}。",
+      "explain": "{知道|zhīdào}（知っている）は状態を表す動詞なので、{在|zài}は付きません。正しくは {我|wǒ}{知道|zhīdào}{这|zhè}{件|jiàn}{事|shì}。"
+    }
+  ],
+
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼らは今ちょうど授業中だ。",
+      "promptEn": "They're in class right now.",
+      "tokens": ["{他们|tāmen}", "{正在|zhèngzài}", "{上课|shàngkè}", "{呢|ne}"],
+      "answer": [0, 1, 2, 3],
+      "correct": "{他们|Tāmen} {正在|zhèngzài} {上课|shàngkè} {呢|ne}。",
+      "ja": "彼らは今ちょうど授業中だ。",
+      "en": "They're in class right now.",
+      "why": "{正在|zhèngzài}は動詞（{上课|shàngkè}）の前、{呢|ne}は文末に置きます。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "{在|zài}は要る？",
+      "promptJa": "私は彼と知り合いだ。",
+      "promptEn": "I know him.",
+      "sentence": "{我|Wǒ} [（　）] {认识|rènshi} {他|tā}。",
+      "options": [{ "text": "{在|zài}を入れる" }, { "text": "入れない" }],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{我|Wǒ} {认识|rènshi} {他|tā}。",
+      "ja": "私は彼と知り合いだ。",
+      "en": "I know him.",
+      "why": "{认识|rènshi}（知り合いだ）は状態を表す動詞なので、進行の{在|zài}は付きません。",
+      "lecture": "verbs",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{你|Nǐ} {昨天|zuótiān} {来|lái} {的|de} {时候|shíhou}，{他|tā} {在|zài} {洗澡|xǐzǎo|xízǎo}。",
+      "options": [
+        { "ja": "昨日あなたが来たとき、彼はシャワーを浴びていた。", "en": "When you came yesterday, he was taking a shower." },
+        { "ja": "昨日あなたが来たあと、彼はシャワーを浴びた。", "en": "After you came yesterday, he took a shower." },
+        { "ja": "明日あなたが来るとき、彼はシャワーを浴びているだろう。", "en": "When you come tomorrow, he'll be taking a shower." }
+      ],
+      "answerIndex": 0,
+      "correct": "{你|Nǐ} {昨天|zuótiān} {来|lái} {的|de} {时候|shíhou}，{他|tā} {在|zài} {洗澡|xǐzǎo|xízǎo}。",
+      "ja": "昨日あなたが来たとき、彼はシャワーを浴びていた。",
+      "en": "When you came yesterday, he was taking a shower.",
+      "why": "{在|zài}は時制を表しません。過去であることは{昨天|zuótiān}（昨日）から分かり、{在|zài}は、そのとき動作が進行中だったことを表します。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "{在|zài}の位置",
+      "promptJa": "母はご飯を作っている。",
+      "promptEn": "Mom is cooking.",
+      "sentence": "{妈妈|Māma} [A] {做|zuò} [B] {饭|fàn} [C]。",
+      "options": [{ "text": "A" }, { "text": "B" }, { "text": "C" }],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{妈妈|Māma} {在|zài} {做|zuò} {饭|fàn}。",
+      "ja": "母はご飯を作っている。",
+      "en": "Mom is cooking.",
+      "why": "進行の{在|zài}は、動詞（{做|zuò}）の前に置きます。8-3の{着|zhe}が動詞の後ろに付くのとは逆です。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "否定の形",
+      "promptJa": "「彼は（今）テレビを見ていない」として自然なのはどちら？",
+      "promptEn": "Which one naturally says \"He isn't watching TV (now)\"?",
+      "options": [
+        { "zh": "{他|Tā} {没|méi} {在|zài} {看|kàn} {电视|diànshì}。", "ja": "彼はテレビを見ていない。", "en": "He isn't watching TV." },
+        { "zh": "{他|Tā} {没|méi} {在|zài} {看|kàn} {电视|diànshì} {呢|ne}。", "ja": "（{呢|ne}を付けた形）", "en": "(with {呢|ne})" }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {没|méi} {在|zài} {看|kàn} {电视|diànshì}。",
+      "ja": "彼はテレビを見ていない。",
+      "en": "He isn't watching TV.",
+      "why": "進行を否定するときは、文末の{呢|ne}を付けません。",
+      "lecture": "negation",
+      "checked": false
+    }
+  ]
+}

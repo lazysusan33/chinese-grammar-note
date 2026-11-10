@@ -1,0 +1,189 @@
+{
+  "id": "8-3",
+  "chapter": { "no": 8, "ja": "アスペクト", "en": "Aspect" },
+  "title": { "ja": "持続の{着|zhe}", "en": "Durative {着|zhe}" },
+  "terms": "アスペクト助詞（動態助詞）／{动态|dòngtài}{助词|zhùcí}／aspect particle",
+
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        { "zh": "{了|le}", "ja": "完了" },
+        { "zh": "{过|guo}", "ja": "経験" },
+        { "zh": "{着|zhe}", "ja": "持続", "current": true },
+        { "zh": "{在|zài}", "ja": "進行" },
+        { "zh": "{要|yào}…{了|le}", "ja": "近接未来" }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "動詞のすぐ後ろの{着|zhe}は、動作の結果として生まれた**状態が続いている**ことを表します。{门|mén}{开着|kāizhe}は「ドアが開いている」。誰かが開けた結果、開いた状態が今も続いています。動作そのものの進行（8-4の{在|zài}）とは、見ているところが違います。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "主語 ＋ 動詞 ＋ {着|zhe} ＋ 目的語",
+      "en": "S + V + {着|zhe} + O",
+      "zh": "{他|Tā} {穿着|chuānzhe} {一|yī|yí} {件|jiàn} {白|bái} {衬衫|chènshān}。"
+    },
+    {
+      "type": "panel",
+      "id": "two-verbs",
+      "title": "2つの動詞をつなぐ",
+      "body": "「動詞1＋{着|zhe}＋動詞2」で、動詞1が動詞2の**やり方・ありさま**を表します。{笑着|xiàozhe}{说|shuō}（笑いながら言う）、{站着|zhànzhe}{等|děng}（立って待つ）。"
+    },
+    {
+      "type": "panel",
+      "id": "existence",
+      "title": "存在文",
+      "body": "「場所＋動詞＋{着|zhe}＋もの・人」で、「〜に…が（…して）ある・いる」を表します。存在するものは動詞の後ろに置きます。{墙|qiáng}{上|shang}{挂着|guàzhe}{一|yī|yì}{张|zhāng}{地图|dìtú}（壁に地図が1枚かかっている）。"
+    },
+    {
+      "type": "panel",
+      "id": "negation",
+      "title": "否定",
+      "body": "「{没|méi}（{有|yǒu}）＋動詞＋{着|zhe}」で否定します。{门|mén}{没|méi}{开着|kāizhe}（ドアは開いていない）。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "-ing と訳されることが多いのですが、同じではありません。The door is open（形容詞）、He is wearing a white shirt（-ing）のように、英語では表し方がばらばらです。{着|zhe}は「状態の持続」という一つの見方でまとめています。"
+        },
+        {
+          "label": "日本語",
+          "body": "「〜ている」のうち、結果の状態を表す使い方（窓が開い**ている**、シャツを着**ている**）にあたります。日本語の「〜ている」は進行（今、手紙を書い**ている**）も表しますが、中国語ではそれを8-4の{在|zài}で表します。"
+        }
+      ]
+    },
+    {
+      "type": "debate",
+      "title": "説が分かれる点",
+      "body": "{他|tā}{在|zài}{看|kàn}{书|shū}と{他|tā}{看着|kànzhe}{书|shū}のように、{在|zài}と{着|zhe}の両方が使える動詞もあり、違いの説明は文法書によって異なります。このツールでは「{在|zài}＝動作の進行、{着|zhe}＝状態の持続」という基本の区別で扱い、8-7で比べます。"
+    }
+  ],
+
+  "examples": [
+    {
+      "zh": "{门|Mén} {开着|kāizhe}。",
+      "ja": "ドアが開いている。",
+      "en": "The door is open.",
+      "checked": false
+    },
+    {
+      "zh": "{她|Tā} {喜欢|xǐhuan} {躺着|tǎngzhe} {看|kàn} {书|shū}。",
+      "ja": "彼女は寝転んで本を読むのが好きだ。",
+      "en": "She likes to read lying down.",
+      "note": "動詞1＋{着|zhe}＋動詞2",
+      "checked": false
+    },
+    {
+      "zh": "{墙|Qiáng} {上|shang} {挂着|guàzhe} {一|yī|yì} {张|zhāng} {地图|dìtú}。",
+      "ja": "壁に地図が1枚かかっている。",
+      "en": "There's a map hanging on the wall.",
+      "note": "存在文",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{他|Tā} {到着|dàozhe} {北京|Běijīng}。",
+      "explain": "{到|dào}（着く）は一瞬で終わる動作で、続く状態がないため{着|zhe}は付きません。「着いた」は {他|tā}{到|dào}{北京|Běijīng}{了|le}。"
+    }
+  ],
+
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "壁に地図が1枚かかっている。",
+      "promptEn": "There's a map hanging on the wall.",
+      "tokens": ["{墙上|qiáng shang}", "{挂|guà}", "{着|zhe}", "{一张|yī zhāng}", "{地图|dìtú}"],
+      "answer": [0, 1, 2, 3, 4],
+      "correct": "{墙|Qiáng} {上|shang} {挂着|guàzhe} {一|yī|yì} {张|zhāng} {地图|dìtú}。",
+      "ja": "壁に地図が1枚かかっている。",
+      "en": "There's a map hanging on the wall.",
+      "why": "存在文は「場所＋動詞＋{着|zhe}＋もの」の順です。場所（{墙|qiáng}{上|shang}）が文頭に来て、存在するもの（{地图|dìtú}）は動詞の後ろに置きます。",
+      "lecture": "existence",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "{着|zhe}か{在|zài}か",
+      "promptJa": "「ドアが開いている（開いた状態だ）」を表すのはどちら？",
+      "promptEn": "Which one means \"The door is open\"?",
+      "options": [
+        { "zh": "{门|Mén} {开着|kāizhe}。", "ja": "ドアが開いている。", "en": "The door is open." },
+        { "zh": "{门|Mén} {在|zài} {开|kāi}。", "ja": "（ドアが開きつつある）", "en": "(The door is opening.)" }
+      ],
+      "answerIndex": 0,
+      "correct": "{门|Mén} {开着|kāizhe}。",
+      "ja": "ドアが開いている。",
+      "en": "The door is open.",
+      "why": "開けた結果の状態が続いているので{着|zhe}を使います。{在|zài}を使うと、開くという動作が進行中だという意味になります。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{她|Tā} {喜欢|xǐhuan} {躺着|tǎngzhe} {看|kàn} {书|shū}。",
+      "options": [
+        { "ja": "彼女は寝転んで本を読むのが好きだ。", "en": "She likes to read lying down." },
+        { "ja": "彼女は本を読んでから寝るのが好きだ。", "en": "She likes to read before going to bed." },
+        { "ja": "彼女は本を読みながら眠ってしまう。", "en": "She falls asleep while reading." }
+      ],
+      "answerIndex": 0,
+      "correct": "{她|Tā} {喜欢|xǐhuan} {躺着|tǎngzhe} {看|kàn} {书|shū}。",
+      "ja": "彼女は寝転んで本を読むのが好きだ。",
+      "en": "She likes to read lying down.",
+      "why": "「動詞1＋{着|zhe}＋動詞2」では、動詞1（{躺|tǎng}＝横になる）が、動詞2（{看|kàn}{书|shū}＝本を読む）のやり方を表します。",
+      "lecture": "two-verbs",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "自然な文はどれ",
+      "promptJa": "「彼は北京に着いた」として自然なのはどちら？",
+      "promptEn": "Which one naturally says \"He arrived in Beijing\"?",
+      "options": [
+        { "zh": "{他|Tā} {到|dào} {北京|Běijīng} {了|le}。", "ja": "彼は北京に着いた。", "en": "He arrived in Beijing." },
+        { "zh": "{他|Tā} {到着|dàozhe} {北京|Běijīng}。", "ja": "（北京に着いている状態だ）", "en": "(He is arriving in Beijing.)" }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {到|dào} {北京|Běijīng} {了|le}。",
+      "ja": "彼は北京に着いた。",
+      "en": "He arrived in Beijing.",
+      "why": "{到|dào}（着く）は一瞬で終わる動作で、続く状態がないため{着|zhe}は付きません。",
+      "lecture": "examples",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "{着|zhe}の位置",
+      "promptJa": "彼は白いシャツを着ている。",
+      "promptEn": "He's wearing a white shirt.",
+      "sentence": "{他|Tā} [A] {穿|chuān} [B] {一|yī|yí} {件|jiàn} [C] {白|bái} {衬衫|chènshān} [D]。",
+      "options": [{ "text": "A" }, { "text": "B" }, { "text": "C" }, { "text": "D" }],
+      "cols": 4,
+      "answerIndex": 1,
+      "correct": "{他|Tā} {穿着|chuānzhe} {一|yī|yí} {件|jiàn} {白|bái} {衬衫|chènshān}。",
+      "ja": "彼は白いシャツを着ている。",
+      "en": "He's wearing a white shirt.",
+      "why": "{着|zhe}は動詞（{穿|chuān}）のすぐ後ろに置きます。",
+      "lecture": "pattern",
+      "checked": false
+    }
+  ]
+}
