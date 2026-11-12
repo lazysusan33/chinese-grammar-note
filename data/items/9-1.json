@@ -1,0 +1,259 @@
+{
+  "id": "9-1",
+  "chapter": {
+    "no": 9,
+    "ja": "補語",
+    "en": "Complements"
+  },
+  "title": {
+    "ja": "結果補語",
+    "en": "Resultative complements"
+  },
+  "terms": "結果補語／{结果|jiéguǒ}{补语|bǔyǔ}／resultative complement",
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        {
+          "zh": "{看懂|kàndǒng}",
+          "ja": "結果",
+          "current": true
+        },
+        {
+          "zh": "{进来|jìnlái}",
+          "ja": "方向"
+        },
+        {
+          "zh": "{看|kàn}{不|bu}{懂|dǒng}",
+          "ja": "可能"
+        },
+        {
+          "zh": "{跑|pǎo}{得|de}{快|kuài}",
+          "ja": "様態"
+        },
+        {
+          "zh": "{好|hǎo}{极了|jí le}",
+          "ja": "程度"
+        },
+        {
+          "zh": "{三|sān}{次|cì}",
+          "ja": "数量"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "中国語の動詞の多くは「しようとする動作」だけを表し、うまくいったかどうかまでは言いません。{看|kàn}は「目を向ける」で、「見えた」までは含みません。そこで動詞のすぐ後ろに、結果を表す動詞や形容詞を付けます。これが結果補語です。{看见|kànjiàn}（見えた）、{听懂|tīngdǒng}（聞いてわかった）、{做完|zuòwán}（やり終えた）。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "主語 ＋ 動詞 ＋ 結果補語（＋ {了|le}）＋ 目的語",
+      "en": "S + V + RC (+ {了|le}) + O",
+      "zh": "{我|Wǒ} {看完|kànwán} {了|le} {这|zhè} {本|běn} {书|shū}。"
+    },
+    {
+      "type": "panel",
+      "id": "common",
+      "title": "よく使う結果補語",
+      "body": "{完|wán}（終わる）、{好|hǎo}（きちんと仕上がる）、{到|dào}（目的に届く）、{见|jiàn}（知覚する）、{懂|dǒng}（わかる）、{会|huì}（できるようになる）、{错|cuò}（間違える）、{清楚|qīngchu}（はっきり）、{干净|gānjìng}（きれいに）。"
+    },
+    {
+      "type": "panel",
+      "id": "tight",
+      "title": "間に何も入れない",
+      "body": "動詞と結果補語は一つの単語のように結び付いていて、間には何も入りません。{了|le}も目的語も、結果補語の後ろに置きます。"
+    },
+    {
+      "type": "panel",
+      "id": "negation",
+      "title": "否定",
+      "body": "「{没|méi}（{有|yǒu}）＋動詞＋結果補語」で否定し、{了|le}は付けません。{我|wǒ}{没|méi}{听懂|tīngdǒng}（聞いたけれどわからなかった）。{不|bu}を動詞と補語の間に入れると、9-4の可能補語（〜できない）になります。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "wash clean、eat up のような言い方もありますが、英語は look／see、listen／hear のように別の動詞で言い分けることが多いです。中国語は{看|kàn}→{看见|kànjiàn}、{听|tīng}→{听见|tīngjiàn}と、補語を足して結果を表します。"
+        },
+        {
+          "label": "日本語",
+          "body": "「読み終える」「聞き取る」「書き間違える」のような複合動詞に近い働きです。日本語の「見た」は「見えた」まで含むことがありますが、中国語の{看了|kànle}は目を向けたことしか言いません。"
+        }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "zh": "{我|Wǒ} {听懂|tīngdǒng} {了|le} {老师|lǎoshī} {的|de} {话|huà}。",
+      "ja": "先生の話を聞いてわかった。",
+      "en": "I understood what the teacher said.",
+      "checked": false
+    },
+    {
+      "zh": "{你|Nǐ|Ní} {写错|xiěcuò} {了|le} {一|yī|yí} {个|gè} {字|zì}。",
+      "ja": "字を1つ書き間違えているよ。",
+      "en": "You wrote a character wrong.",
+      "checked": false
+    },
+    {
+      "zh": "{衣服|Yīfu} {洗|xǐ} {干净|gānjìng} {了|le}。",
+      "ja": "服がきれいに洗えた。",
+      "en": "The clothes have been washed clean.",
+      "note": "2音節の補語も同じ位置",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{我|Wǒ} {没|méi} {做完|zuòwán} {了|le} {作业|zuòyè}。",
+      "explain": "{没|méi}で否定するときは{了|le}を付けません。正しくは {我|wǒ}{没|méi}{做完|zuòwán}{作业|zuòyè}。"
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{我|Wǒ} {看|kàn} {这|zhè} {本|běn} {书|shū} {完|wán} {了|le}。",
+      "explain": "動詞と結果補語の間には何も入りません。正しくは {我|wǒ}{看完|kànwán}{了|le}{这|zhè}{本|běn}{书|shū}。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "あなたの声が聞こえなかった。",
+      "promptEn": "I didn't hear you.",
+      "tokens": [
+        "{我|wǒ}",
+        "{没|méi}",
+        "{听见|tīngjiàn}",
+        "{你的|nǐ de}",
+        "{声音|shēngyīn}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{我|Wǒ} {没|méi} {听见|tīngjiàn} {你|nǐ} {的|de} {声音|shēngyīn}。",
+      "ja": "あなたの声が聞こえなかった。",
+      "en": "I didn't hear you.",
+      "why": "{没|méi}は動詞の前、結果補語（{见|jiàn}）は動詞のすぐ後ろ、目的語はその後ろです。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "この字を書き間違えた。",
+      "promptEn": "I wrote this character wrong.",
+      "sentence": "{这个|Zhège} {字|zì} {我|wǒ|wó} {写|xiě} [（　）] {了|le}。",
+      "options": [
+        {
+          "text": "{错|cuò}"
+        },
+        {
+          "text": "{见|jiàn}"
+        },
+        {
+          "text": "{懂|dǒng}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{这个|Zhège} {字|zì} {我|wǒ|wó} {写错|xiěcuò} {了|le}。",
+      "ja": "この字を書き間違えた。",
+      "en": "I wrote this character wrong.",
+      "why": "「間違える」という結果なので{错|cuò}です。",
+      "lecture": "common",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "否定の形",
+      "promptJa": "「聞いたけれどわからなかった」として正しいのは？",
+      "promptEn": "Which one means \"I listened but didn't understand\"?",
+      "options": [
+        {
+          "zh": "{我|Wǒ} {没|méi} {听懂|tīngdǒng}。"
+        },
+        {
+          "zh": "{我|Wǒ} {不|bù} {听懂|tīngdǒng}。"
+        },
+        {
+          "zh": "{我|Wǒ} {没|méi} {听懂|tīngdǒng} {了|le}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {没|méi} {听懂|tīngdǒng}。",
+      "ja": "聞いたけれどわからなかった。",
+      "en": "I listened but didn't understand.",
+      "why": "結果補語は{没|méi}で否定し、{了|le}は付けません。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{我|Wǒ} {看|kàn} {了|le}，{但是|dànshì} {没|méi} {看见|kànjiàn}。",
+      "options": [
+        {
+          "ja": "目を向けたが、見つからなかった。",
+          "en": "I looked, but didn't see it."
+        },
+        {
+          "ja": "見たが、気に入らなかった。",
+          "en": "I saw it, but didn't like it."
+        },
+        {
+          "ja": "見るつもりだったが、見なかった。",
+          "en": "I meant to look, but didn't."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {看|kàn} {了|le}，{但是|dànshì} {没|méi} {看见|kànjiàn}。",
+      "ja": "目を向けたが、見つからなかった。",
+      "en": "I looked, but didn't see it.",
+      "why": "{看|kàn}は「目を向ける」動作だけ。{看见|kànjiàn}で「見えた」という結果まで言います。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "携帯が見つかった。",
+      "promptEn": "I found my phone.",
+      "sentence": "{我|Wǒ|Wó} {找|zhǎo} [（　）] {我|wǒ} {的|de} {手机|shǒujī} {了|le}。",
+      "options": [
+        {
+          "text": "{到|dào}"
+        },
+        {
+          "text": "{完|wán}"
+        },
+        {
+          "text": "{懂|dǒng}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{我|Wǒ|Wó} {找到|zhǎodào} {我|wǒ} {的|de} {手机|shǒujī} {了|le}。",
+      "ja": "携帯が見つかった。",
+      "en": "I found my phone.",
+      "why": "{找|zhǎo}は「探す」。{到|dào}を付けると「探して、見つかった」という結果になります。",
+      "lecture": "common",
+      "checked": false
+    }
+  ]
+}

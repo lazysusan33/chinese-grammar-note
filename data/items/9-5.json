@@ -1,0 +1,245 @@
+{
+  "id": "9-5",
+  "chapter": {
+    "no": 9,
+    "ja": "補語",
+    "en": "Complements"
+  },
+  "title": {
+    "ja": "様態補語",
+    "en": "Complements of state"
+  },
+  "terms": "様態補語（状態補語）／{状态|zhuàngtài}{补语|bǔyǔ}／complement of state",
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        {
+          "zh": "{看懂|kàndǒng}",
+          "ja": "結果"
+        },
+        {
+          "zh": "{进来|jìnlái}",
+          "ja": "方向"
+        },
+        {
+          "zh": "{看|kàn}{不|bu}{懂|dǒng}",
+          "ja": "可能"
+        },
+        {
+          "zh": "{跑|pǎo}{得|de}{快|kuài}",
+          "ja": "様態",
+          "current": true
+        },
+        {
+          "zh": "{好|hǎo}{极了|jí le}",
+          "ja": "程度"
+        },
+        {
+          "zh": "{三|sān}{次|cì}",
+          "ja": "数量"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "「動詞＋{得|de}＋形容詞（句）」で、動作がどのように行われたか、その結果どんな状態になったかを評価します。{他|tā}{跑|pǎo}{得|de}{很|hěn}{快|kuài}（彼は走るのが速い）。すでに行われた動作や、ふだん繰り返している動作について述べるのが普通です。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "主語 ＋ 動詞 ＋ {得|de} ＋（副詞）＋ 形容詞",
+      "en": "S + V + {得|de} + (adv.) + adj.",
+      "zh": "{他|Tā} {跑|pǎo} {得|de} {很|hěn} {快|kuài}。"
+    },
+    {
+      "type": "panel",
+      "id": "object",
+      "title": "目的語があるとき",
+      "body": "1つの動詞が、目的語と補語の両方を後ろに取ることはできません。動詞を繰り返すか（{他|tā}{说|shuō}{汉语|Hànyǔ}{说|shuō}{得|de}{很|hěn|hén}{好|hǎo}）、目的語を前に出します（{他|tā}{汉语|Hànyǔ}{说|shuō}{得|de}{很|hěn|hén}{好|hǎo}）。"
+    },
+    {
+      "type": "panel",
+      "id": "negation",
+      "title": "否定と疑問",
+      "body": "否定は{得|de}の後ろの形容詞を否定します：{他|tā}{说|shuō}{得|de}{不|bù}{好|hǎo}。疑問は形容詞を肯定・否定で重ねます：{他|tā}{跑|pǎo}{得|de}{快|kuài}{不|bu}{快|kuài}？"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "He runs fast の fast のような副詞にあたります。英語も動詞の後ろで評価しますが、中国語は必ず{得|de}でつなぎます。"
+        },
+        {
+          "label": "日本語",
+          "body": "「走るのが速い」「話すのが上手だ」のように、日本語も「〜するのが＋形容詞」と、動作を後ろから評価する言い方をよく使います。"
+        }
+      ]
+    },
+    {
+      "type": "debate",
+      "title": "説が分かれる点",
+      "body": "様態補語と9-6の程度補語を一つにまとめる文法書と、分ける文法書があります。このツールでは、「動作がどうだったかの評価」を9-5、「形容詞の程度を強める」を9-6として分けます。"
+    }
+  ],
+  "examples": [
+    {
+      "zh": "{她|Tā} {唱|chàng} {得|de} {非常|fēicháng} {好|hǎo}。",
+      "ja": "彼女は歌がとても上手だ。",
+      "en": "She sings really well.",
+      "checked": false
+    },
+    {
+      "zh": "{他|Tā} {说|shuō} {汉语|Hànyǔ} {说|shuō} {得|de} {很|hěn} {流利|liúlì}。",
+      "ja": "彼は中国語を流暢に話す。",
+      "en": "He speaks Chinese fluently.",
+      "note": "目的語があるときは動詞を繰り返す",
+      "checked": false
+    },
+    {
+      "zh": "{你|Nǐ} {今天|jīntiān} {来|lái} {得|de} {很|hěn|hén} {早|zǎo}。",
+      "ja": "今日は来るのが早いね。",
+      "en": "You came early today.",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{他|Tā} {说|shuō} {汉语|Hànyǔ} {得|de} {很|hěn|hén} {好|hǎo}。",
+      "explain": "動詞の後ろに、目的語と{得|de}の両方を置くことはできません。正しくは {他|tā}{说|shuō}{汉语|Hànyǔ}{说|shuō}{得|de}{很|hěn|hén}{好|hǎo}、または {他|tā}{汉语|Hànyǔ}{说|shuō}{得|de}{很|hěn|hén}{好|hǎo}。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼は走るのがとても速い。",
+      "promptEn": "He runs really fast.",
+      "tokens": [
+        "{他|tā}",
+        "{跑|pǎo}",
+        "{得|de}",
+        "{非常|fēicháng}",
+        "{快|kuài}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{他|Tā} {跑|pǎo} {得|de} {非常|fēicháng} {快|kuài}。",
+      "ja": "彼は走るのがとても速い。",
+      "en": "He runs really fast.",
+      "why": "「動詞＋{得|de}＋副詞＋形容詞」の順です。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "自然な文はどれ",
+      "promptJa": "「彼女は字がきれいだ」として正しいのは？",
+      "promptEn": "Which one correctly says \"Her handwriting is beautiful\"?",
+      "options": [
+        {
+          "zh": "{她|Tā} {写|xiě} {字|zì} {写|xiě} {得|de} {很|hěn} {漂亮|piàoliang}。"
+        },
+        {
+          "zh": "{她|Tā} {写|xiě} {字|zì} {得|de} {很|hěn} {漂亮|piàoliang}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{她|Tā} {写|xiě} {字|zì} {写|xiě} {得|de} {很|hěn} {漂亮|piàoliang}。",
+      "ja": "彼女は字がきれいだ。",
+      "en": "Her handwriting is beautiful.",
+      "why": "目的語（{字|zì}）があるので、動詞{写|xiě}を繰り返してから{得|de}を付けます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "否定の形",
+      "promptJa": "「彼は歌がうまくない」として正しいのは？",
+      "promptEn": "Which one correctly says \"He doesn't sing well\"?",
+      "options": [
+        {
+          "zh": "{他|Tā} {唱|chàng} {得|de} {不|bù} {好|hǎo}。"
+        },
+        {
+          "zh": "{他|Tā} {不|bù} {唱|chàng} {得|de} {好|hǎo}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {唱|chàng} {得|de} {不|bù} {好|hǎo}。",
+      "ja": "彼は歌がうまくない。",
+      "en": "He doesn't sing well.",
+      "why": "様態補語は、{得|de}の後ろの形容詞を否定します。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{我|Wǒ} {昨天|zuótiān} {睡|shuì} {得|de} {很|hěn|hén} {晚|wǎn}。",
+      "options": [
+        {
+          "ja": "昨日は寝るのが遅かった。",
+          "en": "I went to bed late yesterday."
+        },
+        {
+          "ja": "昨日は眠れなかった。",
+          "en": "I couldn't sleep yesterday."
+        },
+        {
+          "ja": "昨日は遅くまで寝ていた。",
+          "en": "I slept in yesterday."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {昨天|zuótiān} {睡|shuì} {得|de} {很|hěn|hén} {晚|wǎn}。",
+      "ja": "昨日は寝るのが遅かった。",
+      "en": "I went to bed late yesterday.",
+      "why": "{睡|shuì}{得|de}{很|hěn|hén}{晚|wǎn}は「寝る動作が遅い時刻だった」という評価です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "あなたは中国語が本当に上手だね！",
+      "promptEn": "Your Chinese is really good!",
+      "sentence": "{你|Nǐ} {汉语|Hànyǔ} {说|shuō} [（　）] {真|zhēn} {好|hǎo}！",
+      "options": [
+        {
+          "text": "{得|de}"
+        },
+        {
+          "text": "{的|de}"
+        },
+        {
+          "text": "{地|de}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{你|Nǐ} {汉语|Hànyǔ} {说|shuō} {得|de} {真|zhēn} {好|hǎo}！",
+      "ja": "あなたは中国語が本当に上手だね！",
+      "en": "Your Chinese is really good!",
+      "why": "動詞の後ろで評価をつなぐのは{得|de}です。{的|de}は名詞の前、{地|de}は動詞の前に置く別の語です。",
+      "lecture": "pattern",
+      "checked": false
+    }
+  ]
+}

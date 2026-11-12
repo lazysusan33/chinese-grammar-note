@@ -1,0 +1,249 @@
+{
+  "id": "9-4",
+  "chapter": {
+    "no": 9,
+    "ja": "補語",
+    "en": "Complements"
+  },
+  "title": {
+    "ja": "可能補語",
+    "en": "Potential complements"
+  },
+  "terms": "可能補語／{可能|kěnéng}{补语|bǔyǔ}／potential complement",
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        {
+          "zh": "{看懂|kàndǒng}",
+          "ja": "結果"
+        },
+        {
+          "zh": "{进来|jìnlái}",
+          "ja": "方向"
+        },
+        {
+          "zh": "{看|kàn}{不|bu}{懂|dǒng}",
+          "ja": "可能",
+          "current": true
+        },
+        {
+          "zh": "{跑|pǎo}{得|de}{快|kuài}",
+          "ja": "様態"
+        },
+        {
+          "zh": "{好|hǎo}{极了|jí le}",
+          "ja": "程度"
+        },
+        {
+          "zh": "{三|sān}{次|cì}",
+          "ja": "数量"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "結果補語や方向補語の間に{得|de}を入れると「〜できる」、{不|bu}を入れると「〜できない」になります。{看懂|kàndǒng}→{看|kàn}{得|de}{懂|dǒng}（読んでわかる）／{看|kàn}{不|bu}{懂|dǒng}（読んでもわからない）。条件や状況によって、その結果に届くかどうかを表します。日常では否定の形がよく使われます。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "動詞 ＋ {得|de}／{不|bu} ＋ 結果・方向補語",
+      "en": "V + {得|de} / {不|bu} + RC / DC",
+      "zh": "{我|Wǒ} {听|tīng} {不|bu} {懂|dǒng}。"
+    },
+    {
+      "type": "panel",
+      "id": "liao",
+      "title": "{了|liǎo}を使う形",
+      "body": "「動詞＋{得|de}{了|liǎo}／{不|bu}{了|liǎo}」の{了|liǎo}は「やり遂げる」という意味で、量や状況から見てできるかどうかを表します。発音は liǎo です。{这么|zhème}{多|duō}{菜|cài}，{我|wǒ}{吃|chī}{不|bu}{了|liǎo}（こんなにたくさんは食べきれない）。"
+    },
+    {
+      "type": "panel",
+      "id": "vs-neng",
+      "title": "{能|néng}との違い",
+      "body": "{能|néng}は能力や許可を広く表します。可能補語は「その動作をして、その結果に届くか」を表します。{我|wǒ}{能|néng}{吃|chī}{辣|là}{的|de}（辛いものが食べられる＝食べる力がある）と、{太|tài}{辣|là}{了|le}，{我|wǒ}{吃|chī}{不|bu}{了|liǎo}（辛すぎて食べられない）。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "can／can't にあたりますが、英語は can't understand、can't finish のように助動詞で言います。中国語は、動詞と補語の内側に{得|de}・{不|bu}を入れます。"
+        },
+        {
+          "label": "日本語",
+          "body": "「読める・読めない」「食べきれない」「聞き取れない」のような可能形や複合動詞に近い働きです。"
+        }
+      ]
+    },
+    {
+      "type": "debate",
+      "title": "説が分かれる点",
+      "body": "{能|néng}{看|kàn}{得|de}{懂|dǒng}のように、{能|néng}と可能補語を一緒に使う言い方は、意味が重なっていても中国語では自然だとする説明があります。このツールでは、まず可能補語だけで言う形を基本とします。"
+    }
+  ],
+  "examples": [
+    {
+      "zh": "{他|Tā} {说|shuō} {的|de} {话|huà}，{我|wǒ} {听|tīng} {不|bu} {懂|dǒng}。",
+      "ja": "彼の話は、聞いてもわからない。",
+      "en": "I can't understand what he says.",
+      "checked": false
+    },
+    {
+      "zh": "{这么|Zhème} {多|duō} {菜|cài}，{我们|wǒmen} {吃|chī} {得|de} {完|wán} {吗|ma}？",
+      "ja": "こんなにたくさんの料理、私たちで食べきれる？",
+      "en": "Can we finish all this food?",
+      "checked": false
+    },
+    {
+      "zh": "{太|Tài} {远|yuǎn} {了|le}，{我|wǒ} {看|kàn} {不|bu} {见|jiàn}。",
+      "ja": "遠すぎて見えない。",
+      "en": "It's too far. I can't see it.",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{我|Wǒ} {不|bù} {看|kàn} {得|de} {懂|dǒng}。",
+      "explain": "否定は{不|bu}を動詞と補語の間に入れます。正しくは {我|wǒ}{看|kàn}{不|bu}{懂|dǒng}。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "聞いてわかる？",
+      "promptEn": "Can you understand (what you hear)?",
+      "tokens": [
+        "{你|nǐ}",
+        "{听|tīng}",
+        "{得|de}",
+        "{懂|dǒng}",
+        "{吗|ma}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{你|Nǐ} {听|tīng} {得|de} {懂|dǒng} {吗|ma}？",
+      "ja": "聞いてわかる？",
+      "en": "Can you understand it?",
+      "why": "{得|de}は、動詞（{听|tīng}）と補語（{懂|dǒng}）の間に入れます。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "{得|de}か{不|bu}か",
+      "promptJa": "黒板の字が小さすぎて、はっきり見えない。",
+      "promptEn": "The writing on the board is too small; I can't see it clearly.",
+      "sentence": "{黑板|Hēibǎn} {上|shang} {的|de} {字|zì} {太|tài} {小|xiǎo} {了|le}，{我|wǒ} {看|kàn} [（　）] {清楚|qīngchu}。",
+      "options": [
+        {
+          "text": "{得|de}"
+        },
+        {
+          "text": "{不|bu}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{黑板|Hēibǎn} {上|shang} {的|de} {字|zì} {太|tài} {小|xiǎo} {了|le}，{我|wǒ} {看|kàn} {不|bu} {清楚|qīngchu}。",
+      "ja": "黒板の字が小さすぎて、はっきり見えない。",
+      "en": "The writing on the board is too small; I can't see it clearly.",
+      "why": "「見えない」という不可能なので{不|bu}です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "否定の形",
+      "promptJa": "「読んでもわからない」として正しいのは？",
+      "promptEn": "Which one correctly says \"I can't understand it (when I read it)\"?",
+      "options": [
+        {
+          "zh": "{我|Wǒ} {看|kàn} {不|bu} {懂|dǒng}。"
+        },
+        {
+          "zh": "{我|Wǒ} {不|bù} {看|kàn} {得|de} {懂|dǒng}。"
+        },
+        {
+          "zh": "{我|Wǒ} {看|kàn} {得|de} {不|bù} {懂|dǒng}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {看|kàn} {不|bu} {懂|dǒng}。",
+      "ja": "読んでもわからない。",
+      "en": "I can't understand it.",
+      "why": "可能補語の否定は、{得|de}を{不|bu}に置き換えるだけです。",
+      "lecture": "examples",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{这么|Zhème} {多|duō} {作业|zuòyè}，{今天|jīntiān} {做|zuò} {得|de} {完|wán} {吗|ma}？",
+      "options": [
+        {
+          "ja": "今日中に終わらせられる？",
+          "en": "Can you finish it today?"
+        },
+        {
+          "ja": "今日、終わらせた？",
+          "en": "Did you finish it today?"
+        },
+        {
+          "ja": "今日、終わらせないといけない？",
+          "en": "Do you have to finish it today?"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{这么|Zhème} {多|duō} {作业|zuòyè}，{今天|jīntiān} {做|zuò} {得|de} {完|wán} {吗|ma}？",
+      "ja": "こんなに多い宿題、今日中に終わらせられる？",
+      "en": "Can you finish this much homework today?",
+      "why": "{做|zuò}{得|de}{完|wán}は「やり終えることができる」。量から見てできるかどうかを尋ねています。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "明日は用事があって行けない。",
+      "promptEn": "I have something on tomorrow, so I can't go.",
+      "sentence": "{我|Wǒ} {明天|míngtiān} {有|yǒu} {事|shì}，{去|qù} [（　）]。",
+      "options": [
+        {
+          "text": "{不了|bu liǎo}"
+        },
+        {
+          "text": "{不完|bu wán}"
+        },
+        {
+          "text": "{不懂|bu dǒng}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {明天|míngtiān} {有|yǒu} {事|shì}，{去|qù} {不|bu} {了|liǎo}。",
+      "ja": "明日は用事があって行けない。",
+      "en": "I have something on tomorrow, so I can't go.",
+      "why": "状況から見て「行くことができない」ので{去|qù}{不|bu}{了|liǎo}です。",
+      "lecture": "liao",
+      "checked": false
+    }
+  ]
+}

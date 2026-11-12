@@ -511,3 +511,6 @@ ruby.sandhi:focus-visible { outline: 2px solid var(--accent); outline-offset: 2p
 #search-results .toc-item { padding-left: 14px; align-items: flex-start; padding-top: 10px; padding-bottom: 10px; }
 .hit { display: block; font-size: 12px; color: var(--quiet); line-height: 2.1; }
 .hit [lang="zh-CN"] { color: var(--ink); font-size: 14px; }
+
+/* 地図のマスが6つのとき：3列×2段にして、字が窮屈にならないようにする */
+.chapter-map.six { grid-template-columns: repeat(3, minmax(0, 1fr)); }

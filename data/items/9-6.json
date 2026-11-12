@@ -1,0 +1,237 @@
+{
+  "id": "9-6",
+  "chapter": {
+    "no": 9,
+    "ja": "補語",
+    "en": "Complements"
+  },
+  "title": {
+    "ja": "程度補語",
+    "en": "Complements of degree"
+  },
+  "terms": "程度補語／{程度|chéngdù}{补语|bǔyǔ}／complement of degree",
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        {
+          "zh": "{看懂|kàndǒng}",
+          "ja": "結果"
+        },
+        {
+          "zh": "{进来|jìnlái}",
+          "ja": "方向"
+        },
+        {
+          "zh": "{看|kàn}{不|bu}{懂|dǒng}",
+          "ja": "可能"
+        },
+        {
+          "zh": "{跑|pǎo}{得|de}{快|kuài}",
+          "ja": "様態"
+        },
+        {
+          "zh": "{好|hǎo}{极了|jí le}",
+          "ja": "程度",
+          "current": true
+        },
+        {
+          "zh": "{三|sān}{次|cì}",
+          "ja": "数量"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "形容詞や、気持ちを表す動詞の後ろに付けて、程度がとても高いことを強く表します。{好|hǎo}{极了|jí le}（すばらしい）、{累|lèi}{死|sǐ}{了|le}（死ぬほど疲れた）。{很|hěn}＋形容詞よりも感情がこもった、話し言葉らしい言い方です。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "形容詞 ＋ {极了|jí le}／{死了|sǐ le}／{得很|de hěn}／{多了|duō le}",
+      "en": "Adj. + {极了|jí le} / {死了|sǐ le} / {得很|de hěn} / {多了|duō le}",
+      "zh": "{今天|Jīntiān} {热|rè} {死|sǐ} {了|le}。"
+    },
+    {
+      "type": "panel",
+      "id": "kinds",
+      "title": "主な形",
+      "body": "{极了|jí le}：「極めて」。よい意味にも悪い意味にも使います。{死了|sǐ le}：「死ぬほど」。誇張で、{累|lèi}・{忙|máng}・{饿|è}のような、よくない状態によく使います。{得很|de hěn}：「とても」。話し言葉です。{得不得了|de bùdéliǎo}：「たまらなく」。{多了|duō le}：比べて「ずっと〜」（{好|hǎo}{多|duō}{了|le}＝ずっとよくなった）。"
+    },
+    {
+      "type": "panel",
+      "id": "no-hen",
+      "title": "{很|hěn}とは一緒に使わない",
+      "body": "程度補語そのものが程度を表すので、{很|hěn}・{非常|fēicháng}のような程度の副詞とは一緒に使いません。また、{比|bǐ}の比較文では{极了|jí le}ではなく{多了|duō le}を使います。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "so tired I could die、way better のような、誇張や比較の言い方に近いです。"
+        },
+        {
+          "label": "日本語",
+          "body": "「疲れて死にそう」「めちゃくちゃ暑い」「ずっとよくなった」にあたります。"
+        }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "zh": "{这个|Zhège} {菜|cài} {好吃|hǎochī} {极|jí} {了|le}。",
+      "ja": "この料理はものすごくおいしい。",
+      "en": "This dish is absolutely delicious.",
+      "checked": false
+    },
+    {
+      "zh": "{今天|Jīntiān} {忙|máng} {死|sǐ} {了|le}。",
+      "ja": "今日は死ぬほど忙しい。",
+      "en": "I'm crazy busy today.",
+      "checked": false
+    },
+    {
+      "zh": "{我|Wǒ} {的|de} {病|bìng} {好|hǎo} {多|duō} {了|le}。",
+      "ja": "病気はずっとよくなった。",
+      "en": "I'm feeling much better.",
+      "note": "比べて「ずっと」",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{这个|Zhège} {菜|cài} {很|hěn|hén} {好吃|hǎochī} {极|jí} {了|le}。",
+      "explain": "程度補語は{很|hěn}と一緒に使いません。正しくは {这个|zhège}{菜|cài}{好吃|hǎochī}{极|jí}{了|le}。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "今日はものすごく暑い。",
+      "promptEn": "It's extremely hot today.",
+      "tokens": [
+        "{今天|jīntiān}",
+        "{热|rè}",
+        "{极|jí}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "correct": "{今天|Jīntiān} {热|rè} {极|jí} {了|le}。",
+      "ja": "今日はものすごく暑い。",
+      "en": "It's extremely hot today.",
+      "why": "程度補語は形容詞（{热|rè}）の後ろに置きます。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "死ぬほどおなかがすいた、早くご飯にしよう。",
+      "promptEn": "I'm starving. Let's eat.",
+      "sentence": "{我|Wǒ} {饿|è} [（　）]，{快|kuài} {吃饭|chīfàn} {吧|ba}。",
+      "options": [
+        {
+          "text": "{死了|sǐ le}"
+        },
+        {
+          "text": "{多了|duō le}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {饿|è} {死|sǐ} {了|le}，{快|kuài} {吃饭|chīfàn} {吧|ba}。",
+      "ja": "死ぬほどおなかがすいた、早くご飯にしよう。",
+      "en": "I'm starving. Let's eat.",
+      "why": "「死ぬほど」という誇張なので{死了|sǐ le}です。{多了|duō le}は比べて「ずっと」のときに使います。",
+      "lecture": "kinds",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "自然な文はどれ",
+      "promptJa": "「ここはものすごくきれいだ」として正しいのは？",
+      "promptEn": "Which one correctly says \"This place is gorgeous\"?",
+      "options": [
+        {
+          "zh": "{这个|Zhège} {地方|dìfang} {漂亮|piàoliang} {极|jí} {了|le}。"
+        },
+        {
+          "zh": "{这个|Zhège} {地方|dìfang} {很|hěn} {漂亮|piàoliang} {极|jí} {了|le}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{这个|Zhège} {地方|dìfang} {漂亮|piàoliang} {极|jí} {了|le}。",
+      "ja": "ここはものすごくきれいだ。",
+      "en": "This place is gorgeous.",
+      "why": "程度補語は{很|hěn}と一緒に使いません。",
+      "lecture": "no-hen",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{他|Tā} {的|de} {汉语|Hànyǔ} {比|bǐ|bí} {以前|yǐqián} {好|hǎo} {多|duō} {了|le}。",
+      "options": [
+        {
+          "ja": "彼の中国語は前よりずっと上手になった。",
+          "en": "His Chinese is much better than before."
+        },
+        {
+          "ja": "彼の中国語は前と同じくらい上手だ。",
+          "en": "His Chinese is as good as before."
+        },
+        {
+          "ja": "彼の中国語は前のほうがずっと上手だった。",
+          "en": "His Chinese was much better before."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {的|de} {汉语|Hànyǔ} {比|bǐ|bí} {以前|yǐqián} {好|hǎo} {多|duō} {了|le}。",
+      "ja": "彼の中国語は前よりずっと上手になった。",
+      "en": "His Chinese is much better than before.",
+      "why": "{多了|duō le}は、比べて「ずっと〜」という意味です。",
+      "lecture": "kinds",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "この服はあの服よりずっと安い。",
+      "promptEn": "This shirt is much cheaper than that one.",
+      "sentence": "{这|Zhè} {件|jiàn} {衣服|yīfu} {比|bǐ} {那|nà} {件|jiàn} {便宜|piányi} [（　）]。",
+      "options": [
+        {
+          "text": "{多了|duō le}"
+        },
+        {
+          "text": "{极了|jí le}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 0,
+      "correct": "{这|Zhè} {件|jiàn} {衣服|yīfu} {比|bǐ} {那|nà} {件|jiàn} {便宜|piányi} {多|duō} {了|le}。",
+      "ja": "この服はあの服よりずっと安い。",
+      "en": "This shirt is much cheaper than that one.",
+      "why": "{比|bǐ}で比べる文では、{极了|jí le}は使えず、{多了|duō le}を使います。",
+      "lecture": "no-hen",
+      "checked": false
+    }
+  ]
+}

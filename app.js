@@ -232,7 +232,7 @@ function shuffle(list) {
    ============================================================ */
 const BLOCKS = {
   // この章の地図
-  map: b => `<h3>${md(b.title)}</h3><div class="chapter-map">` +
+  map: b => `<h3>${md(b.title)}</h3><div class="chapter-map${b.cells.length === 6 ? ' six' : ''}">` +
     b.cells.map(c => `<div class="map-cell${c.current ? ' current' : ''}"><span class="map-zh">${md(c.zh)}</span><span class="map-ja">${md(c.ja)}</span></div>`).join('') +
     `</div>`,
   // 見出し＋文章

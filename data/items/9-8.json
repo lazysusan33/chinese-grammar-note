@@ -1,0 +1,248 @@
+{
+  "id": "9-8",
+  "chapter": {
+    "no": 9,
+    "ja": "補語",
+    "en": "Complements"
+  },
+  "title": {
+    "ja": "比べてみる：補語のまとめ",
+    "en": "Comparing the complements"
+  },
+  "terms": "補語／{补语|bǔyǔ}／complement",
+  "lecture": [
+    {
+      "type": "map",
+      "id": "kinds",
+      "title": "6つの補語",
+      "cells": [
+        {
+          "zh": "{看懂|kàndǒng}",
+          "ja": "結果：動作の結果"
+        },
+        {
+          "zh": "{进来|jìnlái}",
+          "ja": "方向：移動の向き"
+        },
+        {
+          "zh": "{看|kàn}{不|bu}{懂|dǒng}",
+          "ja": "可能：できるか"
+        },
+        {
+          "zh": "{跑|pǎo}{得|de}{快|kuài}",
+          "ja": "様態：どのように"
+        },
+        {
+          "zh": "{好|hǎo}{极了|jí le}",
+          "ja": "程度：どれほど"
+        },
+        {
+          "zh": "{三|sān}{次|cì}",
+          "ja": "数量：何回・どれだけ"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "補語はどれも動詞（や形容詞）の後ろに付いて、動作を後ろから詳しく説明します。中国語は「まず動作、それから結果や評価」の順に情報を並べる言語です。"
+    },
+    {
+      "type": "panel",
+      "id": "de",
+      "title": "2つの{得|de}",
+      "body": "様態補語 {说|shuō}{得|de}{很|hěn}{清楚|qīngchu}（はっきり話す）と、可能補語 {说|shuō}{得|de}{清楚|qīngchu}（はっきり言える）は、肯定では形が似ています。否定で区別できます：{说|shuō}{得|de}{不|bù}{清楚|qīngchu}（話し方がはっきりしない）／{说|shuō}{不|bu}{清楚|qīngchu}（はっきり言えない）。様態補語には{很|hěn}などの副詞が付きやすいのも目印です。"
+    },
+    {
+      "type": "panel",
+      "id": "negation",
+      "title": "否定のまとめ",
+      "body": "結果補語：{没|méi}{看懂|kàndǒng}（読んだがわからなかった）。可能補語：{看|kàn}{不|bu}{懂|dǒng}（読んでもわからない）。様態補語：{写|xiě}{得|de}{不|bù}{好|hǎo}（書き方がうまくない）。"
+    },
+    {
+      "type": "panel",
+      "id": "object",
+      "title": "目的語のまとめ",
+      "body": "結果補語・方向補語：ものは補語の後ろ。場所は{来|lái}・{去|qù}の前。様態補語・時量補語：動詞を繰り返すか、目的語を前に出す。人を表す代名詞：回数・時間の前。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "英語では副詞（fast）、助動詞（can）、前置詞句（for two hours）、句動詞（come in）と、ばらばらの手段で表すものを、中国語は「動詞の後ろ」という一つの位置にまとめています。"
+        },
+        {
+          "label": "日本語",
+          "body": "日本語では「読み終える」「読める」「読むのが速い」「3回読む」と、複合動詞・可能形・「〜するのが」・数量の副詞という別々の形で表します。"
+        }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "zh": "{我|Wǒ} {没|méi} {看懂|kàndǒng}。",
+      "ja": "読んだけれどわからなかった。",
+      "en": "I read it but didn't understand it.",
+      "note": "結果補語の否定",
+      "checked": false
+    },
+    {
+      "zh": "{我|Wǒ} {看|kàn} {不|bu} {懂|dǒng}。",
+      "ja": "読んでもわからない。",
+      "en": "I can't understand it.",
+      "note": "可能補語の否定",
+      "checked": false
+    },
+    {
+      "zh": "{他|Tā} {说|shuō} {得|de} {不|bù} {清楚|qīngchu}。",
+      "ja": "彼は話し方がはっきりしない。",
+      "en": "He doesn't speak clearly.",
+      "note": "様態補語の否定",
+      "checked": false
+    },
+    {
+      "zh": "{他|Tā} {说|shuō} {不|bu} {清楚|qīngchu}。",
+      "ja": "彼ははっきり言えない（うまく説明できない）。",
+      "en": "He can't explain it clearly.",
+      "note": "可能補語の否定",
+      "checked": false
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "この文章は難しすぎて、（何度読んでも）わからない。",
+      "promptEn": "This text is too hard; I can't understand it (however many times I read it).",
+      "sentence": "{这|Zhè} {篇|piān} {文章|wénzhāng} {太|tài} {难|nán} {了|le}，{我|wǒ} [（　）]。",
+      "options": [
+        {
+          "zh": "{看|kàn} {不|bu} {懂|dǒng}"
+        },
+        {
+          "zh": "{没|méi} {看懂|kàndǒng}"
+        },
+        {
+          "zh": "{看|kàn} {得|de} {不|bù} {懂|dǒng}"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{这|Zhè} {篇|piān} {文章|wénzhāng} {太|tài} {难|nán} {了|le}，{我|wǒ} {看|kàn} {不|bu} {懂|dǒng}。",
+      "ja": "この文章は難しすぎて、わからない。",
+      "en": "This text is too hard; I can't understand it.",
+      "why": "難しすぎて「わかることができない」ので可能補語です。{没|méi}{看懂|kàndǒng}は「（一度読んだが）わからなかった」という結果を言うだけです。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "どの補語？",
+      "promptJa": "この文の補語はどれ？",
+      "promptEn": "Which complement is this?",
+      "sentence": "{他|Tā} {跑|pǎo} {得|de} {很|hěn} {快|kuài}。",
+      "options": [
+        {
+          "text": "様態補語"
+        },
+        {
+          "text": "可能補語"
+        },
+        {
+          "text": "程度補語"
+        },
+        {
+          "text": "数量補語"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 0,
+      "correct": "{他|Tā} {跑|pǎo} {得|de} {很|hěn} {快|kuài}。",
+      "ja": "彼は走るのが速い。",
+      "en": "He runs fast.",
+      "why": "「動詞＋{得|de}＋{很|hěn}＋形容詞」で、走り方を評価しているので様態補語です。",
+      "lecture": "de",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{他|Tā} {说|shuō} {得|de} {不|bù} {清楚|qīngchu}。",
+      "options": [
+        {
+          "ja": "彼は話し方がはっきりしない。",
+          "en": "He doesn't speak clearly."
+        },
+        {
+          "ja": "彼ははっきり言えない（説明できない）。",
+          "en": "He can't explain it clearly."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {说|shuō} {得|de} {不|bù} {清楚|qīngchu}。",
+      "ja": "彼は話し方がはっきりしない。",
+      "en": "He doesn't speak clearly.",
+      "why": "{得|de}の後ろを{不|bù}で否定しているので様態補語（話し方の評価）です。「言えない」なら{说|shuō}{不|bu}{清楚|qīngchu}です。",
+      "lecture": "de",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "どの補語？",
+      "promptJa": "この文の補語はどれ？",
+      "promptEn": "Which complement is this?",
+      "sentence": "{我|Wǒ|Wó} {等了|děngle} {半|bàn} {个|ge} {小时|xiǎoshí}。",
+      "options": [
+        {
+          "text": "様態補語"
+        },
+        {
+          "text": "可能補語"
+        },
+        {
+          "text": "程度補語"
+        },
+        {
+          "text": "数量補語"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 3,
+      "correct": "{我|Wǒ|Wó} {等了|děngle} {半|bàn} {个|ge} {小时|xiǎoshí}。",
+      "ja": "30分待った。",
+      "en": "I waited for half an hour.",
+      "why": "待った時間の長さを動詞の後ろで言っているので、数量補語（時量補語）です。",
+      "lecture": "kinds",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "自然な文はどれ",
+      "promptJa": "「彼はバスケがうまい」として正しいのは？",
+      "promptEn": "Which one correctly says \"He's good at basketball\"?",
+      "options": [
+        {
+          "zh": "{他|Tā} {打|dǎ} {篮球|lánqiú} {打|dǎ} {得|de} {很|hěn|hén} {好|hǎo}。"
+        },
+        {
+          "zh": "{他|Tā} {打|dǎ} {得|de} {篮球|lánqiú} {很|hěn|hén} {好|hǎo}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {打|dǎ} {篮球|lánqiú} {打|dǎ} {得|de} {很|hěn|hén} {好|hǎo}。",
+      "ja": "彼はバスケがうまい。",
+      "en": "He's good at basketball.",
+      "why": "目的語（{篮球|lánqiú}）があるので、動詞を繰り返してから{得|de}を付けます。",
+      "lecture": "object",
+      "checked": false
+    }
+  ]
+}

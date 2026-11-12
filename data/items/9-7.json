@@ -1,0 +1,261 @@
+{
+  "id": "9-7",
+  "chapter": {
+    "no": 9,
+    "ja": "補語",
+    "en": "Complements"
+  },
+  "title": {
+    "ja": "数量補語（回数・時間）",
+    "en": "Complements of frequency and duration"
+  },
+  "terms": "数量補語（動量補語・時量補語）／{数量|shùliàng}{补语|bǔyǔ}／complement of frequency and duration",
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        {
+          "zh": "{看懂|kàndǒng}",
+          "ja": "結果"
+        },
+        {
+          "zh": "{进来|jìnlái}",
+          "ja": "方向"
+        },
+        {
+          "zh": "{看|kàn}{不|bu}{懂|dǒng}",
+          "ja": "可能"
+        },
+        {
+          "zh": "{跑|pǎo}{得|de}{快|kuài}",
+          "ja": "様態"
+        },
+        {
+          "zh": "{好|hǎo}{极了|jí le}",
+          "ja": "程度"
+        },
+        {
+          "zh": "{三|sān}{次|cì}",
+          "ja": "数量",
+          "current": true
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "動詞の後ろに回数や時間の長さを置いて、動作を何回したか（動量補語）、どれだけの時間続けたか（時量補語）を表します。{去过|qùguo}{两|liǎng}{次|cì}（2回行ったことがある）、{等了|děngle}{半|bàn}{个|ge}{小时|xiǎoshí}（30分待った）。日本語と違い、回数や時間は動詞の後ろに来ます。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "動詞（＋ {了|le}／{过|guo}）＋ 回数・時間",
+      "en": "V (+ {了|le} / {过|guo}) + frequency / duration",
+      "zh": "{我|Wǒ} {看了|kànle} {三|sān} {遍|biàn}。"
+    },
+    {
+      "type": "panel",
+      "id": "measure",
+      "title": "回数の言い方",
+      "body": "{次|cì}（回）、{遍|biàn}（初めから終わりまで通して1回）、{下|xià}（ちょっと）。{看|kàn}{一下|yīxià|yíxià}は「ちょっと見る」です。"
+    },
+    {
+      "type": "panel",
+      "id": "object",
+      "title": "目的語があるとき",
+      "body": "ものを表す名詞の目的語は、回数・時間の後ろに置きます（{我|wǒ}{学了|xuéle}{两|liǎng}{年|nián}{汉语|Hànyǔ}）。動詞を繰り返す形もあります（{我|wǒ}{学|xué}{汉语|Hànyǔ}{学了|xuéle}{两|liǎng}{年|nián}）。人を表す代名詞は、回数・時間の前に置きます（{我|wǒ|wó}{等了|děngle}{他|tā}{半|bàn}{个|ge}{小时|xiǎoshí}）。"
+    },
+    {
+      "type": "panel",
+      "id": "still",
+      "title": "今も続いているとき",
+      "body": "文末に{了|le}を足すと、今も続いていることを表します（8-6）。{我|wǒ}{学了|xuéle}{两|liǎng}{年|nián}{汉语|Hànyǔ}{了|le}（中国語を学んで2年になる）。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "for two hours、three times のように、英語も文の後ろに置きます。ただし英語は目的語の後ろ（studied Chinese for two years）、中国語は原則として目的語の前です。"
+        },
+        {
+          "label": "日本語",
+          "body": "「2時間待った」「3回読んだ」のように、日本語は回数・時間を動詞の前に置くので、語順が逆になります。"
+        }
+      ]
+    },
+    {
+      "type": "debate",
+      "title": "説が分かれる点",
+      "body": "{学了|xuéle}{汉语|Hànyǔ}{两|liǎng}{年|nián}のように、目的語の後ろに時間を置く形を誤りとする文法書が多い一方で、話し言葉なら通じるという母語話者の意見もあります。このツールでは誤りとして扱います。"
+    }
+  ],
+  "examples": [
+    {
+      "zh": "{我|Wǒ} {去过|qùguo} {两|liǎng} {次|cì} {上海|Shànghǎi}。",
+      "ja": "上海に2回行ったことがある。",
+      "en": "I've been to Shanghai twice.",
+      "checked": false
+    },
+    {
+      "zh": "{我|Wǒ|Wó} {等了|děngle} {他|tā} {半|bàn} {个|ge} {小时|xiǎoshí}。",
+      "ja": "彼を30分待った。",
+      "en": "I waited for him for half an hour.",
+      "note": "代名詞は時間の前",
+      "checked": false
+    },
+    {
+      "zh": "{他|Tā} {学|xué} {汉语|Hànyǔ} {学了|xuéle} {三|sān} {年|nián}。",
+      "ja": "彼は中国語を3年勉強した。",
+      "en": "He studied Chinese for three years.",
+      "note": "動詞を繰り返す",
+      "checked": false
+    },
+    {
+      "zh": "{你|Nǐ} {看|kàn} {一下|yīxià|yíxià}。",
+      "ja": "ちょっと見て。",
+      "en": "Take a look.",
+      "note": "{一下|yīxià}＝ちょっと",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{我|Wǒ|Wó} {等了|děngle} {半|bàn} {个|ge} {小时|xiǎoshí} {他|tā}。",
+      "explain": "人を表す代名詞は、時間の前に置きます。正しくは {我|wǒ|wó}{等了|děngle}{他|tā}{半|bàn}{个|ge}{小时|xiǎoshí}。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "私は彼を1時間待った。",
+      "promptEn": "I waited for him for an hour.",
+      "tokens": [
+        "{我|wǒ}",
+        "{等|děng}",
+        "{了|le}",
+        "{他|tā}",
+        "{一个小时|yī gè xiǎoshí}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{我|Wǒ|Wó} {等了|děngle} {他|tā} {一|yī|yí} {个|gè} {小时|xiǎoshí}。",
+      "ja": "私は彼を1時間待った。",
+      "en": "I waited for him for an hour.",
+      "why": "人を表す代名詞（{他|tā}）は、時間の前に置きます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "位置",
+      "promptJa": "中国語を2年勉強した。「{两|liǎng}{年|nián}」はどこに入る？",
+      "promptEn": "I studied Chinese for two years. Where does {两|liǎng}{年|nián} go?",
+      "sentence": "{我|Wǒ} {学了|xuéle} [A] {汉语|Hànyǔ} [B]。",
+      "options": [
+        {
+          "text": "A"
+        },
+        {
+          "text": "B"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {学了|xuéle} {两|liǎng} {年|nián} {汉语|Hànyǔ}。",
+      "ja": "中国語を2年勉強した。",
+      "en": "I studied Chinese for two years.",
+      "why": "ものを表す目的語（{汉语|Hànyǔ}）は、時間の後ろに置きます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "この小説は2回（通して）読んだ。",
+      "promptEn": "I've read this novel twice (all the way through).",
+      "sentence": "{这|Zhè} {本|běn} {小说|xiǎoshuō} {我|wǒ} {看了|kànle} {两|liǎng} [（　）]。",
+      "options": [
+        {
+          "text": "{遍|biàn}"
+        },
+        {
+          "text": "{个|gè}"
+        },
+        {
+          "text": "{本|běn}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{这|Zhè} {本|běn} {小说|xiǎoshuō} {我|wǒ} {看了|kànle} {两|liǎng} {遍|biàn}。",
+      "ja": "この小説は2回読んだ。",
+      "en": "I've read this novel twice.",
+      "why": "初めから終わりまで通して1回は{遍|biàn}です。",
+      "lecture": "measure",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{他|Tā} {来过|láiguo} {这儿|zhèr} {三|sān} {次|cì}。",
+      "options": [
+        {
+          "ja": "彼はここに3回来たことがある。",
+          "en": "He has been here three times."
+        },
+        {
+          "ja": "彼はここに3日間いた。",
+          "en": "He was here for three days."
+        },
+        {
+          "ja": "彼は3時にここへ来た。",
+          "en": "He came here at three."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {来过|láiguo} {这儿|zhèr} {三|sān} {次|cì}。",
+      "ja": "彼はここに3回来たことがある。",
+      "en": "He has been here three times.",
+      "why": "{次|cì}は回数です。期間なら{三|sān}{天|tiān}、時刻なら{三|sān}{点|diǎn}を使います。",
+      "lecture": "measure",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "自然な文はどれ",
+      "promptJa": "「テレビを2時間見た」として正しいのは？",
+      "promptEn": "Which one correctly says \"I watched TV for two hours\"?",
+      "options": [
+        {
+          "zh": "{我|Wǒ} {看|kàn} {电视|diànshì} {看了|kànle} {两|liǎng} {个|ge} {小时|xiǎoshí}。"
+        },
+        {
+          "zh": "{我|Wǒ} {看了|kànle} {电视|diànshì} {两|liǎng} {个|ge} {小时|xiǎoshí}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {看|kàn} {电视|diànshì} {看了|kànle} {两|liǎng} {个|ge} {小时|xiǎoshí}。",
+      "ja": "テレビを2時間見た。",
+      "en": "I watched TV for two hours.",
+      "why": "目的語（{电视|diànshì}）と時間を両方言うときは、動詞を繰り返すか、時間を目的語の前に置きます（{看了|kànle}{两|liǎng}{个|ge}{小时|xiǎoshí}{电视|diànshì}）。",
+      "lecture": "object",
+      "checked": false
+    }
+  ]
+}

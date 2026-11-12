@@ -1,0 +1,254 @@
+{
+  "id": "9-3",
+  "chapter": {
+    "no": 9,
+    "ja": "補語",
+    "en": "Complements"
+  },
+  "title": {
+    "ja": "方向補語（複合）",
+    "en": "Compound directional complements"
+  },
+  "terms": "複合方向補語／{复合|fùhé}{趋向|qūxiàng}{补语|bǔyǔ}／compound directional complement",
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        {
+          "zh": "{看懂|kàndǒng}",
+          "ja": "結果"
+        },
+        {
+          "zh": "{进来|jìnlái}",
+          "ja": "方向",
+          "current": true
+        },
+        {
+          "zh": "{看|kàn}{不|bu}{懂|dǒng}",
+          "ja": "可能"
+        },
+        {
+          "zh": "{跑|pǎo}{得|de}{快|kuài}",
+          "ja": "様態"
+        },
+        {
+          "zh": "{好|hǎo}{极了|jí le}",
+          "ja": "程度"
+        },
+        {
+          "zh": "{三|sān}{次|cì}",
+          "ja": "数量"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "向きを表す{上|shàng}・{下|xià}・{进|jìn}・{出|chū}・{回|huí}・{过|guò}・{起|qǐ}と、{来|lái}・{去|qù}を組み合わせて、動詞の後ろに重ねて付けます。{走进来|zǒu jìnlái}（歩いて入って来る）、{跑出去|pǎo chūqù}（走って出て行く）、{站起来|zhàn qǐlái}（立ち上がる）。動詞＝どうやって、1つ目＝どの向きへ、2つ目＝話し手に近づくか離れるか、の3段構えです。{起|qǐ}は{来|lái}とだけ組みます。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "動詞 ＋ 向き ＋ {来|lái}／{去|qù}",
+      "en": "V + path + {来|lái} / {去|qù}",
+      "zh": "{他|Tā} {跑|pǎo} {出去|chūqù} {了|le}。"
+    },
+    {
+      "type": "panel",
+      "id": "object",
+      "title": "目的語の位置",
+      "body": "場所は必ず{来|lái}・{去|qù}の前：{走进|zǒujìn}{教室|jiàoshì}{来|lái}。ものは前でも後ろでもかまいません：{拿出|náchū}{一|yī|yì}{本|běn}{书|shū}{来|lái}／{拿出来|ná chūlái}{一|yī|yì}{本|běn}{书|shū}。話し言葉では後ろに置く形もよく使われます。"
+    },
+    {
+      "type": "panel",
+      "id": "extend",
+      "title": "向き以外の意味",
+      "body": "空間の移動から広がった意味もあります。{起来|qǐlái}：「〜し始める」（{笑起来|xiào qǐlái}＝笑い出す）。{下去|xiàqù}：「〜し続ける」（{说下去|shuō xiàqù}＝話し続ける）。{出来|chūlái}：「見分ける・わかる」（{听出来|tīng chūlái}＝聞いて誰だかわかる）。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "walk in、run out のような句動詞に近いですが、英語は話し手に近づくか離れるかを言い分けません（He ran out は「出て行く」とも「出て来る」とも取れます）。中国語は{来|lái}・{去|qù}で必ず決めます。"
+        },
+        {
+          "label": "日本語",
+          "body": "「歩いて・入って・来る」のように、日本語も3つの動詞を重ねて言え、並ぶ順番も同じです。"
+        }
+      ]
+    },
+    {
+      "type": "debate",
+      "title": "説が分かれる点",
+      "body": "ものの目的語を{拿出|náchū}{一|yī|yì}{本|běn}{书|shū}{来|lái}のように間に挟むか、{拿出来|ná chūlái}{一|yī|yì}{本|běn}{书|shū}のように後ろに置くかは、目的語の長さや話し言葉かどうかで好みが変わり、説明が分かれます。このツールでは、両方を正しい形として扱います。"
+    }
+  ],
+  "examples": [
+    {
+      "zh": "{老师|Lǎoshī} {走进|zǒujìn} {教室|jiàoshì} {来|lái} {了|le}。",
+      "ja": "先生が教室に入って来た。",
+      "en": "The teacher came into the classroom.",
+      "note": "場所は{来|lái}の前",
+      "checked": false
+    },
+    {
+      "zh": "{他|Tā} {站|zhàn} {起来|qǐlái} {了|le}。",
+      "ja": "彼は立ち上がった。",
+      "en": "He stood up.",
+      "checked": false
+    },
+    {
+      "zh": "{大家|Dàjiā} {都|dōu} {笑|xiào} {起来|qǐlái} {了|le}。",
+      "ja": "みんな笑い出した。",
+      "en": "Everyone started laughing.",
+      "note": "{起来|qǐlái}＝し始める",
+      "checked": false
+    },
+    {
+      "zh": "{他|Tā} {从|cóng} {口袋|kǒudai} {里|li} {拿出|náchū} {一|yī|yì} {张|zhāng} {照片|zhàopiàn} {来|lái}。",
+      "ja": "彼はポケットから写真を1枚取り出した。",
+      "en": "He took a photo out of his pocket.",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{老师|Lǎoshī} {走进来|zǒu jìnlái} {教室|jiàoshì} {了|le}。",
+      "explain": "場所を表す目的語は、{来|lái}・{去|qù}の前に置きます。正しくは {老师|lǎoshī}{走进|zǒujìn}{教室|jiàoshì}{来|lái}{了|le}。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "先生が教室に入って来た。",
+      "promptEn": "The teacher came into the classroom.",
+      "tokens": [
+        "{老师|lǎoshī}",
+        "{走进|zǒujìn}",
+        "{教室|jiàoshì}",
+        "{来|lái}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{老师|Lǎoshī} {走进|zǒujìn} {教室|jiàoshì} {来|lái} {了|le}。",
+      "ja": "先生が教室に入って来た。",
+      "en": "The teacher came into the classroom.",
+      "why": "場所（{教室|jiàoshì}）は{来|lái}の前に置きます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "{来|lái}か{去|qù}か",
+      "promptJa": "（家の中にいる私から見て）子どもたちが外へ走って出て行った。",
+      "promptEn": "(Seen from me inside) The kids ran outside.",
+      "sentence": "{孩子们|Háizimen} {跑|pǎo} {出|chū} [（　）] {了|le}。",
+      "options": [
+        {
+          "text": "{来|lái}"
+        },
+        {
+          "text": "{去|qù}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{孩子们|Háizimen} {跑|pǎo} {出去|chūqù} {了|le}。",
+      "ja": "子どもたちが外へ走って出て行った。",
+      "en": "The kids ran outside.",
+      "why": "中にいる話し手から離れていくので{去|qù}です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{他|Tā} {突然|tūrán} {哭|kū} {起来|qǐlái} {了|le}。",
+      "options": [
+        {
+          "ja": "彼は急に泣き出した。",
+          "en": "He suddenly started crying."
+        },
+        {
+          "ja": "彼は急に泣き止んだ。",
+          "en": "He suddenly stopped crying."
+        },
+        {
+          "ja": "彼は急に起き上がった。",
+          "en": "He suddenly got up."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {突然|tūrán} {哭|kū} {起来|qǐlái} {了|le}。",
+      "ja": "彼は急に泣き出した。",
+      "en": "He suddenly started crying.",
+      "why": "{起来|qǐlái}は、ここでは「〜し始める」という意味です。",
+      "lecture": "extend",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "自然な文はどれ",
+      "promptJa": "「彼は走って寮に帰って行った」として正しいのは？",
+      "promptEn": "Which one correctly says \"He ran back to the dorm\"?",
+      "options": [
+        {
+          "zh": "{他|Tā} {跑回|pǎohuí} {宿舍|sùshè} {去|qù} {了|le}。"
+        },
+        {
+          "zh": "{他|Tā} {跑回去|pǎo huíqù} {宿舍|sùshè} {了|le}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {跑回|pǎohuí} {宿舍|sùshè} {去|qù} {了|le}。",
+      "ja": "彼は走って寮に帰って行った。",
+      "en": "He ran back to the dorm.",
+      "why": "場所（{宿舍|sùshè}）は{去|qù}の前に置きます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "続けて話してください。",
+      "promptEn": "Please go on.",
+      "sentence": "{请|Qǐng|Qíng} {你|nǐ} {说|shuō} [（　）]。",
+      "options": [
+        {
+          "text": "{下去|xiàqù}"
+        },
+        {
+          "text": "{起来|qǐlái}"
+        },
+        {
+          "text": "{出去|chūqù}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{请|Qǐng|Qíng} {你|nǐ} {说|shuō} {下去|xiàqù}。",
+      "ja": "続けて話してください。",
+      "en": "Please go on.",
+      "why": "{下去|xiàqù}は、ここでは「〜し続ける」という意味です。",
+      "lecture": "extend",
+      "checked": false
+    }
+  ]
+}

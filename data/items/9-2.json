@@ -1,0 +1,245 @@
+{
+  "id": "9-2",
+  "chapter": {
+    "no": 9,
+    "ja": "補語",
+    "en": "Complements"
+  },
+  "title": {
+    "ja": "方向補語（単純）",
+    "en": "Simple directional complements"
+  },
+  "terms": "方向補語／{趋向|qūxiàng}{补语|bǔyǔ}／directional complement",
+  "lecture": [
+    {
+      "type": "map",
+      "title": "この章の地図",
+      "cells": [
+        {
+          "zh": "{看懂|kàndǒng}",
+          "ja": "結果"
+        },
+        {
+          "zh": "{进来|jìnlái}",
+          "ja": "方向",
+          "current": true
+        },
+        {
+          "zh": "{看|kàn}{不|bu}{懂|dǒng}",
+          "ja": "可能"
+        },
+        {
+          "zh": "{跑|pǎo}{得|de}{快|kuài}",
+          "ja": "様態"
+        },
+        {
+          "zh": "{好|hǎo}{极了|jí le}",
+          "ja": "程度"
+        },
+        {
+          "zh": "{三|sān}{次|cì}",
+          "ja": "数量"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "仕組み",
+      "body": "移動を表す動詞の後ろに{来|lái}・{去|qù}を付けると、動作が話し手に近づくか（{来|lái}）、離れるか（{去|qù}）を表します。{上|shàng}・{下|xià}・{进|jìn}・{出|chū}・{回|huí}・{过|guò}・{起|qǐ}を付けると、上へ・下へ・中へ・外へ…という移動の向きを表します。"
+    },
+    {
+      "type": "pattern",
+      "id": "pattern",
+      "title": "型",
+      "ja": "動詞 ＋ {来|lái}／{去|qù}",
+      "en": "V + {来|lái} / {去|qù}",
+      "zh": "{他|Tā} {带来|dàilái} {了|le} {一|yī|yì} {瓶|píng} {酒|jiǔ}。"
+    },
+    {
+      "type": "panel",
+      "id": "path",
+      "title": "向きを表す7つ",
+      "body": "{上|shàng}（上へ）、{下|xià}（下へ）、{进|jìn}（中へ）、{出|chū}（外へ）、{回|huí}（元の場所へ）、{过|guò}（通り過ぎて）、{起|qǐ}（下から上へ）。{走进|zǒujìn}{教室|jiàoshì}（教室に歩いて入る）、{拿出|náchū}{钱包|qiánbāo}（財布を取り出す）。"
+    },
+    {
+      "type": "panel",
+      "id": "place",
+      "title": "場所は{来|lái}・{去|qù}の前",
+      "body": "場所を表す目的語は、{来|lái}・{去|qù}の前に置きます。{他|tā}{回|huí}{家|jiā}{去|qù}{了|le}（彼は家に帰って行った）。{回去|huíqù}{家|jiā}とは言いません。"
+    },
+    {
+      "type": "compare",
+      "title": "ほかの言語と比べると",
+      "cards": [
+        {
+          "label": "英語",
+          "body": "bring／take、come in／go out の区別に近い働きです。in・out・up・down のような句動詞の小さな語が、中国語では{进|jìn}・{出|chū}・{上|shàng}・{下|xià}にあたります。"
+        },
+        {
+          "label": "日本語",
+          "body": "「持って来る／持って行く」「入って来る／入って行く」の「来る・行く」とよく似ています。"
+        }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "zh": "{你|Nǐ} {进来|jìnlái} {吧|ba}。",
+      "ja": "入って来て。",
+      "en": "Come on in.",
+      "note": "話し手の方へ：{来|lái}",
+      "checked": false
+    },
+    {
+      "zh": "{他|Tā} {回|huí} {家|jiā} {去|qù} {了|le}。",
+      "ja": "彼は家に帰って行った。",
+      "en": "He went back home.",
+      "note": "場所は{去|qù}の前",
+      "checked": false
+    },
+    {
+      "zh": "{她|Tā} {从|cóng} {包|bāo} {里|li} {拿出|náchū} {一|yī|yì} {本|běn} {书|shū}。",
+      "ja": "彼女はかばんから本を1冊取り出した。",
+      "en": "She took a book out of her bag.",
+      "checked": false
+    },
+    {
+      "kind": "wrong",
+      "zh": "*{他|Tā} {回去|huíqù} {家|jiā} {了|le}。",
+      "explain": "場所を表す目的語は、{来|lái}・{去|qù}の前に置きます。正しくは {他|tā}{回|huí}{家|jiā}{去|qù}{了|le}。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "type": "choice",
+      "kind": "{来|lái}か{去|qù}か",
+      "promptJa": "（部屋の中にいる私が、外にいる人に）入って来て！",
+      "promptEn": "(I'm inside, calling to someone outside) Come in!",
+      "sentence": "{你|Nǐ} {进|jìn} [（　）] {吧|ba}！",
+      "options": [
+        {
+          "text": "{来|lái}"
+        },
+        {
+          "text": "{去|qù}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 0,
+      "correct": "{你|Nǐ} {进来|jìnlái} {吧|ba}！",
+      "ja": "入って来て！",
+      "en": "Come in!",
+      "why": "話し手（中にいる私）の方への移動なので{来|lái}です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "type": "choice",
+      "kind": "{来|lái}か{去|qù}か",
+      "promptJa": "（1階にいる私から見て）彼は2階へ上がって行った。",
+      "promptEn": "(Seen from me on the ground floor) He went upstairs.",
+      "sentence": "{他|Tā} {上|shàng} {楼|lóu} [（　）] {了|le}。",
+      "options": [
+        {
+          "text": "{来|lái}"
+        },
+        {
+          "text": "{去|qù}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{他|Tā} {上|shàng} {楼|lóu} {去|qù} {了|le}。",
+      "ja": "彼は2階へ上がって行った。",
+      "en": "He went upstairs.",
+      "why": "話し手から離れていく移動なので{去|qù}です。場所（{楼|lóu}）は{去|qù}の前に置きます。",
+      "lecture": "place",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼は家に帰って行った。",
+      "promptEn": "He went back home.",
+      "tokens": [
+        "{他|tā}",
+        "{回|huí}",
+        "{家|jiā}",
+        "{去|qù}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{他|Tā} {回|huí} {家|jiā} {去|qù} {了|le}。",
+      "ja": "彼は家に帰って行った。",
+      "en": "He went back home.",
+      "why": "場所（{家|jiā}）は{来|lái}・{去|qù}の前に置きます。",
+      "lecture": "place",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "type": "choice",
+      "kind": "どれが入る？",
+      "promptJa": "彼女はかばんから財布を取り出した。",
+      "promptEn": "She took her wallet out of her bag.",
+      "sentence": "{她|Tā} {从|cóng} {包|bāo} {里|li} {拿|ná} [（　）] {钱包|qiánbāo}。",
+      "options": [
+        {
+          "text": "{出|chū}"
+        },
+        {
+          "text": "{进|jìn}"
+        },
+        {
+          "text": "{上|shàng}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{她|Tā} {从|cóng} {包|bāo} {里|li} {拿出|náchū} {钱包|qiánbāo}。",
+      "ja": "彼女はかばんから財布を取り出した。",
+      "en": "She took her wallet out of her bag.",
+      "why": "中から外への移動なので{出|chū}です。",
+      "lecture": "path",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "type": "choice",
+      "kind": "意味を選ぶ",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{我|Wǒ|Wó} {马上|mǎshàng} {回去|huíqù}。",
+      "options": [
+        {
+          "ja": "すぐ（今いる所を離れて）帰る。",
+          "en": "I'll head back right away."
+        },
+        {
+          "ja": "すぐ（ここへ）戻って来る。",
+          "en": "I'll be right back here."
+        },
+        {
+          "ja": "すぐに帰って来た。",
+          "en": "I came back right away."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ|Wó} {马上|mǎshàng} {回去|huíqù}。",
+      "ja": "すぐ帰る。",
+      "en": "I'll head back right away.",
+      "why": "{回去|huíqù}は、話し手が今いる所を離れて元の場所へ戻ることです。ここへ戻って来るなら{回来|huílái}です。",
+      "lecture": "lecture",
+      "checked": false
+    }
+  ]
+}
