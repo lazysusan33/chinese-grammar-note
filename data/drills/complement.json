@@ -1,0 +1,1997 @@
+{
+  "id": "complement",
+  "title": {
+    "ja": "補語",
+    "en": "Complements"
+  },
+  "note": "9章の8項目を混ぜて出題します。",
+  "items": [
+    "9-1",
+    "9-2",
+    "9-3",
+    "9-4",
+    "9-5",
+    "9-6",
+    "9-7",
+    "9-8"
+  ],
+  "questions": [
+    {
+      "id": "c101",
+      "item": "9-1",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "宿題をやり終えた。",
+      "promptEn": "I finished my homework.",
+      "sentence": "{我|Wǒ} {做|zuò} [（　）] {作业|zuòyè} {了|le}。",
+      "options": [
+        {
+          "text": "{完|wán}"
+        },
+        {
+          "text": "{见|jiàn}"
+        },
+        {
+          "text": "{懂|dǒng}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {做完|zuòwán} {作业|zuòyè} {了|le}。",
+      "ja": "宿題をやり終えた。",
+      "en": "I finished my homework.",
+      "why": "「やり終える」という結果なので{完|wán}です。",
+      "lecture": "common",
+      "checked": false
+    },
+    {
+      "id": "c102",
+      "item": "9-1",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "当たり！",
+      "promptEn": "You guessed right!",
+      "sentence": "{你|Nǐ} {猜|cāi} [（　）] {了|le}！",
+      "options": [
+        {
+          "text": "{对|duì}"
+        },
+        {
+          "text": "{错|cuò}"
+        },
+        {
+          "text": "{完|wán}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{你|Nǐ} {猜对|cāiduì} {了|le}！",
+      "ja": "当たり！",
+      "en": "You guessed right!",
+      "why": "「正しく当てた」という結果なので{对|duì}です。{错|cuò}なら「外れ」です。",
+      "lecture": "common",
+      "checked": false
+    },
+    {
+      "id": "c103",
+      "item": "9-1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "あなたが見えなかった。",
+      "promptEn": "I didn't see you.",
+      "tokens": [
+        "{我|wǒ}",
+        "{没|méi}",
+        "{看见|kànjiàn}",
+        "{你|nǐ}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "correct": "{我|Wǒ} {没|méi} {看见|kànjiàn} {你|nǐ}。",
+      "ja": "あなたが見えなかった。",
+      "en": "I didn't see you.",
+      "why": "{没|méi}は動詞の前、結果補語（{见|jiàn}）は動詞のすぐ後ろです。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "c104",
+      "item": "9-1",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "服がきれいに洗えた。",
+      "promptEn": "The clothes have been washed clean.",
+      "tokens": [
+        "{衣服|yīfu}",
+        "{洗|xǐ}",
+        "{干净|gānjìng}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "correct": "{衣服|Yīfu} {洗|xǐ} {干净|gānjìng} {了|le}。",
+      "ja": "服がきれいに洗えた。",
+      "en": "The clothes have been washed clean.",
+      "why": "結果補語（{干净|gānjìng}）は動詞のすぐ後ろ、{了|le}はその後ろです。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c105",
+      "item": "9-1",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "聞いたけれどわからなかった。",
+      "promptEn": "I listened but didn't understand.",
+      "tokens": [
+        "{我|Wǒ}",
+        "{没|méi}",
+        "{听懂|tīngdǒng}",
+        "{了|le}"
+      ],
+      "answerIndex": 3,
+      "correct": "{我|Wǒ} {没|méi} {听懂|tīngdǒng}。",
+      "ja": "聞いたけれどわからなかった。",
+      "en": "I listened but didn't understand.",
+      "why": "{没|méi}で否定するときは{了|le}を付けません。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "c106",
+      "item": "9-1",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "彼は車の運転ができるようになった。",
+      "promptEn": "He has learned to drive.",
+      "tokens": [
+        "{他|Tā}",
+        "{学会|xuéhuì}",
+        "{了|le}",
+        "{开车|kāichē}"
+      ],
+      "answerIndex": -1,
+      "correct": "{他|Tā} {学会|xuéhuì} {了|le} {开车|kāichē}。",
+      "ja": "彼は車の運転ができるようになった。",
+      "en": "He has learned to drive.",
+      "why": "誤りはありません。{学会|xuéhuì}は「学んで、できるようになる」という結果を表します。",
+      "lecture": "common",
+      "checked": false
+    },
+    {
+      "id": "c107",
+      "item": "9-1",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "宿題をやり終えた。",
+      "promptEn": "I finished my homework.",
+      "correct": "{我|Wǒ} {做完|zuòwán} {作业|zuòyè} {了|le}。",
+      "alts": [
+        "我做完了作业",
+        "作业我做完了",
+        "我把作业做完了"
+      ],
+      "ja": "宿題をやり終えた。",
+      "en": "I finished my homework.",
+      "why": "「動詞＋{完|wán}」で「やり終える」。",
+      "lecture": "common",
+      "checked": false
+    },
+    {
+      "id": "c108",
+      "item": "9-1",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "あなたの声が聞こえなかった。",
+      "promptEn": "I didn't hear you.",
+      "correct": "{我|Wǒ} {没|méi} {听见|tīngjiàn} {你|nǐ} {的|de} {声音|shēngyīn}。",
+      "alts": [
+        "我没听到你的声音",
+        "我没有听见你的声音",
+        "我没有听到你的声音"
+      ],
+      "ja": "あなたの声が聞こえなかった。",
+      "en": "I didn't hear you.",
+      "why": "結果補語の否定は「{没|méi}＋動詞＋補語」で、{了|le}は付けません。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "c109",
+      "item": "9-1",
+      "type": "choice",
+      "kind": "意味",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{我|Wǒ|Wó} {找|zhǎo} {了|le}，{但是|dànshì} {没|méi} {找到|zhǎodào}。",
+      "options": [
+        {
+          "ja": "探したけれど、見つからなかった。",
+          "en": "I looked but didn't find it."
+        },
+        {
+          "ja": "見つけたけれど、気に入らなかった。",
+          "en": "I found it but didn't like it."
+        },
+        {
+          "ja": "探さなかった。",
+          "en": "I didn't look for it."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ|Wó} {找|zhǎo} {了|le}，{但是|dànshì} {没|méi} {找到|zhǎodào}。",
+      "ja": "探したけれど、見つからなかった。",
+      "en": "I looked but didn't find it.",
+      "why": "{找|zhǎo}は「探す」動作だけ。{找到|zhǎodào}で「見つかった」という結果まで言います。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c110",
+      "item": "9-1",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "「あの本を読み終えた」として正しいのは？",
+      "promptEn": "Which one correctly says \"I finished that book\"?",
+      "options": [
+        {
+          "zh": "{我|Wǒ} {看完|kànwán} {了|le} {那|nà} {本|běn} {书|shū}。"
+        },
+        {
+          "zh": "{我|Wǒ} {看|kàn} {了|le} {完|wán} {那|nà} {本|běn} {书|shū}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {看完|kànwán} {了|le} {那|nà} {本|běn} {书|shū}。",
+      "ja": "あの本を読み終えた。",
+      "en": "I finished that book.",
+      "why": "動詞と結果補語の間には、{了|le}も入りません。",
+      "lecture": "tight",
+      "checked": false
+    },
+    {
+      "id": "c201",
+      "item": "9-2",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "（家にいる私が、電話で）早く帰って来て。",
+      "promptEn": "(At home, on the phone) Come home soon.",
+      "sentence": "{你|Nǐ} {快|kuài} {回|huí} [（　）] {吧|ba}。",
+      "options": [
+        {
+          "text": "{来|lái}"
+        },
+        {
+          "text": "{去|qù}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 0,
+      "correct": "{你|Nǐ} {快|kuài} {回来|huílái} {吧|ba}。",
+      "ja": "早く帰って来て。",
+      "en": "Come home soon.",
+      "why": "話し手（家にいる私）の方への移動なので{来|lái}です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c202",
+      "item": "9-2",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "（2階にいる私が、1階の友人に）上がって来て！",
+      "promptEn": "(Upstairs, to a friend downstairs) Come on up!",
+      "sentence": "{你|Nǐ} {上|shàng} [（　）] {吧|ba}！",
+      "options": [
+        {
+          "text": "{来|lái}"
+        },
+        {
+          "text": "{去|qù}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 0,
+      "correct": "{你|Nǐ} {上来|shànglái} {吧|ba}！",
+      "ja": "上がって来て！",
+      "en": "Come on up!",
+      "why": "話し手のいる上の階へ近づく移動なので{来|lái}です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c203",
+      "item": "9-2",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "彼は歩いて教室に入った。",
+      "promptEn": "He walked into the classroom.",
+      "sentence": "{他|Tā} {走|zǒu} [（　）] {了|le} {教室|jiàoshì}。",
+      "options": [
+        {
+          "text": "{进|jìn}"
+        },
+        {
+          "text": "{出|chū}"
+        },
+        {
+          "text": "{上|shàng}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{他|Tā} {走进|zǒujìn} {了|le} {教室|jiàoshì}。",
+      "ja": "彼は歩いて教室に入った。",
+      "en": "He walked into the classroom.",
+      "why": "外から中への移動なので{进|jìn}です。",
+      "lecture": "path",
+      "checked": false
+    },
+    {
+      "id": "c204",
+      "item": "9-2",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼は学校へ行った（話し手から離れて）。",
+      "promptEn": "He went to school.",
+      "tokens": [
+        "{他|tā}",
+        "{到|dào}",
+        "{学校|xuéxiào}",
+        "{去|qù}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{他|Tā} {到|dào} {学校|xuéxiào} {去|qù} {了|le}。",
+      "ja": "彼は学校へ行った（話し手から離れて）。",
+      "en": "He went to school.",
+      "why": "場所（{学校|xuéxiào}）は{去|qù}の前に置きます。",
+      "lecture": "place",
+      "checked": false
+    },
+    {
+      "id": "c205",
+      "item": "9-2",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼女は寮に帰って来た。",
+      "promptEn": "She came back to the dorm.",
+      "tokens": [
+        "{她|tā}",
+        "{回|huí}",
+        "{宿舍|sùshè}",
+        "{来|lái}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{她|Tā} {回|huí} {宿舍|sùshè} {来|lái} {了|le}。",
+      "ja": "彼女は寮に帰って来た。",
+      "en": "She came back to the dorm.",
+      "why": "場所（{宿舍|sùshè}）は{来|lái}の前に置きます。",
+      "lecture": "place",
+      "checked": false
+    },
+    {
+      "id": "c206",
+      "item": "9-2",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "彼は教室に入って行った。",
+      "promptEn": "He went into the classroom.",
+      "tokens": [
+        "{他|Tā}",
+        "{进去|jìnqù}",
+        "{教室|jiàoshì}",
+        "{了|le}"
+      ],
+      "answerIndex": 1,
+      "correct": "{他|Tā} {进|jìn} {教室|jiàoshì} {去|qù} {了|le}。",
+      "ja": "彼は教室に入って行った。",
+      "en": "He went into the classroom.",
+      "why": "場所を表す目的語は{去|qù}の前に置きます。{进去|jìnqù}{教室|jiàoshì}とは言いません。",
+      "lecture": "place",
+      "checked": false
+    },
+    {
+      "id": "c207",
+      "item": "9-2",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "ちょっとこっちに来て。",
+      "promptEn": "Come over here for a second.",
+      "tokens": [
+        "{你|Nǐ}",
+        "{过来|guòlái}",
+        "{一下|yīxià|yíxià}"
+      ],
+      "answerIndex": -1,
+      "correct": "{你|Nǐ} {过来|guòlái} {一下|yīxià|yíxià}。",
+      "ja": "ちょっとこっちに来て。",
+      "en": "Come over here for a second.",
+      "why": "誤りはありません。{过来|guòlái}は「（こちらへ）やって来る」です。",
+      "lecture": "path",
+      "checked": false
+    },
+    {
+      "id": "c208",
+      "item": "9-2",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "彼は家に帰って行った。",
+      "promptEn": "He went back home.",
+      "correct": "{他|Tā} {回|huí} {家|jiā} {去|qù} {了|le}。",
+      "alts": [
+        "他回家了"
+      ],
+      "ja": "彼は家に帰って行った。",
+      "en": "He went back home.",
+      "why": "場所（{家|jiā}）は{去|qù}の前に置きます。",
+      "lecture": "place",
+      "checked": false
+    },
+    {
+      "id": "c209",
+      "item": "9-2",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "入って来て。",
+      "promptEn": "Come in.",
+      "correct": "{你|Nǐ} {进来|jìnlái} {吧|ba}。",
+      "alts": [
+        "进来吧",
+        "请进来",
+        "你进来",
+        "请进"
+      ],
+      "ja": "入って来て。",
+      "en": "Come in.",
+      "why": "話し手の方へ入って来るので「{进|jìn}＋{来|lái}」です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c210",
+      "item": "9-2",
+      "type": "choice",
+      "kind": "意味",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{他|Tā} {带来|dàilái} {了|le} {很|hěn} {多|duō} {水果|shuǐguǒ|shuíguǒ}。",
+      "options": [
+        {
+          "ja": "彼は果物をたくさん持って来た。",
+          "en": "He brought a lot of fruit."
+        },
+        {
+          "ja": "彼は果物をたくさん持って行った。",
+          "en": "He took a lot of fruit away."
+        },
+        {
+          "ja": "彼は果物をたくさん買った。",
+          "en": "He bought a lot of fruit."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {带来|dàilái} {了|le} {很|hěn} {多|duō} {水果|shuǐguǒ|shuíguǒ}。",
+      "ja": "彼は果物をたくさん持って来た。",
+      "en": "He brought a lot of fruit.",
+      "why": "{带|dài}＋{来|lái}で「（話し手の方へ）持って来る」です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c301",
+      "item": "9-3",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "（1階にいる私から見て）彼は2階から降りて来た。",
+      "promptEn": "(Seen from me downstairs) He came down from upstairs.",
+      "sentence": "{他|Tā} {从|cóng} {楼上|lóushàng} {走|zǒu} [（　）] {了|le}。",
+      "options": [
+        {
+          "text": "{下来|xiàlái}"
+        },
+        {
+          "text": "{下去|xiàqù}"
+        },
+        {
+          "text": "{上来|shànglái}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{他|Tā} {从|cóng} {楼上|lóushàng} {走|zǒu} {下来|xiàlái} {了|le}。",
+      "ja": "彼は2階から降りて来た。",
+      "en": "He came down from upstairs.",
+      "why": "下への移動で、下にいる話し手に近づくので{下来|xiàlái}です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c302",
+      "item": "9-3",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "その知らせを聞いて、彼女は泣き出した。",
+      "promptEn": "When she heard the news, she started crying.",
+      "sentence": "{听到|Tīngdào} {这个|zhège} {消息|xiāoxi}，{她|tā} {哭|kū} [（　）] {了|le}。",
+      "options": [
+        {
+          "text": "{起来|qǐlái}"
+        },
+        {
+          "text": "{下去|xiàqù}"
+        },
+        {
+          "text": "{出来|chūlái}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{听到|Tīngdào} {这个|zhège} {消息|xiāoxi}，{她|tā} {哭|kū} {起来|qǐlái} {了|le}。",
+      "ja": "その知らせを聞いて、彼女は泣き出した。",
+      "en": "When she heard the news, she started crying.",
+      "why": "{起来|qǐlái}は、ここでは「〜し始める」という意味です。",
+      "lecture": "extend",
+      "checked": false
+    },
+    {
+      "id": "c303",
+      "item": "9-3",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼は立ち上がった。",
+      "promptEn": "He stood up.",
+      "tokens": [
+        "{他|tā}",
+        "{站|zhàn}",
+        "{起来|qǐlái}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "correct": "{他|Tā} {站|zhàn} {起来|qǐlái} {了|le}。",
+      "ja": "彼は立ち上がった。",
+      "en": "He stood up.",
+      "why": "「動詞＋{起|qǐ}＋{来|lái}」で「下から上へ」です。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c304",
+      "item": "9-3",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼女は部屋から走って出て来た。",
+      "promptEn": "She ran out of the room (toward me).",
+      "tokens": [
+        "{她|tā}",
+        "{从|cóng}",
+        "{房间|fángjiān}",
+        "{里|li}",
+        "{跑|pǎo}",
+        "{出来|chūlái}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "correct": "{她|Tā} {从|cóng} {房间|fángjiān} {里|li} {跑|pǎo} {出来|chūlái} {了|le}。",
+      "ja": "彼女は部屋から走って出て来た。",
+      "en": "She ran out of the room (toward me).",
+      "why": "「{从|cóng}＋場所」は動詞の前、方向補語（{出来|chūlái}）は動詞の後ろです。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c305",
+      "item": "9-3",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "彼は部屋に入って来た。",
+      "promptEn": "He came into the room.",
+      "tokens": [
+        "{他|Tā}",
+        "{走进来|zǒu jìnlái}",
+        "{房间|fángjiān}",
+        "{了|le}"
+      ],
+      "answerIndex": 1,
+      "correct": "{他|Tā} {走进|zǒujìn} {房间|fángjiān} {来|lái} {了|le}。",
+      "ja": "彼は部屋に入って来た。",
+      "en": "He came into the room.",
+      "why": "場所を表す目的語は{来|lái}の前に置きます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c306",
+      "item": "9-3",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "彼は本を1冊取り出した。",
+      "promptEn": "He took out a book.",
+      "tokens": [
+        "{他|Tā}",
+        "{拿出来|ná chūlái}",
+        "{一本书|yī běn shū|yì běn shū}"
+      ],
+      "answerIndex": -1,
+      "correct": "{他|Tā} {拿出来|ná chūlái} {一|yī|yì} {本|běn} {书|shū}。",
+      "ja": "彼は本を1冊取り出した。",
+      "en": "He took out a book.",
+      "why": "誤りはありません。ものの目的語は{来|lái}の後ろに置いてもかまいません（{拿出|náchū}{一|yī|yì}{本|běn}{书|shū}{来|lái}とも言えます）。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c307",
+      "item": "9-3",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "先生が教室に入って来た。",
+      "promptEn": "The teacher came into the classroom.",
+      "correct": "{老师|Lǎoshī} {走进|zǒujìn} {教室|jiàoshì} {来|lái} {了|le}。",
+      "alts": [
+        "老师进教室来了",
+        "老师走进教室了",
+        "老师走进了教室"
+      ],
+      "ja": "先生が教室に入って来た。",
+      "en": "The teacher came into the classroom.",
+      "why": "場所（{教室|jiàoshì}）は{来|lái}の前に置きます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c308",
+      "item": "9-3",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "続けて話してください。",
+      "promptEn": "Please go on.",
+      "correct": "{请|Qǐng|Qíng} {你|nǐ} {说|shuō} {下去|xiàqù}。",
+      "alts": [
+        "请说下去",
+        "你说下去",
+        "你说下去吧",
+        "请继续说"
+      ],
+      "ja": "続けて話してください。",
+      "en": "Please go on.",
+      "why": "{下去|xiàqù}は「〜し続ける」です。",
+      "lecture": "extend",
+      "checked": false
+    },
+    {
+      "id": "c309",
+      "item": "9-3",
+      "type": "choice",
+      "kind": "意味",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{我|Wǒ} {听|tīng} {出来|chūlái} {了|le}，{是|shì} {你|nǐ}。",
+      "options": [
+        {
+          "ja": "声を聞いて、あなただとわかった。",
+          "en": "I could tell it was you from your voice."
+        },
+        {
+          "ja": "聞いてから、外に出た。",
+          "en": "I listened and then went out."
+        },
+        {
+          "ja": "あなたが出て来る音が聞こえた。",
+          "en": "I heard you come out."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {听|tīng} {出来|chūlái} {了|le}，{是|shì} {你|nǐ}。",
+      "ja": "声を聞いて、あなただとわかった。",
+      "en": "I could tell it was you from your voice.",
+      "why": "{出来|chūlái}は、ここでは「見分ける・わかる」という意味です。",
+      "lecture": "extend",
+      "checked": false
+    },
+    {
+      "id": "c310",
+      "item": "9-3",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "（家の外にいる私から見て）彼は家の中へ走って入って行った。",
+      "promptEn": "(Seen from me outside) He ran into the house.",
+      "sentence": "{他|Tā} {跑|pǎo} {进|jìn} [（　）] {了|le}。",
+      "options": [
+        {
+          "text": "{来|lái}"
+        },
+        {
+          "text": "{去|qù}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{他|Tā} {跑|pǎo} {进去|jìnqù} {了|le}。",
+      "ja": "彼は走って中へ入って行った。",
+      "en": "He ran inside.",
+      "why": "外にいる話し手から離れていくので{去|qù}です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c401",
+      "item": "9-4",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "この仕事は、私一人ではやり終えられない。",
+      "promptEn": "I can't finish this job by myself.",
+      "sentence": "{这|Zhè} {件|jiàn} {事|shì} {我|wǒ} {一|yī|yí} {个|gè} {人|rén} {做|zuò} [（　）] {完|wán}。",
+      "options": [
+        {
+          "text": "{得|de}"
+        },
+        {
+          "text": "{不|bu}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{这|Zhè} {件|jiàn} {事|shì} {我|wǒ} {一|yī|yí} {个|gè} {人|rén} {做|zuò} {不|bu} {完|wán}。",
+      "ja": "この仕事は、私一人ではやり終えられない。",
+      "en": "I can't finish this job by myself.",
+      "why": "「やり終えられない」なので{不|bu}です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c402",
+      "item": "9-4",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "声が小さすぎて、聞こえない。",
+      "promptEn": "Your voice is too quiet; I can't hear you.",
+      "sentence": "{声音|Shēngyīn} {太|tài} {小|xiǎo} {了|le}，{我|wǒ} {听|tīng} [（　）]。",
+      "options": [
+        {
+          "text": "{不见|bu jiàn}"
+        },
+        {
+          "text": "{不了|bu liǎo}"
+        },
+        {
+          "text": "{没见|méi jiàn}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{声音|Shēngyīn} {太|tài} {小|xiǎo} {了|le}，{我|wǒ} {听|tīng} {不|bu} {见|jiàn}。",
+      "ja": "声が小さすぎて、聞こえない。",
+      "en": "Your voice is too quiet; I can't hear you.",
+      "why": "「聞こえない」は{听|tīng}{见|jiàn}（聞こえる）の可能補語の否定です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c403",
+      "item": "9-4",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "（量が多くて）食べきれない。",
+      "promptEn": "I can't finish it all.",
+      "tokens": [
+        "{我|wǒ}",
+        "{吃|chī}",
+        "{不|bu}",
+        "{完|wán}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "correct": "{我|Wǒ} {吃|chī} {不|bu} {完|wán}。",
+      "ja": "（量が多くて）食べきれない。",
+      "en": "I can't finish it all.",
+      "why": "{不|bu}は動詞（{吃|chī}）と補語（{完|wán}）の間に入れます。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c404",
+      "item": "9-4",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "聞こえる？",
+      "promptEn": "Can you hear me?",
+      "tokens": [
+        "{你|nǐ}",
+        "{听|tīng}",
+        "{得|de}",
+        "{见|jiàn}",
+        "{吗|ma}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{你|Nǐ} {听|tīng} {得|de} {见|jiàn} {吗|ma}？",
+      "ja": "聞こえる？",
+      "en": "Can you hear me?",
+      "why": "{得|de}は動詞と補語の間に入れます。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c405",
+      "item": "9-4",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "こんなにたくさんは食べきれない。",
+      "promptEn": "I can't eat this much.",
+      "tokens": [
+        "{我|Wǒ}",
+        "{能|néng}",
+        "{吃不完|chī bu wán}",
+        "{这么多|zhème duō}"
+      ],
+      "answerIndex": 1,
+      "correct": "{我|Wǒ} {吃|chī} {不|bu} {完|wán} {这么|zhème} {多|duō}。",
+      "ja": "こんなにたくさんは食べきれない。",
+      "en": "I can't eat this much.",
+      "why": "可能補語の否定だけで「できない」を表すので、{能|néng}は要りません。",
+      "lecture": "vs-neng",
+      "checked": false
+    },
+    {
+      "id": "c406",
+      "item": "9-4",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "明日、来られる？",
+      "promptEn": "Can you make it tomorrow?",
+      "tokens": [
+        "{你|Nǐ}",
+        "{明天|míngtiān}",
+        "{来|lái}",
+        "{得|de}",
+        "{了|liǎo}",
+        "{吗|ma}"
+      ],
+      "answerIndex": -1,
+      "correct": "{你|Nǐ} {明天|míngtiān} {来|lái} {得|de} {了|liǎo} {吗|ma}？",
+      "ja": "明日、来られる？",
+      "en": "Can you make it tomorrow?",
+      "why": "誤りはありません。{来|lái}{得|de}{了|liǎo}は「（都合として）来ることができる」です。",
+      "lecture": "liao",
+      "checked": false
+    },
+    {
+      "id": "c407",
+      "item": "9-4",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "読んでもわからない。",
+      "promptEn": "I can't understand it (when I read it).",
+      "correct": "{我|Wǒ} {看|kàn} {不|bu} {懂|dǒng}。",
+      "alts": [
+        "看不懂",
+        "我看不明白"
+      ],
+      "ja": "読んでもわからない。",
+      "en": "I can't understand it (when I read it).",
+      "why": "「動詞＋{不|bu}＋{懂|dǒng}」です。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c408",
+      "item": "9-4",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "遠すぎて見えない。",
+      "promptEn": "It's too far; I can't see it.",
+      "correct": "{太|Tài} {远|yuǎn} {了|le}，{我|wǒ} {看|kàn} {不|bu} {见|jiàn}。",
+      "alts": [
+        "太远了看不见",
+        "太远了我看不到",
+        "太远了看不到"
+      ],
+      "ja": "遠すぎて見えない。",
+      "en": "It's too far; I can't see it.",
+      "why": "「見えない」は{看|kàn}{不|bu}{见|jiàn}です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c409",
+      "item": "9-4",
+      "type": "choice",
+      "kind": "意味",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{这么|Zhème} {重|zhòng} {的|de} {箱子|xiāngzi}，{你|nǐ} {拿|ná} {得|de} {动|dòng} {吗|ma}？",
+      "options": [
+        {
+          "ja": "こんなに重い箱、持ち上げられる？",
+          "en": "Can you lift a box this heavy?"
+        },
+        {
+          "ja": "こんなに重い箱、持って来た？",
+          "en": "Did you bring a box this heavy?"
+        },
+        {
+          "ja": "こんなに重い箱、もう動かした？",
+          "en": "Have you moved a box this heavy?"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{这么|Zhème} {重|zhòng} {的|de} {箱子|xiāngzi}，{你|nǐ} {拿|ná} {得|de} {动|dòng} {吗|ma}？",
+      "ja": "こんなに重い箱、持ち上げられる？",
+      "en": "Can you lift a box this heavy?",
+      "why": "{拿|ná}{得|de}{动|dòng}は「持って動かすことができる」です。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c410",
+      "item": "9-4",
+      "type": "choice",
+      "kind": "意味",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{我|Wǒ} {感冒|gǎnmào} {了|le}，{今天|jīntiān} {上|shàng} {不|bu} {了|liǎo} {班|bān}。",
+      "options": [
+        {
+          "ja": "風邪をひいて、今日は出勤できない。",
+          "en": "I've caught a cold; I can't go to work today."
+        },
+        {
+          "ja": "風邪をひいて、今日は出勤しなかった。",
+          "en": "I caught a cold, so I didn't go to work today."
+        },
+        {
+          "ja": "風邪をひいて、今日は出勤したくない。",
+          "en": "I caught a cold; I don't want to go to work today."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {感冒|gǎnmào} {了|le}，{今天|jīntiān} {上|shàng} {不|bu} {了|liǎo} {班|bān}。",
+      "ja": "風邪をひいて、今日は出勤できない。",
+      "en": "I've caught a cold; I can't go to work today.",
+      "why": "「動詞＋{不|bu}{了|liǎo}」は、状況から見て「できない」ことを表します。",
+      "lecture": "liao",
+      "checked": false
+    },
+    {
+      "id": "c501",
+      "item": "9-5",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "彼は毎日起きるのが早い。",
+      "promptEn": "He gets up early every day.",
+      "sentence": "{他|Tā} {每天|měitiān} {起|qǐ} [（　）] {很|hěn|hén} {早|zǎo}。",
+      "options": [
+        {
+          "text": "{得|de}"
+        },
+        {
+          "text": "{的|de}"
+        },
+        {
+          "text": "{地|de}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{他|Tā} {每天|měitiān} {起|qǐ} {得|de} {很|hěn|hén} {早|zǎo}。",
+      "ja": "彼は毎日起きるのが早い。",
+      "en": "He gets up early every day.",
+      "why": "動詞の後ろで評価をつなぐのは{得|de}です。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c502",
+      "item": "9-5",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "「彼は運転が速い」として正しいのは？",
+      "promptEn": "Which one correctly says \"He drives fast\"?",
+      "options": [
+        {
+          "zh": "{他|Tā} {开车|kāichē} {开|kāi} {得|de} {很|hěn} {快|kuài}。"
+        },
+        {
+          "zh": "{他|Tā} {开车|kāichē} {得|de} {很|hěn} {快|kuài}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {开车|kāichē} {开|kāi} {得|de} {很|hěn} {快|kuài}。",
+      "ja": "彼は運転が速い。",
+      "en": "He drives fast.",
+      "why": "目的語（{车|chē}）があるので、動詞{开|kāi}を繰り返してから{得|de}を付けます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c503",
+      "item": "9-5",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼女は歌がとても上手だ。",
+      "promptEn": "She sings really well.",
+      "tokens": [
+        "{她|tā}",
+        "{唱|chàng}",
+        "{得|de}",
+        "{非常|fēicháng}",
+        "{好|hǎo}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{她|Tā} {唱|chàng} {得|de} {非常|fēicháng} {好|hǎo}。",
+      "ja": "彼女は歌がとても上手だ。",
+      "en": "She sings really well.",
+      "why": "「動詞＋{得|de}＋副詞＋形容詞」の順です。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c504",
+      "item": "9-5",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼は中国語を話すのが上手だ。",
+      "promptEn": "He speaks Chinese well.",
+      "tokens": [
+        "{他|tā}",
+        "{说|shuō}",
+        "{汉语|Hànyǔ}",
+        "{说|shuō}",
+        "{得|de}",
+        "{很好|hěn hǎo|hén hǎo}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "correct": "{他|Tā} {说|shuō} {汉语|Hànyǔ} {说|shuō} {得|de} {很|hěn|hén} {好|hǎo}。",
+      "ja": "彼は中国語を話すのが上手だ。",
+      "en": "He speaks Chinese well.",
+      "why": "目的語（{汉语|Hànyǔ}）があるので、動詞を繰り返してから{得|de}を付けます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c505",
+      "item": "9-5",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "彼は走るのが速い。",
+      "promptEn": "He runs fast.",
+      "tokens": [
+        "{他|Tā}",
+        "{跑|pǎo}",
+        "{的|de}",
+        "{很|hěn}",
+        "{快|kuài}"
+      ],
+      "answerIndex": 2,
+      "correct": "{他|Tā} {跑|pǎo} {得|de} {很|hěn} {快|kuài}。",
+      "ja": "彼は走るのが速い。",
+      "en": "He runs fast.",
+      "why": "動詞の後ろで評価をつなぐのは{得|de}です。{的|de}は名詞の前に置く語です。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c506",
+      "item": "9-5",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "あなたは中国語が本当に上手だね。",
+      "promptEn": "Your Chinese is really good.",
+      "tokens": [
+        "{你|Nǐ}",
+        "{汉语|Hànyǔ}",
+        "{说|shuō}",
+        "{得|de}",
+        "{真|zhēn}",
+        "{好|hǎo}"
+      ],
+      "answerIndex": -1,
+      "correct": "{你|Nǐ} {汉语|Hànyǔ} {说|shuō} {得|de} {真|zhēn} {好|hǎo}。",
+      "ja": "あなたは中国語が本当に上手だね。",
+      "en": "Your Chinese is really good.",
+      "why": "誤りはありません。目的語（{汉语|Hànyǔ}）を動詞の前に出した形です。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c507",
+      "item": "9-5",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "彼は走るのが速い。",
+      "promptEn": "He runs fast.",
+      "correct": "{他|Tā} {跑|pǎo} {得|de} {很|hěn} {快|kuài}。",
+      "alts": [
+        "他跑得快",
+        "他跑得非常快",
+        "他跑得真快"
+      ],
+      "ja": "彼は走るのが速い。",
+      "en": "He runs fast.",
+      "why": "「動詞＋{得|de}＋形容詞」です。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c508",
+      "item": "9-5",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "今日は来るのが早いね。",
+      "promptEn": "You came early today.",
+      "correct": "{你|Nǐ} {今天|jīntiān} {来|lái} {得|de} {很|hěn|hén} {早|zǎo}。",
+      "alts": [
+        "你今天来得真早",
+        "今天你来得很早",
+        "你今天来得好早",
+        "你今天来得很早啊"
+      ],
+      "ja": "今日は来るのが早いね。",
+      "en": "You came early today.",
+      "why": "来た時刻を評価しているので「{来|lái}＋{得|de}＋{早|zǎo}」です。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c509",
+      "item": "9-5",
+      "type": "choice",
+      "kind": "意味",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{昨天|Zuótiān} {的|de} {晚会|wǎnhuì}，{大家|dàjiā} {玩|wán} {得|de} {很|hěn} {开心|kāixīn}。",
+      "options": [
+        {
+          "ja": "昨日のパーティーで、みんなとても楽しく過ごした。",
+          "en": "Everyone had a great time at last night's party."
+        },
+        {
+          "ja": "昨日のパーティーで、みんな楽しく遊べるかが心配だった。",
+          "en": "We worried whether everyone could enjoy the party."
+        },
+        {
+          "ja": "昨日のパーティーで、みんな遊ぶのをやめた。",
+          "en": "Everyone stopped playing at the party."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{昨天|Zuótiān} {的|de} {晚会|wǎnhuì}，{大家|dàjiā} {玩|wán} {得|de} {很|hěn} {开心|kāixīn}。",
+      "ja": "昨日のパーティーで、みんなとても楽しく過ごした。",
+      "en": "Everyone had a great time at last night's party.",
+      "why": "{玩|wán}{得|de}{很|hěn}{开心|kāixīn}は、遊んだ結果の様子を「とても楽しかった」と評価しています。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c510",
+      "item": "9-5",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "「彼は字がきれいではない」として正しいのは？",
+      "promptEn": "Which one correctly says \"His handwriting isn't nice\"?",
+      "options": [
+        {
+          "zh": "{他|Tā} {写|xiě} {得|de} {不|bù} {好看|hǎokàn}。"
+        },
+        {
+          "zh": "{他|Tā} {不|bù} {写|xiě} {得|de} {好看|hǎokàn}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {写|xiě} {得|de} {不|bù} {好看|hǎokàn}。",
+      "ja": "彼は字がきれいではない。",
+      "en": "His handwriting isn't nice.",
+      "why": "様態補語の否定は、{得|de}の後ろの形容詞を否定します。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "c601",
+      "item": "9-6",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "この映画はものすごく面白い。",
+      "promptEn": "This movie is incredibly interesting.",
+      "sentence": "{这|Zhè} {部|bù} {电影|diànyǐng} {有意思|yǒu yìsi} [（　）]。",
+      "options": [
+        {
+          "text": "{极了|jí le}"
+        },
+        {
+          "text": "{多了|duō le}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 0,
+      "correct": "{这|Zhè} {部|bù} {电影|diànyǐng} {有意思|yǒu yìsi} {极|jí} {了|le}。",
+      "ja": "この映画はものすごく面白い。",
+      "en": "This movie is incredibly interesting.",
+      "why": "比べていないので{极了|jí le}です。{多了|duō le}は比べて「ずっと」のときに使います。",
+      "lecture": "kinds",
+      "checked": false
+    },
+    {
+      "id": "c602",
+      "item": "9-6",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "薬を飲んだら、ずっとよくなった。",
+      "promptEn": "After taking the medicine, I feel much better.",
+      "sentence": "{吃|Chī} {了|le} {药|yào} {以后|yǐhòu}，{我|wǒ} {好|hǎo} [（　）]。",
+      "options": [
+        {
+          "text": "{多了|duō le}"
+        },
+        {
+          "text": "{死了|sǐ le}"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 0,
+      "correct": "{吃|Chī} {了|le} {药|yào} {以后|yǐhòu}，{我|wǒ} {好|hǎo} {多|duō} {了|le}。",
+      "ja": "薬を飲んだら、ずっとよくなった。",
+      "en": "After taking the medicine, I feel much better.",
+      "why": "前と比べて「ずっと」よくなったので{多了|duō le}です。",
+      "lecture": "kinds",
+      "checked": false
+    },
+    {
+      "id": "c603",
+      "item": "9-6",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "疲れて死にそうだ。",
+      "promptEn": "I'm dead tired.",
+      "tokens": [
+        "{我|wǒ}",
+        "{累|lèi}",
+        "{死|sǐ}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "correct": "{我|Wǒ} {累|lèi} {死|sǐ} {了|le}。",
+      "ja": "疲れて死にそうだ。",
+      "en": "I'm dead tired.",
+      "why": "程度補語（{死了|sǐ le}）は形容詞（{累|lèi}）の後ろに置きます。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c604",
+      "item": "9-6",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "今日は（昨日より）ずっと涼しい。",
+      "promptEn": "It's much cooler today.",
+      "tokens": [
+        "{今天|jīntiān}",
+        "{凉快|liángkuai}",
+        "{多|duō}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "correct": "{今天|Jīntiān} {凉快|liángkuai} {多|duō} {了|le}。",
+      "ja": "今日は（昨日より）ずっと涼しい。",
+      "en": "It's much cooler today.",
+      "why": "比べて「ずっと」は、形容詞の後ろに{多了|duō le}です。",
+      "lecture": "kinds",
+      "checked": false
+    },
+    {
+      "id": "c605",
+      "item": "9-6",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "今日はものすごく暑い。",
+      "promptEn": "It's extremely hot today.",
+      "tokens": [
+        "{今天|Jīntiān}",
+        "{非常|fēicháng}",
+        "{热|rè}",
+        "{极了|jí le}"
+      ],
+      "answerIndex": 1,
+      "correct": "{今天|Jīntiān} {热|rè} {极|jí} {了|le}。",
+      "ja": "今日はものすごく暑い。",
+      "en": "It's extremely hot today.",
+      "why": "程度補語は{非常|fēicháng}のような程度の副詞と一緒に使いません。",
+      "lecture": "no-hen",
+      "checked": false
+    },
+    {
+      "id": "c606",
+      "item": "9-6",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "うれしくてたまらない。",
+      "promptEn": "I'm overjoyed.",
+      "tokens": [
+        "{我|Wǒ}",
+        "{高兴|gāoxìng}",
+        "{得|de}",
+        "{不得了|bùdéliǎo}"
+      ],
+      "answerIndex": -1,
+      "correct": "{我|Wǒ} {高兴|gāoxìng} {得|de} {不得了|bùdéliǎo}。",
+      "ja": "うれしくてたまらない。",
+      "en": "I'm overjoyed.",
+      "why": "誤りはありません。{得不得了|de bùdéliǎo}は「たまらなく」です。",
+      "lecture": "kinds",
+      "checked": false
+    },
+    {
+      "id": "c607",
+      "item": "9-6",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "この料理はものすごくおいしい。",
+      "promptEn": "This dish is absolutely delicious.",
+      "correct": "{这个|Zhège} {菜|cài} {好吃|hǎochī} {极|jí} {了|le}。",
+      "alts": [
+        "这个菜太好吃了",
+        "这道菜好吃极了",
+        "这菜好吃极了"
+      ],
+      "ja": "この料理はものすごくおいしい。",
+      "en": "This dish is absolutely delicious.",
+      "why": "形容詞の後ろに{极了|jí le}を付けます。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c608",
+      "item": "9-6",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "今日は死ぬほど忙しい。",
+      "promptEn": "I'm crazy busy today.",
+      "correct": "{今天|Jīntiān} {忙|máng} {死|sǐ} {了|le}。",
+      "alts": [
+        "我今天忙死了",
+        "今天忙死我了"
+      ],
+      "ja": "今日は死ぬほど忙しい。",
+      "en": "I'm crazy busy today.",
+      "why": "よくない状態の誇張は{死了|sǐ le}がよく使われます。",
+      "lecture": "kinds",
+      "checked": false
+    },
+    {
+      "id": "c609",
+      "item": "9-6",
+      "type": "choice",
+      "kind": "意味",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{这儿|Zhèr} {的|de} {冬天|dōngtiān} {冷|lěng} {得|de} {很|hěn}。",
+      "options": [
+        {
+          "ja": "ここの冬はとても寒い。",
+          "en": "Winters here are really cold."
+        },
+        {
+          "ja": "ここの冬は寒くなった。",
+          "en": "Winters here have gotten colder."
+        },
+        {
+          "ja": "ここの冬は寒いかもしれない。",
+          "en": "Winters here might be cold."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{这儿|Zhèr} {的|de} {冬天|dōngtiān} {冷|lěng} {得|de} {很|hěn}。",
+      "ja": "ここの冬はとても寒い。",
+      "en": "Winters here are really cold.",
+      "why": "{得很|de hěn}は形容詞の後ろに付いて「とても」を表します。",
+      "lecture": "kinds",
+      "checked": false
+    },
+    {
+      "id": "c610",
+      "item": "9-6",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "「彼は私よりずっと背が高い」として正しいのは？",
+      "promptEn": "Which one correctly says \"He's much taller than me\"?",
+      "options": [
+        {
+          "zh": "{他|Tā} {比|bǐ|bí} {我|wǒ} {高|gāo} {多|duō} {了|le}。"
+        },
+        {
+          "zh": "{他|Tā} {比|bǐ|bí} {我|wǒ} {高|gāo} {极|jí} {了|le}。"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{他|Tā} {比|bǐ|bí} {我|wǒ} {高|gāo} {多|duō} {了|le}。",
+      "ja": "彼は私よりずっと背が高い。",
+      "en": "He's much taller than me.",
+      "why": "{比|bǐ}の比較文では{极了|jí le}は使えず、{多了|duō le}を使います。",
+      "lecture": "no-hen",
+      "checked": false
+    },
+    {
+      "id": "c701",
+      "item": "9-7",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "この映画は2回見たことがある。",
+      "promptEn": "I've seen this movie twice.",
+      "sentence": "{这个|Zhège} {电影|diànyǐng} {我|wǒ} {看过|kànguo} {两|liǎng} [（　）]。",
+      "options": [
+        {
+          "text": "{遍|biàn}"
+        },
+        {
+          "text": "{本|běn}"
+        },
+        {
+          "text": "{天|tiān}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{这个|Zhège} {电影|diànyǐng} {我|wǒ} {看过|kànguo} {两|liǎng} {遍|biàn}。",
+      "ja": "この映画は2回見たことがある。",
+      "en": "I've seen this movie twice.",
+      "why": "初めから終わりまで通して見た回数なので{遍|biàn}です。",
+      "lecture": "measure",
+      "checked": false
+    },
+    {
+      "id": "c702",
+      "item": "9-7",
+      "type": "choice",
+      "kind": "位置",
+      "promptJa": "あなたを30分待った。「{半|bàn}{个|ge}{小时|xiǎoshí}」はどこに入る？",
+      "promptEn": "I waited for you for half an hour. Where does {半|bàn}{个|ge}{小时|xiǎoshí} go?",
+      "sentence": "{我|Wǒ|Wó} {等了|děngle} [A] {你|nǐ} [B]。",
+      "options": [
+        {
+          "text": "A"
+        },
+        {
+          "text": "B"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{我|Wǒ|Wó} {等了|děngle} {你|nǐ} {半|bàn} {个|ge} {小时|xiǎoshí}。",
+      "ja": "あなたを30分待った。",
+      "en": "I waited for you for half an hour.",
+      "why": "人を表す代名詞（{你|nǐ}）は時間の前に置くので、時間はその後ろです。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c703",
+      "item": "9-7",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "私は北京に3年住んだ。",
+      "promptEn": "I lived in Beijing for three years.",
+      "tokens": [
+        "{我|wǒ}",
+        "{在|zài}",
+        "{北京|Běijīng}",
+        "{住|zhù}",
+        "{了|le}",
+        "{三年|sān nián}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "correct": "{我|Wǒ} {在|zài} {北京|Běijīng} {住了|zhùle} {三|sān} {年|nián}。",
+      "ja": "私は北京に3年住んだ。",
+      "en": "I lived in Beijing for three years.",
+      "why": "時間の長さは動詞（＋{了|le}）の後ろに置きます。",
+      "lecture": "pattern",
+      "checked": false
+    },
+    {
+      "id": "c704",
+      "item": "9-7",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼は中国語を2年勉強した。",
+      "promptEn": "He studied Chinese for two years.",
+      "tokens": [
+        "{他|tā}",
+        "{学|xué}",
+        "{汉语|Hànyǔ}",
+        "{学|xué}",
+        "{了|le}",
+        "{两年|liǎng nián}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "correct": "{他|Tā} {学|xué} {汉语|Hànyǔ} {学了|xuéle} {两|liǎng} {年|nián}。",
+      "ja": "彼は中国語を2年勉強した。",
+      "en": "He studied Chinese for two years.",
+      "why": "目的語と時間の両方を言うときは、動詞を繰り返せます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c705",
+      "item": "9-7",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "本を1時間読んだ。",
+      "promptEn": "I read for an hour.",
+      "tokens": [
+        "{我|Wǒ}",
+        "{看|kàn}",
+        "{书|shū}",
+        "{看了|kànle}",
+        "{一个小时|yī gè xiǎoshí|yí gè xiǎoshí}"
+      ],
+      "answerIndex": -1,
+      "correct": "{我|Wǒ} {看|kàn} {书|shū} {看了|kànle} {一|yī|yí} {个|gè} {小时|xiǎoshí}。",
+      "ja": "本を1時間読んだ。",
+      "en": "I read for an hour.",
+      "why": "誤りはありません。動詞を繰り返して、目的語と時間の両方を言っています。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c706",
+      "item": "9-7",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "この本は2回（通して）読んだ。",
+      "promptEn": "I've read this book twice.",
+      "tokens": [
+        "{这|Zhè}",
+        "{本|běn}",
+        "{书|shū}",
+        "{我|wǒ}",
+        "{看了|kànle}",
+        "{两|liǎng}",
+        "{个|gè}"
+      ],
+      "answerIndex": 6,
+      "correct": "{这|Zhè} {本|běn} {书|shū} {我|wǒ} {看了|kànle} {两|liǎng} {遍|biàn}。",
+      "ja": "この本は2回（通して）読んだ。",
+      "en": "I've read this book twice.",
+      "why": "動作の回数を数えるのは{遍|biàn}や{次|cì}です。{个|gè}は物を数える語です。",
+      "lecture": "measure",
+      "checked": false
+    },
+    {
+      "id": "c707",
+      "item": "9-7",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "彼を30分待った。",
+      "promptEn": "I waited for him for half an hour.",
+      "correct": "{我|Wǒ|Wó} {等了|děngle} {他|tā} {半|bàn} {个|ge} {小时|xiǎoshí}。",
+      "alts": [
+        "我等他等了半个小时",
+        "我等了他三十分钟",
+        "我等他等了三十分钟"
+      ],
+      "ja": "彼を30分待った。",
+      "en": "I waited for him for half an hour.",
+      "why": "人を表す代名詞（{他|tā}）は時間の前に置きます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c708",
+      "item": "9-7",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "ちょっと見て。",
+      "promptEn": "Take a look.",
+      "correct": "{你|Nǐ} {看|kàn} {一下|yīxià|yíxià}。",
+      "alts": [
+        "看一下",
+        "你看一看",
+        "你看看",
+        "看看"
+      ],
+      "ja": "ちょっと見て。",
+      "en": "Take a look.",
+      "why": "「ちょっと〜する」は「動詞＋{一下|yīxià}」です。",
+      "lecture": "measure",
+      "checked": false
+    },
+    {
+      "id": "c709",
+      "item": "9-7",
+      "type": "choice",
+      "kind": "意味",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{我|Wǒ} {在|zài} {北京|Běijīng} {住了|zhùle} {三|sān} {年|nián}。",
+      "options": [
+        {
+          "ja": "北京に3年住んだ。",
+          "en": "I lived in Beijing for three years."
+        },
+        {
+          "ja": "北京に3回住んだ。",
+          "en": "I lived in Beijing three times."
+        },
+        {
+          "ja": "3年後に北京に住む。",
+          "en": "I'll live in Beijing in three years."
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{我|Wǒ} {在|zài} {北京|Běijīng} {住了|zhùle} {三|sān} {年|nián}。",
+      "ja": "北京に3年住んだ。",
+      "en": "I lived in Beijing for three years.",
+      "why": "動詞の後ろの{三|sān}{年|nián}は、動作が続いた時間の長さです。",
+      "lecture": "lecture",
+      "checked": false
+    },
+    {
+      "id": "c710",
+      "item": "9-7",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "先生、もう一度言ってください。",
+      "promptEn": "Could you say that again, please?",
+      "sentence": "{老师|Lǎoshī}，{请|qǐng} {您|nín} {再|zài} {说|shuō} {一|yī|yí} [（　）]。",
+      "options": [
+        {
+          "text": "{遍|biàn}"
+        },
+        {
+          "text": "{本|běn}"
+        },
+        {
+          "text": "{个|gè}"
+        }
+      ],
+      "cols": 3,
+      "answerIndex": 0,
+      "correct": "{老师|Lǎoshī}，{请|qǐng} {您|nín} {再|zài} {说|shuō} {一|yī|yí} {遍|biàn}。",
+      "ja": "先生、もう一度言ってください。",
+      "en": "Could you say that again, please?",
+      "why": "「（初めから終わりまで）もう1回」は{一|yī|yí}{遍|biàn}です。",
+      "lecture": "measure",
+      "checked": false
+    },
+    {
+      "id": "c801",
+      "item": "9-8",
+      "type": "choice",
+      "kind": "どの補語？",
+      "promptJa": "この文の補語はどれ？",
+      "promptEn": "Which complement is this?",
+      "sentence": "{我|Wǒ} {听|tīng} {不|bu} {清楚|qīngchu}。",
+      "options": [
+        {
+          "text": "様態補語"
+        },
+        {
+          "text": "可能補語"
+        },
+        {
+          "text": "程度補語"
+        },
+        {
+          "text": "数量補語"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 1,
+      "correct": "{我|Wǒ} {听|tīng} {不|bu} {清楚|qīngchu}。",
+      "ja": "はっきり聞こえない。",
+      "en": "I can't hear clearly.",
+      "why": "動詞と補語の間に{不|bu}が入っていて、「はっきり聞こえない」という不可能を表すので可能補語です。",
+      "lecture": "de",
+      "checked": false
+    },
+    {
+      "id": "c802",
+      "item": "9-8",
+      "type": "choice",
+      "kind": "どの補語？",
+      "promptJa": "この文の補語はどれ？",
+      "promptEn": "Which complement is this?",
+      "sentence": "{累|Lèi} {死|sǐ} {了|le}。",
+      "options": [
+        {
+          "text": "様態補語"
+        },
+        {
+          "text": "可能補語"
+        },
+        {
+          "text": "程度補語"
+        },
+        {
+          "text": "数量補語"
+        }
+      ],
+      "cols": 2,
+      "answerIndex": 2,
+      "correct": "{累|Lèi} {死|sǐ} {了|le}。",
+      "ja": "疲れて死にそう。",
+      "en": "I'm dead tired.",
+      "why": "形容詞（{累|lèi}）の後ろで「死ぬほど」と程度を強めているので程度補語です。",
+      "lecture": "kinds",
+      "checked": false
+    },
+    {
+      "id": "c803",
+      "item": "9-8",
+      "type": "choice",
+      "kind": "選択",
+      "promptJa": "（量が多すぎて）今日中には書き終えられない。",
+      "promptEn": "(There's too much) I can't finish writing it today.",
+      "sentence": "{今天|Jīntiān} [（　）]。",
+      "options": [
+        {
+          "zh": "{写|xiě} {不|bu} {完|wán}"
+        },
+        {
+          "zh": "{没|méi} {写完|xiěwán}"
+        },
+        {
+          "zh": "{写|xiě} {得|de} {不|bù} {完|wán}"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{今天|Jīntiān} {写|xiě} {不|bu} {完|wán}。",
+      "ja": "今日中には書き終えられない。",
+      "en": "I can't finish writing it today.",
+      "why": "「終えられない」という不可能なので可能補語の否定です。{没|méi}{写完|xiěwán}は「書き終えなかった」という結果です。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "c804",
+      "item": "9-8",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼は話すのが速すぎて、聞き取れない。",
+      "promptEn": "He talks too fast; I can't understand him.",
+      "tokens": [
+        "{他|tā}",
+        "{说|shuō}",
+        "{得|de}",
+        "{太快|tài kuài}",
+        "{我|wǒ}",
+        "{听|tīng}",
+        "{不|bu}",
+        "{懂|dǒng}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "correct": "{他|Tā} {说|shuō} {得|de} {太|tài} {快|kuài}，{我|wǒ} {听|tīng} {不|bu} {懂|dǒng}。",
+      "ja": "彼は話すのが速すぎて、聞き取れない。",
+      "en": "He talks too fast; I can't understand him.",
+      "why": "前半は様態補語（話し方の評価）、後半は可能補語（聞いてわかることができない）です。",
+      "lecture": "de",
+      "checked": false
+    },
+    {
+      "id": "c805",
+      "item": "9-8",
+      "type": "reorder",
+      "kind": "並べ替え",
+      "promptJa": "彼女は部屋に駆け込んで来た。",
+      "promptEn": "She ran into the room.",
+      "tokens": [
+        "{她|tā}",
+        "{跑进|pǎojìn}",
+        "{房间|fángjiān}",
+        "{来|lái}",
+        "{了|le}"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "correct": "{她|Tā} {跑进|pǎojìn} {房间|fángjiān} {来|lái} {了|le}。",
+      "ja": "彼女は部屋に駆け込んで来た。",
+      "en": "She ran into the room.",
+      "why": "場所（{房间|fángjiān}）は{来|lái}の前に置きます。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c806",
+      "item": "9-8",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "読んだけれどわからなかった。",
+      "promptEn": "I read it but didn't understand.",
+      "tokens": [
+        "{我|Wǒ}",
+        "{没|méi}",
+        "{看得懂|kàn de dǒng}"
+      ],
+      "answerIndex": 2,
+      "correct": "{我|Wǒ} {没|méi} {看懂|kàndǒng}。",
+      "ja": "読んだけれどわからなかった。",
+      "en": "I read it but didn't understand.",
+      "why": "結果補語の否定は「{没|méi}＋動詞＋補語」で、{得|de}は入りません。「読んでもわからない」なら{看|kàn}{不|bu}{懂|dǒng}です。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "c807",
+      "item": "9-8",
+      "type": "fix",
+      "kind": "誤りを探す",
+      "promptJa": "彼は話し方がはっきりしない。",
+      "promptEn": "He doesn't speak clearly.",
+      "tokens": [
+        "{他|Tā}",
+        "{说|shuō}",
+        "{得|de}",
+        "{不|bù}",
+        "{清楚|qīngchu}"
+      ],
+      "answerIndex": -1,
+      "correct": "{他|Tā} {说|shuō} {得|de} {不|bù} {清楚|qīngchu}。",
+      "ja": "彼は話し方がはっきりしない。",
+      "en": "He doesn't speak clearly.",
+      "why": "誤りはありません。様態補語の否定は、{得|de}の後ろを{不|bù}で否定します。",
+      "lecture": "de",
+      "checked": false
+    },
+    {
+      "id": "c808",
+      "item": "9-8",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "読んだけれどわからなかった。",
+      "promptEn": "I read it but didn't understand.",
+      "correct": "{我|Wǒ} {没|méi} {看懂|kàndǒng}。",
+      "alts": [
+        "我看了但是没看懂",
+        "我看了没看懂",
+        "我没有看懂"
+      ],
+      "ja": "読んだけれどわからなかった。",
+      "en": "I read it but didn't understand.",
+      "why": "読んだ結果「わからなかった」ので、結果補語の否定です。",
+      "lecture": "negation",
+      "checked": false
+    },
+    {
+      "id": "c809",
+      "item": "9-8",
+      "type": "write",
+      "kind": "日→中",
+      "promptJa": "彼はバスケがうまい。",
+      "promptEn": "He's good at basketball.",
+      "correct": "{他|Tā} {打|dǎ} {篮球|lánqiú} {打|dǎ} {得|de} {很|hěn|hén} {好|hǎo}。",
+      "alts": [
+        "他篮球打得很好",
+        "他打篮球打得不错",
+        "他篮球打得不错"
+      ],
+      "ja": "彼はバスケがうまい。",
+      "en": "He's good at basketball.",
+      "why": "目的語（{篮球|lánqiú}）があるので、動詞を繰り返すか、目的語を前に出します。",
+      "lecture": "object",
+      "checked": false
+    },
+    {
+      "id": "c810",
+      "item": "9-8",
+      "type": "choice",
+      "kind": "意味",
+      "promptJa": "この文の意味は？",
+      "promptEn": "What does this sentence mean?",
+      "sentence": "{这么|Zhème} {多|duō} {人|rén}，{这个|zhège} {房间|fángjiān} {坐|zuò} {得|de} {下|xià} {吗|ma}？",
+      "options": [
+        {
+          "ja": "こんなに大勢、この部屋に座れる？",
+          "en": "Can this room seat this many people?"
+        },
+        {
+          "ja": "こんなに大勢、この部屋に座った？",
+          "en": "Did this many people sit in this room?"
+        },
+        {
+          "ja": "こんなに大勢、この部屋に座りたい？",
+          "en": "Do this many people want to sit in this room?"
+        }
+      ],
+      "answerIndex": 0,
+      "correct": "{这么|Zhème} {多|duō} {人|rén}，{这个|zhège} {房间|fángjiān} {坐|zuò} {得|de} {下|xià} {吗|ma}？",
+      "ja": "こんなに大勢、この部屋に座れる？",
+      "en": "Can this room seat this many people?",
+      "why": "{坐|zuò}{得|de}{下|xià}は「（場所が足りて）座ることができる」という可能補語です。",
+      "lecture": "kinds",
+      "checked": false
+    }
+  ]
+}
