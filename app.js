@@ -340,7 +340,7 @@ async function renderHome(tab) {
   document.getElementById('home-tabs').innerHTML = homeTabsHTML(tab);
   const root = document.getElementById('home-root');
   try {
-    if (tab === 'toc') root.innerHTML = tocHTML(await loadCatalog());
+    if (tab === 'toc') { root.innerHTML = tocHTML(await loadCatalog()); if (searchQuery.trim()) runSearch(); }
     else if (tab === 'drill') root.innerHTML = await drillHTML();
     else root.innerHTML = await reviewHTML();
   } catch (e) {
@@ -348,9 +348,98 @@ async function renderHome(tab) {
   }
 }
 
+/* ---- 検索 ----
+   題名（日本語・英語・漢字・声調なしのピンイン）と、読める項目の中身（講義・例文・用語）から探す。
+   結果は項目ごとにまとめ、どこに出てくるかを添える。 */
+let searchQuery = '';
+let searchIndex = null;              // 初めて検索したときに作る
+
+// 比べるための形：小文字にし、声調記号を外す（ā → a）。1文字ずつなので位置がずれない
+function fold(t) { return Array.from(String(t)).map(c => c.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().charAt(0) || c).join(''); }
+// {漢字|pinyin} からピンインだけを取り出す（題名をピンインでも探せるように）
+function pinyinOf(src) { return (String(src).match(/\{[^|}]*\|([^|}]*)/g) || []).map(m => m.split('|')[1]).join(' '); }
+
+async function buildSearchIndex() {
+  const cat = await loadCatalog();
+  const index = [];
+  for (const c of cat.chapters) {
+    // まだ項目のない章も、章の名前で見つかるようにする（「準備中」と出す）
+    if (!(c.items || []).length) {
+      index.push({ id: `${c.no}章`, it: { id: `${c.no}章`, ja: c.ja, en: c.en }, ready: false, title: fold([`${c.no}章`, plain(c.ja), plain(c.en), pinyinOf(c.ja)].join(' ')), fields: [] });
+    }
+    for (const it of c.items || []) {
+      const entry = { id: it.id, it: it, ready: !!it.ready, title: fold([it.id, plain(it.ja), plain(it.en), pinyinOf(it.ja), plain(c.ja), plain(c.en)].join(' ')), fields: [] };
+      if (it.ready) {
+        try {
+          const item = await loadItem(it.id);
+          if (item.terms) entry.fields.push({ label: '用語', src: item.terms });
+          (item.lecture || []).forEach(function (b) {
+            const label = `講義・${plain(b.title || '')}`;
+            const texts = [b.body, b.ja, b.en, b.zh].concat((b.cells || []).map(x => `${x.zh} ${x.ja}`), (b.cards || []).map(x => `${x.label} ${x.body}`));
+            entry.fields.push({ label: label, src: texts.filter(Boolean).join(' ') });
+          });
+          (item.examples || []).forEach(function (ex, k) {
+            entry.fields.push({ label: `例文${k + 1}`, src: ex.zh, zh: true });
+            entry.fields.push({ label: `例文${k + 1}`, src: [ex.ja, ex.en, ex.note, ex.explain].filter(Boolean).join(' '), shown: ex.zh });
+          });
+        } catch (e) { /* 読めない項目は題名だけで探す */ }
+      }
+      entry.fields.forEach(f => { f.text = fold(plain(f.src)); });
+      index.push(entry);
+    }
+  }
+  return index;
+}
+
+async function runSearch() {
+  const box = document.getElementById('search-results');
+  const toc = document.getElementById('toc-list');
+  if (!box || !toc) return;
+  const q = fold(searchQuery.trim());
+  toc.hidden = !!q;
+  box.hidden = !q;
+  if (!q) { box.innerHTML = ''; return; }
+  if (!searchIndex) searchIndex = await buildSearchIndex();
+  const hits = [];
+  for (const e of searchIndex) {
+    const inTitle = e.title.includes(q);
+    const where = [];
+    const seen = new Set();
+    for (const f of e.fields) {
+      if (!f.text.includes(q) || seen.has(f.label)) continue;
+      seen.add(f.label);
+      where.push(f);
+    }
+    if (inTitle || where.length) hits.push({ e: e, inTitle: inTitle, where: where });
+  }
+  hits.sort((a, b) => (b.inTitle - a.inTitle));
+  if (!hits.length) { box.innerHTML = `<div class="empty">${ICON.list}<p>見つかりません</p></div>`; return; }
+  box.innerHTML = `<p class="label">${hits.length}項目</p><div class="toc">` + hits.map(function (h) {
+    const it = h.e.it;
+    const title = `<span class="it-title"><span>${md(it.ja)}</span><span lang="en" class="ch-en">${md(it.en)}</span>`;
+    // どこに出てくるか：例文なら文そのもの（ピンイン付き）、講義なら見出しだけ
+    const spots = h.where.slice(0, 3).map(function (f) {
+      const zh = f.zh ? f.src : f.shown;
+      return `<span class="hit">${escapeHTML(f.label)}${zh ? `：<span lang="zh-CN">${md(zh.replace(/^[*?]/, ''))}</span>` : ''}</span>`;
+    }).join('') + (h.where.length > 3 ? `<span class="hit">ほか${h.where.length - 3}か所</span>` : '');
+    if (!h.e.ready) return `<div class="toc-item off"><span class="it-no">${escapeHTML(it.id)}</span>${title}</span><span class="it-state">準備中</span></div>`;
+    return `<a class="toc-item" href="#${escapeHTML(it.id)}"><span class="it-no">${escapeHTML(it.id)}</span>${title}${spots}</span><span class="chev" aria-hidden="true">›</span></a>`;
+  }).join('') + `</div>`;
+}
+
+let searchTimer = null;
+document.addEventListener('input', function (event) {
+  if (event.target.id !== 'search-input') return;
+  searchQuery = event.target.value;
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(runSearch, 150);   // 打つたびではなく、手が止まってから探す
+});
+
 /* ---- 目次 ---- */
 function tocHTML(cat) {
-  return `<h1 class="home-title">目次</h1><div class="toc">` + cat.chapters.map(function (c) {
+  const search = `<div class="search"><input type="search" id="search-input" placeholder="検索：了、補語、complement…" value="${escapeHTML(searchQuery)}" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="search" aria-label="検索"></div>
+    <div id="search-results" hidden></div>`;
+  return `<h1 class="home-title">目次</h1>${search}<div class="toc" id="toc-list">` + cat.chapters.map(function (c) {
     const open = openChapters.has(c.no);
     const items = c.items || [];
     const head = `<button type="button" class="chapter" data-action="toggle-chapter" data-no="${c.no}" aria-expanded="${open}">
@@ -809,7 +898,8 @@ function selfGrade(ok) {
 function finishAnswer(q, it) {
   it.revealed = false;
   it.done = true;
-  Store.recordAnswer(q._key, it.ok);
+  // 問題集の答えは復習に入れない（振り返りと復習の答えだけ記録する）
+  if (state.mode !== 'drill') Store.recordAnswer(q._key, it.ok);
   // 振り返りを全部解いたら、その項目は自動で読了にする（押し忘れ対策）
   if (state.mode === 'item' && allDone()) Store.setRead(q._item.id, true);
   render();

@@ -74,16 +74,20 @@ const Store = (function () {
 
   function card(key) { return data.cards[key] || null; }
 
+  // 復習に出すのは、項目の振り返りの問題だけ（記録の名前が「8-1/q1」の形のもの）。
+  // 問題集の問題（「aspect/a101」など）は、v0.9 から復習に入れない。前に付いた記録も出さない
+  function isReviewKey(k) { return /^\d+-\d+\//.test(k); }
+
   // 復習の時期が来た問題（期限が今日以前）
   function dueKeys() {
     const t = today();
-    return Object.keys(data.cards).filter(k => data.cards[k].due && data.cards[k].due <= t).sort();
+    return Object.keys(data.cards).filter(k => isReviewKey(k) && data.cards[k].due && data.cards[k].due <= t).sort();
   }
 
   // まだ時期が来ていない中で、いちばん近い復習日と、その日の問題数
   function nextDue() {
     const t = today();
-    const future = Object.values(data.cards).map(c => c.due).filter(d => d && d > t).sort();
+    const future = Object.keys(data.cards).filter(isReviewKey).map(k => data.cards[k].due).filter(d => d && d > t).sort();
     if (!future.length) return null;
     return { date: future[0], count: future.filter(d => d === future[0]).length };
   }
